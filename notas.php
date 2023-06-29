@@ -49,7 +49,8 @@
 					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp<?php $mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); $m=$mes[date(n)-1]; $hoy = date("j")." de ".$m." de ".date("Y"); print_r($hoy);?>
 				</td>				
 			</tr>
-		</table>		
+			
+		</table>
 		<br><br>
 		
 		<form action="calculo.php" name="notas" method="GET">
