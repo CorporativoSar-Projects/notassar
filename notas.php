@@ -47,15 +47,13 @@
 			<tr>
 				<td>
 					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp<?php $mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); $m=$mes[date(n)-1]; $hoy = date("j")." de ".$m." de ".date("Y"); print_r($hoy);?>
-				</td>
-				<td>
-					
-				</td>
+				</td>				
 			</tr>
 		</table>		
 		<br><br>
+		
 		<form action="calculo.php" name="notas" method="GET">
-			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio"/>
+			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio" disabled/>
 					<?php
 					if ($id==0) {
 						echo "<script>document.notas.folio.value=1;</script>";				
@@ -64,7 +62,10 @@
 						$id=$id+1;
 						echo "<script>document.notas.folio.value=".$id.";</script>";
 					}
-					?></h5>
+					echo "<script>document.notas.folio.disabled='true';</script>";
+					?>
+					<input type="text" name="dataFolio" style="display: none;" value="<?php echo $id;?>">
+					</h5>
 					<br><br>
 			<h4>Tipo de nota a generar:</h4>
 			<br>			

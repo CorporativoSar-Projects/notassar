@@ -25,7 +25,7 @@
 	$importe3=$_GET['importe3'];
 	$importe4=$_GET['importe4'];
 	$tipoNota=$_GET['tipoNota'];
-	$folio=$_GET['folio'];
+	$folio=$_GET['dataFolio'];
 	$mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); $m=$mes[date(n)-1]; $hoy = date("j")." de ".$m." de ".date("Y");
 	global $subtotal;
 	global $iva;
@@ -110,15 +110,7 @@
 		<br><br>
 		<form action="calculo.php" name="notas" method="GET">
 			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio"/>
-					<?php
-					if ($id==0) {
-						echo "<script>document.notas.folio.value=1;</script>";				
-					}
-					else{
-						$id=$id+1;
-						echo "<script>document.notas.folio.value=".$id.";</script>";
-					}
-					?></h5>
+					</h5>
 					<br><br>
 			<h4>Tipo de nota a generar:</h4>
 			<br>			
@@ -421,12 +413,12 @@
 		});
 
 	function inicial() {
-		document.notas.folio.disabled=true;
 		var f="<?php echo $folio ?>";
 		var tn="<?php echo $tipoNota ?>";
 		var nc="<?php echo $nomCliente; ?>";
 		var dc="<?php echo $domCliente; ?>";
 		document.notas.folio.value=f;
+		document.notas.folio.disabled=true;
 		document.notas.tipoNota.value=tn;
 		document.notas.nomCliente.value=nc;
 		document.notas.domCliente.value=dc;

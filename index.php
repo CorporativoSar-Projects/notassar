@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0);
 	//$conexion=mysqli_connect("localhost","corpo240_admin","upiicsa2022","corpo240_corporativosar");
-	$conexion=mysqli_connect("localhost","root","upiicsa5","corporativo_sar");
+	$conexion=mysqli_connect("localhost","root","","corporativo_sar");
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
 	$queU=("SELECT * FROM usuario_admin WHERE nom_usuario='$user' and pass_usuario='$pass'");
