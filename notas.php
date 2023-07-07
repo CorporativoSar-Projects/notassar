@@ -40,7 +40,7 @@
 <body onload="ocultarInicio();">
 	<?php include 'menu.php'; ?>
 	<br><br>
-	<h1><center>Bienvenido Corporatixcbxvcbdgsdfgsdfgsdgsdvo SAR</center></h1>
+	<h1><center>Bienvenido Corporatixcbxvcbdgsdfagsdfgsdgsdvo SAR</center></h1>
 	<br><br>
 	<center>
 		<table>
