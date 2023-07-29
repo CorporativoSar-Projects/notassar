@@ -2,12 +2,22 @@
 	margin: 0 !important;
 }
 
-table, form{
+form{
+	width: 100%;
+}
+
+#divGen{
 	width: 100% !important;
 }
 
-td{
-	text-align: center;
+#divContTable{
+	border: #41B83E solid 1px;
+	width: 100% !important;
+}
+
+#contTable{
+	border: #3e4eb8 solid 1px;
+	width: 100% !important;
 }
 
 #bCG{

@@ -38,6 +38,7 @@
 <style>
 	td{		
 		padding-top: 10px;
+		text-align: center;
 	}
 	form{
 		padding-bottom: 10px;
@@ -75,7 +76,7 @@
 		<?php
 			$selectServices="SELECT * FROM servicio WHERE id_servicio<>''";
 		?>
-			<table>
+			<table style="width: 100%;">
 				<tr>
 					<td>
 						ID SERVICIO
