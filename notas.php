@@ -98,14 +98,13 @@
 						<th scope="col">#</th>
 						<th scope="col">SERVICIO</th>
 						<th scope="col">CANTIDAD</th>
-						<th scope="col">PRECIO UNITARIO</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
 						<td>
-							<select name="idservicio" id="idservicio" onchange="popCost()">
+							<select name="idservicio" id="idservicio" required="true">
 							<?php							
 								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
 								$q=$conexion->query($selectServices);
@@ -121,24 +120,72 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" name="cantidad" />
+							<input type="number" name="cantidad" required="true"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>
+							<select name="idservicio2" id="idservicio2">
+								<option value=""></option>
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
+							?>
+							</select>
 						</td>
 						<td>
-							<input type="number" name="precio" id="precio" step="0.01" />
+							<input type="number" name="cantidad2" />
 						</td>
 					</tr>
 					<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
+						<th scope="row">3</th>
+						<td>
+							<select name="idservicio3" id="idservicio3">
+								<option value=""></option>
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
+							?>
+							</select>
+						</td>
+						<td>
+							<input type="number" name="cantidad3" />
+						</td>
 					</tr>
 					<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-					</tr>
+						<th scope="row">4</th>
+						<td>
+							<select name="idservicio4" id="idservicio4">
+								<option value=""></option>
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
+							?>
+							</select>
+						</td>
+						<td>
+							<input type="number" name="cantidad4" />
+						</td>
+					</tr>					
 				</tbody>
 				</table>
 			<br><br>
@@ -175,114 +222,5 @@
 			break;
 		}
 	}
-
-	function popCost(){
-		var serviceOptionSelected=document.getElementById('idservicio');
-		var textServiceOpttionSelected=serviceOptionSelected.options[serviceOptionSelected.selectedIndex].text;
-		var costService;
-		var strArray="";
-		var indice=0;
-		jsArrayServicesCost = new Array();
-		var jsArrayServices = '<?php echo json_encode($serviceArray);?>';
-		//alert("Valor de tamaño: "+numServs);
-		for (var clave in jsArrayServices) {
-			if (jsArrayServices.hasOwnProperty.call(jsArrayServices, clave)) {
-				var element = jsArrayServices[clave];
-				if (clave >= 2 && element!='"' && element!=':') {
-					strArray=strArray+element;
-				}
-				else if (element==':')
-				{
-					indice=indice+1;
-					jsArrayServicesCost[indice]=strArray;
-					strArray="";
-				}				
-				console.log("Clave: " + clave + ", Valor: " + element);
-			}
-		}
-		alert (jsArrayServicesCost);
-		alert ("<?php echo $serviceArray['Bungalow Mediano']; ?>");
-		/*
-		
-		for (var index = 1; index <= jsArrayServicesCost.length; index++) {
-			if (jsArrayServicesCost[index]==textServiceOpttionSelected) {
-				costService = jsArrayServicesCost[index+1];
-				alert ("Servicio seleccionado:"+textServiceOpttionSelected+", su costo es: "+costService);
-			}
-			else{
-				alert("No");
-			}
-			
-		}
-		*/
-		
-		//alert("Valor de array en JS: "+jsArrayServices.Bungalow Grande);
-	}
-		/*
-		var serviceOptionSelected=document.getElementById('idservicio');
-		var textServiceOpttionSelected=serviceOptionSelected.options[serviceOptionSelected.selectedIndex].text;
-		const http = new XMLHttpRequest();
-		const url = 'http://localhost/notassar/costSelected.php?precioServicio='+textServiceOpttionSelected;
-		
-		http.onreadystatechange = function(){
-			if (this.readyState == 4 && this.status == 200){
-				document.getElementById('precio').value=this.responseText;
-			}
-			else{
-				alert("No se pudo");
-			}
-		}
-		http.open("GET",url);
-		http.send();
-	}*/
-		/*
-		var precioSel=document.getElementById('precio');
-		var serviceOptionSelected=document.getElementById('idservicio');
-		var textServiceOpttionSelected=serviceOptionSelected.options[serviceOptionSelected.selectedIndex].text;
-		// Crea un objeto XMLHttpRequest
-		var xhr = new XMLHttpRequest();
-		// Configura la solicitud AJAX
-		xhr.open('GET', 'costSelected.php?precioServicio='+textServiceOpttionSelected, true);
-		// Configura la función de respuesta
-		xhr.onreadystatechange = function() {
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			if (xhr.status === 200) {
-			// Procesa la respuesta del servidor (en formato JSON, por ejemplo)
-			var respuesta = JSON.parse(xhr.responseText);
-			// Hacer algo con la respuesta, como mostrarla en la página web
-			alert("valor de resp:"+respuesta);
-
-			} else {
-			// Manejar errores si la solicitud no fue exitosa
-			console.error('Error en la solicitud.');
-			alert("No se pudo");
-			}
-		}
-		};
-		// Envía la solicitud
-		xhr.send();
-	}*/
-	/*
-	function popCost(){
-		const precioSel = document.getElementById('precio');
-		var serviceOptionSelected=document.getElementById('idservicio');
-		var textServiceOpttionSelected=serviceOptionSelected.options[serviceOptionSelected.selectedIndex].text;
-		const url = 'costSelected.php';
-		let data = {
-			precioServicio: textServiceOpttionSelected
-		}
-
-		var request = new Request(url, {
-			method: 'POST',
-			body: data,
-			headers: new Headers()
-		});
-		alert("valor de select:"+textServiceOpttionSelected);
-		fetch(request)
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('precio').value = JSON.stringify(data);
-        })
-        .catch(error => console.error(error));*/
 </script>
 </html>

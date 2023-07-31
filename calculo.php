@@ -35,7 +35,7 @@
 	global $nomServ2;
 	global $nomServ3;
 	global $nomServ4;
-
+	global $priceValue;
 	//CABECERA PHP DE NOTAS.PHP
 	echo "Usuario: ".$_SESSION['$user'];
 	$varsesion=$_SESSION['$user'];
@@ -57,6 +57,44 @@
 	}
 	else{
 		$id=0;
+	}
+	for ($totServices=1; $totServices <= 4; $totServices++) {
+		if ($totServices==1) {
+			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio'";
+			$qp=$conexion->query($llenadoPrecio);
+			while ($price=mysqli_fetch_array($qp))
+			{								
+				$precio=$price[precio_servicio];
+				$importe=$precio*$cantidad;
+			}
+		}
+		else if ($totServices==2) {
+			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio2'";
+			$qp=$conexion->query($llenadoPrecio);
+			while ($price=mysqli_fetch_array($qp))
+			{								
+				$precio2=$price[precio_servicio];
+				$importe2=$precio2*$cantidad2;
+			}
+		}
+		else if ($totServices==3) {
+			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio3'";
+			$qp=$conexion->query($llenadoPrecio);
+			while ($price=mysqli_fetch_array($qp))
+			{								
+				$precio3=$price[precio_servicio];
+				$importe3=$precio3*$cantidad3;
+			}
+		}
+		else if ($totServices==4) {
+			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio4'";
+			$qp=$conexion->query($llenadoPrecio);
+			while ($price=mysqli_fetch_array($qp))
+			{								
+				$precio4=$price[precio_servicio];
+				$importe4=$precio4*$cantidad4;
+			}
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -122,179 +160,128 @@
 			<br><br><br>
 			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true"/></h5><br>
 			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>
-			<table>
-				<tr>
-					<td>
-						<h5>ID SERVICIO&nbsp&nbsp</h5>
-					</td>
-					<td>
-						<h5>CANTIDAD&nbsp&nbsp</h5>
-					</td>
-					<td>
-						<h5 id="tDesc1">DESCRIPCIÓN&nbsp&nbsp</h5>
-					</td>
-					<td>
-						<h5>PRECIO&nbsp&nbsp</h5>
-					</td>
-					<td>
-						<h5 id="titImporte">IMPORTE&nbsp&nbsp</h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<select name="idservicio" id="idservicio" disabled="true">
-						<?php							
-							$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio'";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{								
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";
-								$nomServ=$valor[nom_servicio];
-							}							
-						?>
-						</select>			
-					</td>
-					<td>
-						<input type="number" name="cantidad" />
-					</td>
-					<td>
-						<input type="text" name="descripcion" id="descServ1"/>
-					</td>
-					<td>
-						<input type="number" name="precio" step="0.01" />
-					</td>
-					<td>
-						<input type="number" name="importe" onclick="calculo();" step="0.01" />
-					</td>
-				</tr>
-				<tr><!--Fila 2-->
-					<td>
-						<select name="idservicio2" id="idservicio">
-						<?php							
-							$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio2'";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{								
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";
-								$nomServ2=$valor[nom_servicio];
-							}
-						?>
-						</select>
-						<!--
-						<select name="idservicio2" id="idservicio">
-						<?php/*
-							$selectServices="SELECT id_servicio, nom_servicio FROM servicio";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";									
-							}
-						*/?>
-						</select>-->
-					</td>
-					<td>
-						<input type="number" name="cantidad2" />
-					</td>
-					<td>
-						<input type="text" name="descripcion2" id="descServ2"/>
-					</td>
-					<td>
-						<input type="number" name="precio2" step="0.01"/>
-					</td>
-					<td>
-						<input type="number" name="importe2" onclick="calculo();" step="0.01"/>
-					</td>
-				</tr>
-				<tr><!--Fila 3-->
-					<td>
-						<select name="idservicio3" id="idservicio">
-						<?php							
-							$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio3'";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{								
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";
-								$nomServ3=$valor[nom_servicio];
-							}
-						?>
-						</select>
-						<!--
-						<select name="idservicio3" id="idservicio">
-						<?php/*
-							$selectServices="SELECT id_servicio, nom_servicio FROM servicio";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";									
-							}
-						*/?>
-						</select>-->
-					</td>
-					<td>
-						<input type="number" name="cantidad3" />
-					</td>
-					<td>
-						<input type="text" name="descripcion3" id="descServ3"/>
-					</td>
-					<td>
-						<input type="number" name="precio3" step="0.01"/>
-					</td>
-					<td>
-						<input type="number" name="importe3" onclick="calculo();" step="0.01"/>
-					</td>
-				</tr>
-				<tr><!--Fila 4-->
-					<td>
-						<select name="idservicio4" id="idservicio">
-						<?php							
-							$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio4'";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{								
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";
-								$nomServ4=$valor[nom_servicio];
-							}
-						?>
-						</select>
-						<!--
-						<select name="idservicio4" id="idservicio">
-						<?php/*
-							$selectServices="SELECT id_servicio, nom_servicio FROM servicio";
-							$q=$conexion->query($selectServices);
-							while ($valor=mysqli_fetch_array($q))
-							{
-								echo "<option value=".$valor[id_servicio]."
-									>".$valor[nom_servicio]."</option>";									
-							}
-						*/?>
-						</select>-->
-					</td>
-					<td>
-						<input type="number" name="cantidad4" />
-					</td>
-					<td>
-						<input type="text" name="descripcion4" id="descServ4"/>
-					</td>
-					<td>
-						<input type="number" name="precio4" step="0.01"/>
-					</td>
-					<td>
-						<input type="number" name="importe4" onclick="calculo();" step="0.01"/>
-					</td>
-				</tr>
-			</table>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">SERVICIO</th>
+						<th scope="col">CANTIDAD</th>
+						<th scope="col">PRECIO UNITARIO</th>
+						<th scope="col" id="titImporte">IMPORTE</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>
+							<select name="idservicio" id="idservicio" disabled="true">
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio'";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{								
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";
+									$nomServ=$valor[nom_servicio];
+								}							
+							?>
+							</select>
+						</td>
+						<td>
+							<input type="number" name="cantidad" value="<?php echo $cantidad; ?>" disabled="true"/>
+						</td>
+						<td>
+							<input type="number" name="precio" step="0.01" value="<?php echo $precio; ?>" disabled="true"/>
+						</td>
+						<td>
+						<input type="number" name="importe" onclick="calculo();" step="0.01" value="<?php echo $importe; ?>" disabled="true"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>
+							<select name="idservicio2" id="idservicio" disabled="true">
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio2'";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{								
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";
+									$nomServ=$valor[nom_servicio];
+								}							
+							?>
+							</select>
+						</td>
+						<td>
+							<input type="number" name="cantidad2" value="<?php echo $cantidad2; ?>" disabled="true"/>
+						</td>
+						<td>
+							<input type="number" name="precio2" step="0.01" value="<?php echo $precio2; ?>" disabled="true"/>
+						</td>
+						<td>
+						<input type="number" name="importe2" onclick="calculo();" step="0.01" value="<?php echo $importe2; ?>" disabled="true"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>
+							<select name="idservicio3" id="idservicio" disabled="true">
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio3'";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{								
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";
+									$nomServ=$valor[nom_servicio];
+								}							
+							?>
+							</select>
+						</td>
+						<td>
+							<input type="number" name="cantidad3" value="<?php echo $cantidad3; ?>" disabled="true"/>
+						</td>
+						<td>
+							<input type="number" name="precio3" step="0.01" value="<?php echo $precio3; ?>" disabled="true"/>
+						</td>
+						<td>
+						<input type="number" name="importe3" onclick="calculo();" step="0.01" value="<?php echo $importe3; ?>" disabled="true"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>
+							<select name="idservicio4" id="idservicio" disabled="true">
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio4'";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{								
+									echo "<option value=".$valor[id_servicio]."
+										>".$valor[nom_servicio]."</option>";
+									$nomServ=$valor[nom_servicio];
+								}							
+							?>
+							</select>
+						</td>
+						<td>
+							<input type="number" name="cantidad4" value="<?php echo $cantidad4; ?>" disabled="true"/>
+						</td>
+						<td>
+							<input type="number" name="precio4" step="0.01" value="<?php echo $precio4; ?>" disabled="true"/>
+						</td>
+						<td>
+						<input type="number" name="importe4" onclick="calculo();" step="0.01" value="<?php echo $importe4; ?>" disabled="true"/>
+						</td>
+					</tr>					
+				</tbody>
+				</table>
 			<br><br>
 			<input id="bCG" type="submit" value="Calcular pagos"/>
 		</form>
-	</center>
-	<center>
-	<table>
+	<table style="max-width: 100% !important; text-align:center !important;">
 		<tr>
 			<td>
 				<h5>SUBTOTAL: </h5>
@@ -360,7 +347,7 @@
 			</td>
 		</tr>
 	</table>
-	<table>
+	<table style="max-width: 100% !important; text-align:center !important;">
 		<tr>
 			<td>
 				<form action="insertar nota.php" method="POST">
