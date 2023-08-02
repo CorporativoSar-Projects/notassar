@@ -6,7 +6,6 @@
 	$pass=$_POST['pass'];
 	$cifra = $pass;
 	$pass= cifrarSHA256($cifra);
-	
 	function cifrarSHA256($texto) {
 		return hash('sha256', $texto);
 	}
