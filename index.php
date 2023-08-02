@@ -1,10 +1,16 @@
 <?php
 	error_reporting(0);
-	//$conexion=mysqli_connect("localhost","corpo240_admin","upiicsa2022","corpo240_corporativosar");
-	$conexion=mysqli_connect("localhost","root","","corporativo_sar");
+	
+	$conexion=mysqli_connect("localhost", "id20796694_root", 'upiic$A5', "id20796694_basedatos");
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
-	$queU=("SELECT * FROM usuario_admin WHERE nom_usuario='$user' and pass_usuario='$pass'");
+	$cifra = $pass;
+	$pass= cifrarSHA256($cifra);
+	
+	function cifrarSHA256($texto) {
+		return hash('sha256', $texto);
+	}
+	$queU=("SELECT Correo FROM UsuariosS  WHERE Correo='$user' and Pass='$pass'");
 	$result=mysqli_query($conexion,$queU);
 	if (mysqli_num_rows($result)>0) {
 	//	echo "<script>alert('Num Cols: $x');</script>";
@@ -75,6 +81,7 @@
 	</div>
 </body>
 <script>
+	
 	function nuevo() {
 		alert("Por favor, escribe al administrador del sistema o contacta al correo lsanchezc@corporativosaarme.com");
 	}
