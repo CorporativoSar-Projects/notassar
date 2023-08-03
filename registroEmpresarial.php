@@ -67,7 +67,6 @@
 				<h3>Powered by Corporativo SAR</h3>
 				<br>
 				<br>
-				<center>
                 <table>
                     <tr>
                         <td>
@@ -93,20 +92,57 @@
                             <input type="text" id="nomRep" name="nomRep" placeholder="Ej. Luis Sánchez" required="true">
                         </td>
                     </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Correo de contacto</label>
+                        </td>
+                        <td>
+                            <input type="text" id="corCont" name="corCont" placeholder="Ej. admin@innsolcorp.com" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Teléfono de contacto</label>
+                        </td>
+                        <td>
+                            <input type="number" id="telCont" name="telCont" placeholder="Ej. 5589547249" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Logotipo</label>
+                        </td>
+                        <td>
+                            <input type="text" id="logEmp" name="logEmp" placeholder="Ej. formato .jpg .png" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Sitio web oficial</label>
+                        </td>
+                        <td>
+                            <input type="text" id="sitWeb" name="sitWeb" placeholder="Ej. www.inncorp.com" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Dirección</label>
+                        </td>
+                        <td>
+                            <input type="text" id="dirEmp" name="dirEmp" placeholder="Ej. Copernico 23, Miguel Hidalgo, CDMX, 02380" required="true">
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2">
-							<br>
                             <input type="submit" name="aceptar" value="Registrar empresa" class="aceptar">
                         </td>                
                     </tr>
                     <tr>
                         <td colspan="2">
-							<br>
                             <input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
                         </td>
                     </tr>
                 </table>
-				</center>
 			</form>
 		</div>
 	</div>
