@@ -1,5 +1,6 @@
 <?php
-
+//SE debe jalar el codigo de la empresa para crear la carpeta donde ir'a su logo, debe ser una varibale 
+//global que venga de registro empresarial, para sustituir en "logotipos"
 if (isset($_FILES['file'])){
     $file = $_FILES['file'];
     $filename = $file['name'];
