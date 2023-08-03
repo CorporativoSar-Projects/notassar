@@ -1,6 +1,10 @@
 <?php
 //SE debe jalar el codigo de la empresa para crear la carpeta donde ir'a su logo, debe ser una varibale 
 //global que venga de registro empresarial, para sustituir en "logotipos"
+
+
+
+
 if (isset($_FILES['file'])){
     $file = $_FILES['file'];
     $filename = $file['name'];
@@ -9,11 +13,10 @@ if (isset($_FILES['file'])){
     if (!in_array($nimetype, $allowed_types)){
         header("loaction:Imagenes.php");
     }
-    if(!is_dir("logotipos")){
-        mkdir("logotipos", 0777);
+    if(!is_dir("$nomEmp")){
+        mkdir("$nomEmp", 0777);
 
     }
-
-    move_uploaded_file($file['tmp_name'], 'logotipos/'.$filename);
+    move_uploaded_file($file['$nomEmp'], '$nomEmp/'.$filename);
 }
 ?>

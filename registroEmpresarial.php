@@ -1,9 +1,14 @@
 <?php
 	error_reporting(0);
-	
-	$conexion=mysqli_connect("localhost", "id20796694_root", 'upiic$A5', "id20796694_basedatos");
+	include 'upload.php';
+	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
+	$nomEmp = $_POST['nomEmp'];
+	$codigoEmp = $_POST['codigoEmp'];
+	$nomRep = $_POST['nomRep'];
+	$CorreoE = $_POST['CorreoE'];
+	$telCont = $_POST['telCont'];	
 	$cifra = $pass;
 	$pass= cifrarSHA256($cifra);
 	
@@ -63,7 +68,7 @@
 	<br><br><br>
 	<div id="divmain">
 		<div id="divForm">
-			<form id="formRegEmp" method="POST">
+			<form id="formRegEmp" method="POST" action="upload.php">
 				<br>
 				<br>
 				<center>
@@ -82,6 +87,7 @@
                     <tr>
                         <td>
                             <label for="nomEmp" id="labRegForm">Nombre de empresa</label>
+							
                         </td>
                         <td>
                             <input type="text" id="nomEmp" name="nomEmp" placeholder="Ej. Innsol Corporation" required="true">
@@ -108,7 +114,7 @@
                             <label for="nomEmp" id="labRegForm">Correo de contacto</label>
                         </td>
                         <td>
-                            <input type="text" id="corCont" name="corCont" placeholder="Ej. admin@innsolcorp.com" required="true">
+                            <input type="text" id="corCont" name="CorreoE" placeholder="Ej. admin@innsolcorp.com" required="true">
                         </td>
                     </tr>
 					<tr>
