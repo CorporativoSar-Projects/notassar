@@ -60,38 +60,38 @@
 	}
 	for ($totServices=1; $totServices <= 4; $totServices++) {
 		if ($totServices==1) {
-			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio'";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
-				$precio=$price[precio_servicio];
+				$precio=$price[PrecioU];
 				$importe=$precio*$cantidad;
 			}
 		}
 		else if ($totServices==2) {
-			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio2'";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio2';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
-				$precio2=$price[precio_servicio];
+				$precio2=$price[PrecioU];
 				$importe2=$precio2*$cantidad2;
 			}
 		}
 		else if ($totServices==3) {
-			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio3'";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio3';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
-				$precio3=$price[precio_servicio];
+				$precio3=$price[PrecioU];
 				$importe3=$precio3*$cantidad3;
 			}
 		}
 		else if ($totServices==4) {
-			$llenadoPrecio="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio4'";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio4';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
-				$precio4=$price[precio_servicio];
+				$precio4=$price[PrecioU];
 				$importe4=$precio4*$cantidad4;
 			}
 		}
@@ -177,7 +177,19 @@
 						<td>
 							<select name="idservicio" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio'";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio2';";
+								$q=$conexion->query($selectServices);
+								while ($valor=mysqli_fetch_array($q))
+								{
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$nomServ=$valor[NombrePS];
+									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
+							?>
+							<?php							
+								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio3'";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{								
@@ -203,14 +215,16 @@
 						<td>
 							<select name="idservicio2" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio2'";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
-								{								
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";
-									$nomServ=$valor[nom_servicio];
-								}							
+								{
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$nomServ=$valor[NombrePS];
+									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
 							?>
 							</select>
 						</td>
@@ -229,14 +243,16 @@
 						<td>
 							<select name="idservicio3" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio3'";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA'and NombrePS = '$idservicio3';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
-								{								
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";
-									$nomServ=$valor[nom_servicio];
-								}							
+								{
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$nomServ=$valor[NombrePS];
+									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
 							?>
 							</select>
 						</td>
@@ -255,14 +271,16 @@
 						<td>
 							<select name="idservicio4" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, desc_servicio, precio_servicio FROM servicio WHERE id_servicio='$idservicio4'";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio4';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
-								{								
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";
-									$nomServ=$valor[nom_servicio];
-								}							
+								{
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$nomServ=$valor[NombrePS];
+									
+									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+								}
 							?>
 							</select>
 						</td>

@@ -45,13 +45,13 @@
 				<td colspan="3" style="border: 0px !important">
 					<div align="left">
 						<?php
-							$queryCL="SELECT * FROM prospecto";
+							$queryCL="SELECT ProspectosS.Nom_Prosp, ProspectosS.Correo_C, ProspectosS.Numero, ProspectosS.Estado_C, UsuariosS.Correo, UsuariosS.NombreU  FROM ProspectosS JOIN UsuariosS on UsuariosS.Correo = '$varsesion' ;";
 							$prospectoCL=$conexion->query($queryCL);
 							$contLeadCL=mysqli_affected_rows($conexion);
 							$contMyLeadCL=0;						
 							while ($valor=mysqli_fetch_array($prospectoCL))
 							{
-								if ($valor[nom_usuario]==$varsesion) {
+								if ($valor[UsuariosS.Correo]==$varsesion) {
 									$contMyLeadCL++;
 								}
 							}
@@ -63,7 +63,7 @@
 			</tr>
 			<tr>
 				<?php
-					$cabecera = array('ID','NOMBRE','DOMICILIO','INDUSTRIA','TELÉFONO','CORREO','REPRESENTANTE','ORIGEN','SERVICIO(S)','ESTATUS','AGENTE');
+					$cabecera = array('NOMBRE','DOMICILIO','INDUSTRIA','TELÉFONO','CORREO','REPRESENTANTE','ORIGEN','SERVICIO(S)','ESTATUS','AGENTE');
 					foreach ($cabecera as $fila)
 					{
 						echo "<td><b>".$fila."</b></td>";
@@ -71,25 +71,27 @@
 				?>			
 			</tr>			
 			<?php
-				$query="SELECT * FROM prospecto";
+				$query="SELECT ProspectosS.Nom_Prosp, ProspectosS.Correo_C, ProspectosS.Numero, 
+				ProspectosS.Estado_C, UsuariosS.Correo, UsuariosS.NombreU  FROM ProspectosS JOIN UsuariosS on UsuariosS.Correo = '$varsesion';";
 				$prospecto=$conexion->query($query);
 				$contLeads=mysqli_affected_rows($conexion);	
 				while ($valor=mysqli_fetch_array($prospecto))
 				{
-					if ($valor[nom_usuario]==$varsesion)
+					if ($valor['NombreU']==$varsesion)
 					{
-						echo "<tr id='leadRowleadPicklist".$valor[id_p]."'><td>".$valor[id_p]."
-							</td><td>".$valor[nom_prospecto]."
-							</td><td>".$valor[dom_prospecto]."							
-							</td><td>".$valor[giro]."
-							</td><td>".$valor[tel_prospecto]."
-							</td><td>".$valor[correo_prospecto]."
-							</td><td>".$valor[representante]."
-							</td><td>".$valor[origen]."
-							</td><td>".$valor[servicio_interes]."
-							</td><td>";include 'leadPicklist.php';echo "
-							</td><td>".$valor[agente]."
-							</td></tr>";
+						echo 
+						"<table>
+						<tr id='leadRowleadPicklist".$valor['id_p']."'><td>".$valor['id_p']."
+							</td><td>".$valor['Nom_Prosp']."
+							</td><td>".$valor['Correo_C']."							
+							</td><td>".$valor['Numero']."
+							</td><td>".$valor['Estado_C']."
+							</td><td>".$valor['Correo']."
+							</td><td>".$valor['NombreU']."
+							</td><td>".$valor['origen']."
+							</td><td>".$valor['servicio_interes']."
+							</td><td>";include 'leadPicklist.php';
+							echo "</td></tr>";
 						echo "<script>var a=document.getElementById('leadPicklist".$valor[id_p]."').value;
 						b=document.getElementById('leadRowleadPicklist".$valor[id_p]."');
 						if(a=='nuevo' || a=='primCotacto'){
