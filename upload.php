@@ -6,7 +6,7 @@ if (isset($_FILES['file'])){
     $nimetype = $file['type'];
     $allowed_types = array("image/jpg", "image/jpeg", "image/png");
     if (!in_array($nimetype, $allowed_types)){
-        header("loaction:index.php");
+        header("loaction:Imagenes.php");
     }
     if(!is_dir("logotipos")){
         mkdir("logotipos", 0777);
