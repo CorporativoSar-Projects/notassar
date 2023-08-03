@@ -67,6 +67,7 @@
 				<h3>Powered by Corporativo SAR</h3>
 				<br>
 				<br>
+				<center>
                 <table>
                     <tr>
                         <td>
@@ -94,15 +95,18 @@
                     </tr>
                     <tr>
                         <td colspan="2">
+							<br>
                             <input type="submit" name="aceptar" value="Registrar empresa" class="aceptar">
                         </td>                
                     </tr>
                     <tr>
                         <td colspan="2">
+							<br>
                             <input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
                         </td>
                     </tr>
                 </table>
+				</center>
 			</form>
 		</div>
 	</div>
