@@ -60,15 +60,24 @@
 			<img src="./imagenes/carrito.png">
 		</a>-->
 	</header>
+	<br><br><br>
 	<div id="divmain">
 		<div id="divForm">
 			<form id="formRegEmp" method="POST">
-				<h1>Registro de nuevas empresas</h1>
-				<h3>Powered by Corporativo SAR</h3>
 				<br>
 				<br>
-				<center>
                 <table>
+					<tr>
+						<td colspan="2">
+							<h1>Registro de nuevas empresas</h1>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h3>Powered by Corporativo SAR</h3>
+							<br><br>
+						</td>
+					</tr>
                     <tr>
                         <td>
                             <label for="nomEmp" id="labRegForm">Nombre de empresa</label>
@@ -93,20 +102,60 @@
                             <input type="text" id="nomRep" name="nomRep" placeholder="Ej. Luis Sánchez" required="true">
                         </td>
                     </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Correo de contacto</label>
+                        </td>
+                        <td>
+                            <input type="text" id="corCont" name="corCont" placeholder="Ej. admin@innsolcorp.com" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Teléfono de contacto</label>
+                        </td>
+                        <td>
+                            <input type="number" id="telCont" name="telCont" placeholder="Ej. 5589547249" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Logotipo</label>
+                        </td>
+                        <td>
+                            <input type="text" id="logEmp" name="logEmp" placeholder="Ej. formato .jpg .png" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Sitio web oficial</label>
+                        </td>
+                        <td>
+                            <input type="text" id="sitWeb" name="sitWeb" placeholder="Ej. www.inncorp.com" required="true">
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Dirección</label>
+                        </td>
+                        <td>
+                            <input type="text" id="dirEmp" name="dirEmp" placeholder="Ej. Copernico 23, Miguel Hidalgo, CDMX, 02380" required="true">
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2">
-							<br>
                             <input type="submit" name="aceptar" value="Registrar empresa" class="aceptar">
                         </td>                
                     </tr>
                     <tr>
                         <td colspan="2">
-							<br>
                             <input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
                         </td>
-                    </tr>
+						<td>
+							<input type="submit" name="registrarEmp" value="Registrar empresa" class="registrarEmp">
+						</td>
+                    </tr>                    
                 </table>
-				</center>
 			</form>
 		</div>
 	</div>
