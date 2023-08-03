@@ -63,7 +63,7 @@
 	if ($descripcion4=='') {
 		$descripcion4="-";
 	}
-	$conexion=mysqli_connect("localhost","root","","corporativo_sar");
+	$conexion=mysqli_connect("localhost", "id20796694_root", 'upiic$A5', "id20796694_basedatos");
 	$queU="INSERT INTO nota (folio_nota,id_servicio,id_servicio_2,id_servicio_3,id_servicio_4,cantidad,cantidad_2,cantidad_3,cantidad_4,desc_servicio,desc_servicio_2,desc_servicio_3,desc_servicio_4,precio,precio_2,precio_3,precio_4,importe,importe_2,importe_3,importe_4,subtotal,iva,riva,risr,total,nom_cliente,dom_cliente,fecha,tipo_nota) VALUES ('$folio','$idservicio','$idservicio2','$idservicio3','$idservicio4','$cantidad','$cantidad2','$cantidad3','$cantidad4','$descripcion','$descripcion2','$descripcion3','$descripcion4','$precio','$precio2','$precio3','$precio4','$importe','$importe2','$importe3','$importe4','$subtotal','$iva','$riva','$risr','$total','$nomCliente','$domCliente','$fecha','$tipoNota')";
 	if ($conexion->query($queU)) {
 		echo "<script>alert('DATOS GUARDADOS CORRECTAMENTE. GENERA EL PDF Y PUEDES GENERAR UNA NUEVA NOTA.');</script>";

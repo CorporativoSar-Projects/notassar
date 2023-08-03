@@ -20,7 +20,7 @@
 	global $serviceArray;
 	$serviceArray = array();
 	$cont=1;
-	$rs = mysqli_query($conexion, "SELECT MAX(folio_nota) AS id FROM nota");
+	$rs = mysqli_query($conexion, "SELECT MAX(FOLIO) AS NUMERO FROM NotasS where ID_Us ='$varsesion' ");
 	if ($row = mysqli_fetch_row($rs)) {
 		$id = trim($row[0]);
 		/*echo "Valor de id:".$id;*/
@@ -106,13 +106,13 @@
 						<td>
 							<select name="idservicio" id="idservicio" required="true">
 							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";
-									$serviceArray[$valor[nom_servicio]]=$valor[precio_servicio];
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
 									
 									//$serviceArray[1][$xService]=$valor[precio_servicio];									
 								}
@@ -128,13 +128,15 @@
 						<td>
 							<select name="idservicio2" id="idservicio2">
 								<option value=""></option>
-							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+								<?php							
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";									
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
+									
 									//$serviceArray[1][$xService]=$valor[precio_servicio];									
 								}
 							?>
@@ -149,13 +151,15 @@
 						<td>
 							<select name="idservicio3" id="idservicio3">
 								<option value=""></option>
-							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+								<?php							
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";									
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
+									
 									//$serviceArray[1][$xService]=$valor[precio_servicio];									
 								}
 							?>
@@ -168,15 +172,16 @@
 					<tr>
 						<th scope="row">4</th>
 						<td>
-							<select name="idservicio4" id="idservicio4">
-								<option value=""></option>
-							<?php							
-								$selectServices="SELECT id_servicio, nom_servicio, precio_servicio FROM servicio";
+						    	<select name="idservicio4" id="idservicio4">
+					        	<?php							
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[id_servicio]."
-										>".$valor[nom_servicio]."</option>";									
+									echo "<option value=".$valor[NombrePS]."
+										>".$valor[NombrePS]."</option>";
+									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
+									
 									//$serviceArray[1][$xService]=$valor[precio_servicio];									
 								}
 							?>
