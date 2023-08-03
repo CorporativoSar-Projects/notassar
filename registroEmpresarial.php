@@ -60,15 +60,25 @@
 			<img src="./imagenes/carrito.png">
 		</a>-->
 	</header>
+	<br><br><br>
 	<div id="divmain">
 		<div id="divForm">
 			<form id="formRegEmp" method="POST">
-				<h1>Registro de nuevas empresas</h1>
-				<h3>Powered by Corporativo SAR</h3>
 				<br>
 				<br>
 				<center>
                 <table>
+					<tr>
+						<td colspan="2">
+							<h1>Registro de nuevas empresas</h1>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h3>Powered by Corporativo SAR</h3>
+							<br><br>
+						</td>
+					</tr>
                     <tr>
                         <td>
                             <label for="nomEmp" id="labRegForm">Nombre de empresa</label>
@@ -94,17 +104,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-							<br>
-                            <input type="submit" name="aceptar" value="Registrar empresa" class="aceptar">
-                        </td>                
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-							<br>
-                            <input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
+                        <td>                            
+							<input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBtEmp">
                         </td>
-                    </tr>
+						<td>
+							<input type="submit" name="registrarEmp" value="Registrar empresa" class="registrarEmp">
+						</td>
+                    </tr>                    
                 </table>
 				</center>
 			</form>
