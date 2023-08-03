@@ -187,6 +187,7 @@
 									
 									//$serviceArray[1][$xService]=$valor[precio_servicio];									
 								}
+								?>
 							</select>
 						</td>
 						<td>
