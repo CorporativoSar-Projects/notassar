@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0);
 	
-	$conexion=mysqli_connect("localhost", "id20796694_root", 'upiic$A5', "id20796694_basedatos");
+	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
 	$cifra = $pass;
@@ -24,6 +24,8 @@
 	//echo "<script>alert('Credenciales erroneas');</script>";
 	    
 	}
+
+	$qe = ("Select ")
 	/*if (mysqli_num_rows($conexion->query($queU))>0)
 	{
 	    session_start();
@@ -43,7 +45,7 @@
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript"  href="./js/scripts.js"></script>
-	<link rel="shortcut icon" href="img/1.png" />
+	<link rel="shortcut icon" href="logotipos/" />
 </head>
 <style>
 	body{
@@ -55,7 +57,7 @@
 </style>
 <body style="font-family:arial;">
 	<header>
-		<img src="img/SAR svg/1.svg" id="logo">
+		<img src="logotipos/" id="logo">
 		<!--<a href="./carritodecompras.php" title="Ver carrito de compras">
 			<img src="./imagenes/carrito.png">
 		</a>-->
