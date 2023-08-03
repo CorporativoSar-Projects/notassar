@@ -62,28 +62,54 @@
 	</header>
 	<div id="divmain">
 		<div id="divForm">
-			<form id="formulario" method="POST">
-				<h1>Bienvenido Corporativo SAR</h1>
+			<form id="formRegEmp" method="POST">
+				<h1>Registro de nuevas empresas</h1>
 				<h3>Powered by Corporativo SAR</h3>
 				<br>
 				<br>
-				<img src="img/user.png" id="imU"><br><br>
-				<label for="usuario">Usuario</label><br>
-				<input type="text" id="usuario" name="username" placeholder="usuario" required="true"><br><br>
-				<label for="password">Password</label><br>
-				<input type="password" id="password" name="pass" placeholder="password" required="true"><br><br><br>
-				<input type="submit" name="aceptar" value="Ingresar" class="aceptar">
-				<br><br>
-				<input type="button" onclick="nuevo();" value="Soy nuevo usuario y no tengo accesos" id="regBt">
-				<br><br><br><br>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="nomEmp" id="labRegForm">Nombre de empresa</label>
+                        </td>
+                        <td>
+                            <input type="text" id="nomEmp" name="nomEmp" placeholder="Ej. Innsol Corporation" required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="codigoEmp" id="labRegForm">Código de empresa</label>
+                        </td>
+                        <td>
+                            <input type="text" id="codigoEmp" name="codigoEmp" placeholder="Ej. INNCORP" required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="nomRep" id="labRegForm">Nombre de representante</label>
+                        </td>
+                        <td>
+                            <input type="text" id="nomRep" name="nomRep" placeholder="Ej. Luis Sánchez" required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" name="aceptar" value="Registrar empresa" class="aceptar">
+                        </td>                
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
+                        </td>
+                    </tr>
+                </table>
 			</form>
 		</div>
 	</div>
 </body>
 <script>
-	
 	function nuevo() {
-		alert("Por favor, escribe al administrador del sistema o contacta al correo lsanchezc@corporativosaarme.com");
+		alert("Por favor, escribe al administrador del sistema o contacta al correo contacto@corporativosaarme.com");
 	}
 </script>
 </html>
