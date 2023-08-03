@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0);
 	
-	$conexion=mysqli_connect("localhost", "id20796694_root", 'upiic$A5', "id20796694_basedatos");
+	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
 	$cifra = $pass;
