@@ -210,7 +210,7 @@ a.fun {
 }
 
 #formRegEmp{
-	border: 1px solid black;
+	border: 0px solid black;
 	width: 100% !important;
 	height: auto;
 	text-align: center;
@@ -218,12 +218,12 @@ a.fun {
 
 #divForm{
 	width: 100%;
-	border: 1px solid red;
+	border: 0px solid red;
 }
 
 table,td{
 	text-align: center;
-	border: 1px solid blue;
+	border: 0px solid blue;
 	width: 50%;
 }
 

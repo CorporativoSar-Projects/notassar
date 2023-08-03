@@ -66,6 +66,7 @@
 			<form id="formRegEmp" method="POST">
 				<br>
 				<br>
+				<center>
                 <table>
 					<tr>
 						<td colspan="2">
@@ -123,7 +124,7 @@
                             <label for="nomEmp" id="labRegForm">Logotipo</label>
                         </td>
                         <td>
-                            <input type="text" id="logEmp" name="logEmp" placeholder="Ej. formato .jpg .png" required="true">
+                            <input type="file" id="logEmp" name="logEmp" placeholder="Ej. formato .jpg .png" required="true">
                         </td>
                     </tr>
 					<tr>
@@ -143,19 +144,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <input type="submit" name="aceptar" value="Registrar empresa" class="aceptar">
-                        </td>                
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
-                        </td>
+                        <td>
+                            <br><br><br><br><input type="submit" name="registrarEmp" value="Registrar empresa" class="registrarEmp">
+                        </td>  
 						<td>
-							<input type="submit" name="registrarEmp" value="Registrar empresa" class="registrarEmp">
-						</td>
-                    </tr>                    
+							<br><br><br><br><input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
+                        </td>              
+                    </tr>                   
                 </table>
+				</center>
 			</form>
 		</div>
 	</div>
