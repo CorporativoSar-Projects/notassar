@@ -172,9 +172,10 @@ a.fun {
 #formulario{
 	width: 50%;
 	height: auto;
-	
 	margin:0 auto;
+	text-align: center;
 }
+
 input{
 	width: 80%;
 	height: 30px;
@@ -186,8 +187,27 @@ input{
 	background-color: #5AC68A;
 	color: black;
 }
+
 #divmain{
 	width: 100%;
+	border: 0px solid green;
+}
+
+#formRegEmp{
 	border: 0px solid black;
+	width: 100% !important;
 	text-align: center;
+	margin: 0 auto;
+	height: auto;
+}
+
+#divForm{
+	width: 100%;
+	border: 0px solid red;
+}
+
+table,td{
+	text-align: center;
+	border: 0px solid blue;
+	width: 50%;
 }
