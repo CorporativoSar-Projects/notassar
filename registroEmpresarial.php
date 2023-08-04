@@ -70,7 +70,6 @@
 		<div id="divForm">
 			<form id="formRegEmp" method="POST" action="upload.php">
 				<br>
-				<br>
 				<center>
                 <table id="tableRegEmp">
 					<tr>
@@ -155,23 +154,24 @@
                         </td>
                         <td>
                             <select name="temaEmp" id="temaEmp" onchange="themeTest()">
+								<option value="">Standar</option>	
 								<option value="CSS/customStyle_Turism.css">Turism</option>
-								<option value="CSS/customStyle_Tech.css">Tech</option>
-								<option value="">Standar</option>
+								<option value="CSS/customStyle_Tech.css">Tech</option>								
 							</select>							
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <br><br><br><br><input type="submit" name="registrarEmp" value="Registrar empresa" class="registrarEmp">
+                            <br><br><br><input type="submit" name="registrarEmp" value="Registrar empresa" class="registrarEmp" id="registrarEmp">
                         </td>  
 						<td>
-							<br><br><br><br><input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
+							<br><br><br><input type="button" onclick="nuevo();" value="Necesito ayuda" id="regBt">
                         </td>              
-                    </tr>                   
+                    </tr>             
                 </table>
 				</center>
 			</form>
+			<br><br><br>
 		</div>
 	</div>
 </body>
@@ -183,6 +183,7 @@
 	function themeTest() {
 		/*var table = document.getElementById('tableRegEmp');
 		table.getElementsByTagName('h1');*/
+		var themeButtons = document.getElementById('registrarEmp');
 		var themeAllLabels = document.getElementById('formRegEmp');
 		themeAllLabels.getElementsByTagName("label");
 		var themeTitles = document.getElementById('themeTitles');
@@ -190,19 +191,23 @@
 		var them = document.getElementById('temaEmp').options;
 		var headerTheme = document.getElementById('headerRegEmp');
 		if (them[selThem].text == "Turism") {
-			headerTheme.style.backgroundColor="red";
-			themeTitles.style.color="red";
+			headerTheme.style.backgroundColor="rgb(220, 122, 36)";
+			themeTitles.style.color="rgb(220, 122, 36)";
 			themeAllLabels.style.color="black";
+			themeButtons.style.backgroundColor="rgb(220, 122, 36)";
 		}
 		else if (them[selThem].text == "Tech") {
 			headerTheme.style.backgroundColor="#0a71ac";
 			themeAllLabels.style.color="#0a71ac";
 			themeTitles.style.color="black";
+			themeButtons.style.backgroundColor="#0a71ac";
+
 		}
 		else if (them[selThem].text == "Standar") {
 			headerTheme.style.backgroundColor="#4a4a4a";
 			themeTitles.style.color="black";
 			themeAllLabels.style.color="black";
+			themeButtons.style.backgroundColor="#f13453";
 		}
 		//alert("Hola:"+them[selThem].text);
 	}
