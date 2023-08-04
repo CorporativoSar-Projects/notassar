@@ -1,1 +1,11 @@
 https://prod.liveshare.vsengsaas.visualstudio.com/join?216E7A4A05F791D9C99826ABBC6297611C60
+
+<?php
+	error_reporting(0);
+	$url_temp=$_FILES['profP']['tmp_name'];
+	$url_destiny="proftemp/".$_FILES['profP']['name'];
+	move_uploaded_file($url_temp, $url_destiny);
+	$profP=$url_destiny;
+	$IDprofN=$_POST['IDprofN'];
+	$IDprofLN=$_POST['IDprofLN'];
+?>

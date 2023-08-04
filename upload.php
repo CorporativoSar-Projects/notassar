@@ -5,6 +5,9 @@
 
 
 
+
+$nomEmp = "INNSOL";
+
 if (isset($_FILES['file'])){
     $file = $_FILES['file'];
     $filename = $file['name'];
@@ -17,6 +20,8 @@ if (isset($_FILES['file'])){
         mkdir("$nomEmp", 0777);
 
     }
-    move_uploaded_file($file['$nomEmp'], '$nomEmp/'.$filename);
+    
+    move_uploaded_file($file['tmp_name'], "$nomEmp"."/".$filename);
+    rename( $nomEmp."/".$filename, $nomEmp."/"."logo.png");
 }
 ?>
