@@ -15,30 +15,21 @@
 	function cifrarSHA256($texto) {
 		return hash('sha256', $texto);
 	}
-	$queU=("SELECT Correo FROM UsuariosS  WHERE Correo='$user' and Pass='$pass'");
+	/*$queU=("SELECT Correo FROM UsuariosS  WHERE Correo='$user' and Pass='$pass'");
 	$result=mysqli_query($conexion,$queU);
 	if (mysqli_num_rows($result)>0) {
-	//	echo "<script>alert('Num Cols: $x');</script>";
+
 		session_start();
 		$_SESSION['$user']=$user;
 		header('Location:notas.php');
-		/*echo "Valor 1 de S_SESSION: ".$_SESSION['$user'];*/
+	
 		
 	}
 	else if(mysqli_num_rows($result)==0){
-	//echo "<script>alert('Credenciales erroneas');</script>";
+
 	    
-	}
-	/*if (mysqli_num_rows($conexion->query($queU))>0)
-	{
-	    session_start();
-		$_SESSION['$user']=$user;
-		header('Location: notas.php');
-	}
-	else
-	{
-	    echo "Error al actualizar los datos, verifica los datos e inténtalo de nuevo.".mysqli_error($conexion);
 	}*/
+	
 ?>
 <!DOCTYPE html>
 <html lang="es">
