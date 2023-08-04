@@ -14,22 +14,23 @@ $temaEmp =$_POST['temaEmp'];
 
 $queU="INSERT INTO EmpresaC values ('$nomEmp', '$codigoEmp', '$temaEmp', '$CorreoE', '$nomRep', ' ', '$sitWeb', '$telCont', '$dirEmp');" ;
    
+if (isset($_FILES['file'])){
+    $file = $_FILES['file'];
+    $filename = $file['name'];
+    $nimetype = $file['type'];
+    $allowed_types = array("image/jpg", "image/jpeg", "image/png");
+    if (!in_array($nimetype, $allowed_types)){
+        header("loaction:index.php");
+    }
+    if(!is_dir("logotipos")){
+        mkdir("logotipos", 0777);
+
+    }
+
+    move_uploaded_file($file['tmp_name'], 'logotipos'.$filename);
+}
 	if ($conexion->query($queU)) {
-        if (isset($_FILES['file'])){
-            $file = $_FILES['file'];
-            $filename = $file['name'];
-            $nimetype = $file['type'];
-            $allowed_types = array("image/jpg", "image/jpeg", "image/png");
-            if (!in_array($nimetype, $allowed_types)){
-                header("loaction:index.php");
-            }
-            if(!is_dir("logotipos")){
-                mkdir("logotipos", 0777);
-        
-            }
-        
-            move_uploaded_file($file['tmp_name'], 'logotipos'.$filename);
-        }      
+              
             
 		echo "<script>alert('DATOS GUARDADOS CORRECTAMENTE. GENERA EL PDF Y PUEDES GENERAR UNA NUEVA NOTA.');</script>";
 	}
