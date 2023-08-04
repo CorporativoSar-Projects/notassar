@@ -45,8 +45,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="CSS/estilos.css">
-	<link rel="stylesheet" type="text/css" href="CSS/customStyle_Turism.css">
+	<link rel="stylesheet" type="text/css" href="CSS/estilos.css">	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 	<link rel="shortcut icon" href="img/1.png" />
@@ -60,7 +59,7 @@
 	}
 </style>
 <body style="font-family:arial;">
-	<header>
+	<header id="headerRegEmp">
 		<img src="img/SAR svg/1.svg" id="logo">
 		<!--<a href="./carritodecompras.php" title="Ver carrito de compras">
 			<img src="./imagenes/carrito.png">
@@ -73,15 +72,15 @@
 				<br>
 				<br>
 				<center>
-                <table>
+                <table id="tableRegEmp">
 					<tr>
 						<td colspan="2">
-							<h1>Registro de nuevas empresas</h1>
+							<h1 id="themeTitles">Registro de nuevas empresas</h1>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<h3>Powered by Corporativo SAR</h3>
+							<h3 id="themeTitles">Powered by Corporativo SAR</h3>
 							<br><br>
 						</td>
 					</tr>
@@ -149,6 +148,18 @@
                         <td>
                             <input type="text" id="dirEmp" name="dirEmp" placeholder="Ej. Copernico 23, Miguel Hidalgo, CDMX, 02380" required="true">
                         </td>
+					</tr>
+					<tr>
+						<td>
+                            <label for="nomEmp" id="labRegForm">Tema a elegir</label>
+                        </td>
+                        <td>
+                            <select name="temaEmp" id="temaEmp" onchange="themeTest()">
+								<option value="CSS/customStyle_Turism.css">Turism</option>
+								<option value="CSS/customStyle_Tech.css">Tech</option>
+								<option value="">Standar</option>
+							</select>							
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -167,6 +178,33 @@
 <script>
 	function nuevo() {
 		alert("Por favor, escribe al administrador del sistema o contacta al correo contacto@corporativosaarme.com");
+	}
+
+	function themeTest() {
+		/*var table = document.getElementById('tableRegEmp');
+		table.getElementsByTagName('h1');*/
+		var themeAllLabels = document.getElementById('formRegEmp');
+		themeAllLabels.getElementsByTagName("label");
+		var themeTitles = document.getElementById('themeTitles');
+		var selThem = document.getElementById('temaEmp').selectedIndex;
+		var them = document.getElementById('temaEmp').options;
+		var headerTheme = document.getElementById('headerRegEmp');
+		if (them[selThem].text == "Turism") {
+			headerTheme.style.backgroundColor="red";
+			themeTitles.style.color="red";
+			themeAllLabels.style.color="black";
+		}
+		else if (them[selThem].text == "Tech") {
+			headerTheme.style.backgroundColor="#0a71ac";
+			themeAllLabels.style.color="#0a71ac";
+			themeTitles.style.color="black";
+		}
+		else if (them[selThem].text == "Standar") {
+			headerTheme.style.backgroundColor="#4a4a4a";
+			themeTitles.style.color="black";
+			themeAllLabels.style.color="black";
+		}
+		//alert("Hola:"+them[selThem].text);
 	}
 </script>
 </html>

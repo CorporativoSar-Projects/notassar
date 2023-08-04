@@ -236,6 +236,15 @@ table,td{
 	font-size: 15px;
 }
 
+#formRegEmp select{
+	border-radius: 10px;
+	width: 90%;
+	height: 30px;
+	border: 1px solid;
+	text-align: center;
+	font-size: 15px;
+}
+
 #formRegEmp td{
 	padding: 5px;
 	font-size: 15px;
