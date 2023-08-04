@@ -24,4 +24,5 @@ if (isset($_FILES['file'])){
     move_uploaded_file($file['tmp_name'], "$nomEmp"."/".$filename);
     rename( $nomEmp."/".$filename, $nomEmp."/"."logo.png");
 }
+
 ?>
