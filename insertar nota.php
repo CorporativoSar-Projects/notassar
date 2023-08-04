@@ -1,6 +1,5 @@
 <?php
     session_start();
-
 	include 'conexion.php';
     error_reporting(0);
 	echo "Usuario: ".$_SESSION['$user'];
