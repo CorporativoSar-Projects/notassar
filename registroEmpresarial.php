@@ -123,7 +123,7 @@
                             <label for="nomEmp" id="labRegForm">Teléfono de contacto</label>
                         </td>
                         <td>
-                            <input type="number" id="telCont" name="telCont" placeholder="Ej. 5589547249" required="true">
+                            <input type="number" id="telCont" name="telCont" placeholder="Ej. 5589547249" required="true" pattern="[0-9]+" step="1" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/><p style="font-size: 12px;">(Máximo 15 dígitos)</p>
                         </td>
                     </tr>
 					<tr>
