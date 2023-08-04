@@ -6,9 +6,9 @@ $codigoEmp =$_POST['codigoEmp'];
 $nomRep =$_POST['nomRep'];
 $CorreoE =$_POST['CorreoE'];
 $telCont =$_POST['telCont'];
-$nomEmp =$_POST['nomEmp'];
-$nomEmp =$_POST['nomEmp'];
-$nomEmp =$_POST['nomEmp'];
+$sitWeb =$_POST['sitWeb'];
+$dirEmp =$_POST['dirEmp'];
+$temaEmp =$_POST['temaEmp'];
 
 if (isset($_FILES['file'])){
     $file = $_FILES['file'];
