@@ -3,7 +3,12 @@
     include 'conexion.php';
     error_reporting(0);
 	$nomCliente=$_GET['nomCliente'];
-	$domCliente=$_GET['domCliente'];	
+	$domCliente=$_GET['domCliente'];
+	$corrClienteg=$_GET['corrCliente'];
+	$telefonog=$_GET['telefono'];
+	$fechaRg=date('Y-m-d H:i:s');
+	$fechaIg=$_GET['fechaI'];
+	$fechaTg=$_GET['fechaT'];	
 	$idservicio=$_GET['idservicio'];
 	$idservicio2=$_GET['idservicio2'];
 	$idservicio3=$_GET['idservicio3'];
@@ -50,7 +55,8 @@
 	global $tmpPrecio;
 	global $tmpDescripcion;
 	$cont=1;
-	$rs = mysqli_query($conexion, "SELECT MAX(folio_nota) AS id FROM nota");
+	$rs = mysqli_query($conexion, "SELECT FOLIO FROM NotasS	WHERE FechaRegistro = (
+		SELECT MAX(FechaRegistro) FROM NotasS where ID_Us = '$varsesion');");
 	if ($row = mysqli_fetch_row($rs)) {
 		$id = trim($row[0]);
 		/*echo "Valor de id:".$id;*/
@@ -159,7 +165,11 @@
 			</select>
 			<br><br><br>
 			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true"/></h5><br>
-			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>
+			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true"/></h5><br>
+			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true"/></h5><br>
+			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>		
+			<h5>Fecha de Inicio<input type="date" name="fechaI" required="true"></h5><br>
+			<h5>Fecha de Termino<input type="date" name="fechaT" required="true"></h5><br>
 			
 			<table class="table">
 				<thead class="thead-dark">
@@ -233,7 +243,7 @@
 						<td>
 							<select name="idservicio3" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA'and NombrePS = '$idservicio3';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio3';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -260,6 +270,7 @@
 						<th scope="row">4</th>
 						<td>
 							<select name="idservicio4" id="idservicio" disabled="true">
+							
 							<?php							
 								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio4';";
 								$q=$conexion->query($selectServices);
@@ -360,6 +371,11 @@
 			<td>
 				<form action="insertar nota.php" method="POST">
 				<input type="number" name="folio" style="display: none;" value="<?php echo $folio; ?>"/><br>
+				<input type="text" name="corrCliente" style="display: none;" value="<?php echo $corrCliente; ?>"/>
+				<input type="text" name="telefono" style="display: none;" value="<?php echo $telefono; ?>"/>
+				<input type="date" name="fechaR" style="display: none;" value="<?php echo $fechaR=date('Y-m-d H:i:s'); ?>"/>
+				<input type="date" name="fechaI" style="display: none;" value="<?php echo $fechaI; ?>"/>
+				<input type="date" name="fechaT" style="display: none;" value="<?php echo $fechaT; ?>"/>
 				<input type="text" name="nomCliente" style="display: none;" value="<?php echo $nomCliente; ?>"/>
 				<input type="text" name="domCliente" style="display: none;" value="<?php echo $domCliente; ?>"/>
 				<input type="text" name="tipoNota" style="display: none;" value="<?php echo $tipoNota; ?>"/>
