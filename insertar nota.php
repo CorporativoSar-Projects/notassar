@@ -71,22 +71,23 @@
 	if ($descripcion4=='') {
 		$descripcion4="-";
 	}
-	$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
-	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
-	$queU="INSERT INTO NotasS (IDCliente, ID_Us,
+	//$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
+	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
+	$folio = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $folio);
+	$queU="INSERT INTO NotasS (CodigoE, IDCliente, ID_Us,
 	FOLIO, Nomser, Cantidad, precio, importe,
 	Nomser2, Cantidad2, precio2, importe2,
 	Nomser3, Cantidad3, precio3, importe3,
 	Nomser4, Cantidad4, precio4, importe4,
 	subtotal, FechaRegistro, FECHAI, FECHAT,
 	IVA, RIVA, ISR,Total, NombreC, TipoNota) 
-	Values ('$corrCliente','$correU','$folio',
+	Values ('INNCORP','$corrCliente','$correU','$folio',
 	'$descripcion','$cantidad','$precio','$importe',
 	'$descripcion2','$cantidad2','$precio2','$importe2',
 	'$descripcion3','$cantidad3','$precio3','$importe3',
 	'$descripcion4','$cantidad4','$precio4','$importe4',
-	'$subtotal','fechaR','fechaI','fechaT','$iva','$riva',
-	'$risr','$total','$nomCliente','tipoNota');";
+	'$subtotal','$fechaR','$fechaI','$fechaT','$iva','$riva',
+	'$risr','$total','$nomCliente','$tipoNota');";
 	if ($conexion->query($queU)) {
 		echo "<script>alert('DATOS GUARDADOS CORRECTAMENTE. GENERA EL PDF Y PUEDES GENERAR UNA NUEVA NOTA.');</script>";
 	}
@@ -102,7 +103,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/styleSAR.css">
+	<link rel="stylesheet" href="CSS/styleSAR.css">
 	<link rel="shortcut icon" href="img/1.png" />
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

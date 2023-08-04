@@ -74,7 +74,7 @@
 	<br><br>
 	<div align="center" id="existsService">
 		<?php
-			$selectServices="SELECT * FROM servicio WHERE id_servicio<>''";
+			$selectServices="SELECT * FROM ServiciosProductos WHERE CEmpresa ='$CE'";
 		?>
 			<table style="width: 100%;">
 				<tr>

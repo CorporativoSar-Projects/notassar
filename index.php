@@ -21,31 +21,21 @@
 		
 	}
 	else if(mysqli_num_rows($result)==0){
-	//echo "<script>alert('Credenciales erroneas');</script>";
+	echo "<script>alert('Credenciales erroneas');</script>";
 	    
 	}
 
 	$qe = ("Select ")
-	/*if (mysqli_num_rows($conexion->query($queU))>0)
-	{
-	    session_start();
-		$_SESSION['$user']=$user;
-		header('Location: notas.php');
-	}
-	else
-	{
-	    echo "Error al actualizar los datos, verifica los datos e inténtalo de nuevo.".mysqli_error($conexion);
-	}*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8"/>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="CSS/estilos.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript"  href="./js/scripts.js"></script>
-	<link rel="shortcut icon" href="logotipos/" />
+	<link rel="shortcut icon" href="img/logo.png"/>
 </head>
 <style>
 	body{
@@ -57,7 +47,7 @@
 </style>
 <body style="font-family:arial;">
 	<header>
-		<img src="logotipos/" id="logo">
+		<img src="img/logo.png" id="logo">
 		<!--<a href="./carritodecompras.php" title="Ver carrito de compras">
 			<img src="./imagenes/carrito.png">
 		</a>-->

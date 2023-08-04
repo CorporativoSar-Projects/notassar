@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="container">
-            <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <form action="subida.php" method="POST" enctype="multipart/form-data">
                 <span class="file status">No hay un archivo seleccionado</span>
                 <label class="btn" for="custom-file-input"> escoge un archivo</label>
                 <input type="file" name="file" id="custom-file-input"/>

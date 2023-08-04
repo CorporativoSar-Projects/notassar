@@ -1,6 +1,6 @@
 <?php
-	//$conexion=mysqli_connect("localhost","corpo240_admin","upiicsa2022","corpo240_corporativosar");
-	$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
+
+	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	if (mysqli_connect_errno()) {
 		print("<div style='background-color:#D02525; width:100%; color:white;'>Fallo la conexion</div>");
 	}

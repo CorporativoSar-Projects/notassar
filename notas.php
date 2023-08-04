@@ -1,4 +1,4 @@
-<<?php 
+<?php 
     session_start();
 	include 'conexion.php';
 	error_reporting(0);
@@ -28,9 +28,8 @@
 	else{
 		$id=0;
 	}
-	$id = preg_replace_callback('/\d+/', function ($matches) {
-		return $matches[0] + 1;
-	}, $id);
+	
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +37,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-	<link rel="stylesheet" href="css/styleSAR.css">
+	<link rel="stylesheet" href="CSS/styleSAR.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -97,10 +96,8 @@
 			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true"/></h5><br>
 			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true"/></h5><br>
 			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>		
-			<!--<h5>Fecha de Inicio<input type="date" name="fechaI" required="true"></h5><br>
-			<h5>Fecha de Termino<input type="date" name="fechaT" required="true"></h5><br>-->
-
-	
+			<h5>Fecha de Inicio&nbsp&nbsp<input type="date" name="fechaI" required="true"></h5><br>
+			<h5>Fecha de Termino&nbsp&nbsp<input type="date" name="fechaT" required="true"></h5><br>			
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -123,7 +120,7 @@
 										>".$valor[NombrePS]."</option>";
 									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+														
 								}
 							?>
 							</select>
@@ -146,7 +143,7 @@
 										>".$valor[NombrePS]."</option>";
 									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+																
 								}
 							?>
 							</select>
@@ -169,7 +166,7 @@
 										>".$valor[NombrePS]."</option>";
 									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+																	
 								}
 							?>
 							</select>
@@ -182,7 +179,7 @@
 						<th scope="row">4</th>
 						<td>
 						    	<select name="idservicio4" id="idservicio4">
-								<option value=""></option>
+						    	 <option value=""></option>
 					        	<?php							
 								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
@@ -192,7 +189,7 @@
 										>".$valor[NombrePS]."</option>";
 									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+																
 								}
 							?>
 							</select>

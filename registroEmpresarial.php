@@ -1,6 +1,6 @@
 <?php
 	error_reporting(0);
-	include 'upload.php';
+	
 	include 'conexion.php';
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
@@ -8,28 +8,14 @@
 	$codigoEmp = $_POST['codigoEmp'];
 	$nomRep = $_POST['nomRep'];
 	$CorreoE = $_POST['CorreoE'];
-	$telCont = $_POST['telCont'];	
+	$telCont = $_POST['telCont'];
+	$
 	$cifra = $pass;
 	$pass= cifrarSHA256($cifra);
 	
 	function cifrarSHA256($texto) {
 		return hash('sha256', $texto);
 	}
-	/*$queU=("SELECT Correo FROM UsuariosS  WHERE Correo='$user' and Pass='$pass'");
-	$result=mysqli_query($conexion,$queU);
-	if (mysqli_num_rows($result)>0) {
-
-		session_start();
-		$_SESSION['$user']=$user;
-		header('Location:notas.php');
-	
-		
-	}
-	else if(mysqli_num_rows($result)==0){
-
-	    
-	}*/
-	
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,7 +45,7 @@
 	<br><br><br>
 	<div id="divmain">
 		<div id="divForm">
-			<form id="formRegEmp" method="POST" action="upload.php">
+			<form id="formRegEmp" method="POST" action="upload.php" enctype="multipart/form-data">
 				<br>
 				<center>
                 <table id="tableRegEmp">
@@ -120,7 +106,7 @@
                             <label for="nomEmp" id="labRegForm">Logotipo</label>
                         </td>
                         <td>
-                            <input type="file" id="logEmp" name="logEmp" placeholder="Ej. formato .jpg .png" required="true">
+                            <input type="file"  name="file" placeholder="Ej. formato .jpg .png" required="true">
                         </td>
                     </tr>
 					<tr>

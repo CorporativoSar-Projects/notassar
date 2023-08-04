@@ -4,11 +4,11 @@
     error_reporting(0);
 	$nomCliente=$_GET['nomCliente'];
 	$domCliente=$_GET['domCliente'];
-	$corrClienteg=$_GET['corrCliente'];
-	$telefonog=$_GET['telefono'];
-	$fechaRg=date('Y-m-d H:i:s');
-	$fechaIg=$_GET['fechaI'];
-	$fechaTg=$_GET['fechaT'];	
+	$corrCliente=$_GET['corrCliente'];
+	$telefono=$_GET['telefono'];
+	$fechaR=date('Y-m-d H:i:s');
+	$fechaI=$_GET['fechaI'];
+	$fechaT=$_GET['fechaT'];	
 	$idservicio=$_GET['idservicio'];
 	$idservicio2=$_GET['idservicio2'];
 	$idservicio3=$_GET['idservicio3'];
@@ -60,6 +60,7 @@
 	if ($row = mysqli_fetch_row($rs)) {
 		$id = trim($row[0]);
 		/*echo "Valor de id:".$id;*/
+		$id = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $id);
 	}
 	else{
 		$id=0;
@@ -114,7 +115,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/styleSAR.css">
+	<link rel="stylesheet" href="CSS/styleSAR.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -164,12 +165,12 @@
 				<option value="IVApm">IVA PM</option>
 			</select>
 			<br><br><br>
-			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true"/></h5><br>
-			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true"/></h5><br>
-			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true"/></h5><br>
-			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>		
-			<h5>Fecha de Inicio<input type="date" name="fechaI" required="true"></h5><br>
-			<h5>Fecha de Termino<input type="date" name="fechaT" required="true"></h5><br>
+			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true" value="<?php echo $nomCliente; ?>" disabled="true"/></h5><br>
+			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true" value="<?php echo $corrCliente; ?>" disabled="true"/></h5><br>
+			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true" value="<?php echo $telefono; ?>" disabled="true"/></h5><br>
+			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true" value="<?php echo $domCliente; ?>" disabled="true"/></h5><br><br>		
+			<h5>Fecha de Inicio<input type="date" name="fechaI" required="true" value="<?php echo $fechaI; ?>" disabled="true"></h5><br>
+			<h5>Fecha de Termino<input type="date" name="fechaT" required="true" value="<?php echo $fechaT; ?>" disabled="true"></h5><br>
 			
 			<table class="table">
 				<thead class="thead-dark">
@@ -195,7 +196,7 @@
 										>".$valor[NombrePS]."</option>";
 									$nomServ=$valor[NombrePS];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+																
 								}
 								?>
 							</select>
@@ -223,7 +224,7 @@
 										>".$valor[NombrePS]."</option>";
 									$nomServ=$valor[NombrePS];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+													
 								}
 							?>
 							</select>
@@ -251,7 +252,7 @@
 										>".$valor[NombrePS]."</option>";
 									$nomServ=$valor[NombrePS];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+													
 								}
 							?>
 							</select>
@@ -280,7 +281,7 @@
 										>".$valor[NombrePS]."</option>";
 									$nomServ=$valor[NombrePS];
 									
-									//$serviceArray[1][$xService]=$valor[precio_servicio];									
+														
 								}
 							?>
 							</select>
@@ -370,10 +371,9 @@
 		<tr>
 			<td>
 				<form action="insertar nota.php" method="POST">
-				<input type="number" name="folio" style="display: none;" value="<?php echo $folio; ?>"/><br>
+				<input type="text" name="folio" style="display: none;" value="<?php echo $folio; ?>"/><br>
 				<input type="text" name="corrCliente" style="display: none;" value="<?php echo $corrCliente; ?>"/>
 				<input type="text" name="telefono" style="display: none;" value="<?php echo $telefono; ?>"/>
-				<input type="datetime" name="fechaR" style="display: none;" value="<?php echo $fechaR=date('Y-m-d H:i:s'); ?>"/>
 				<input type="date" name="fechaI" style="display: none;" value="<?php echo $fechaI; ?>"/>
 				<input type="date" name="fechaT" style="display: none;" value="<?php echo $fechaT; ?>"/>
 				<input type="text" name="nomCliente" style="display: none;" value="<?php echo $nomCliente; ?>"/>

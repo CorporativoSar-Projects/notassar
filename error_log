@@ -1,0 +1,17 @@
+[04-Aug-2023 11:24:56 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php:9) in /home1/corpo240/notasadmin.corporativosaarme.com/upload.php on line 40
+[04-Aug-2023 11:34:24 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function DateTime() in /home1/corpo240/notasadmin.corporativosaarme.com/PruebasDATE.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/corpo240/notasadmin.corporativosaarme.com/PruebasDATE.php on line 2
+[04-Aug-2023 11:34:25 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function DateTime() in /home1/corpo240/notasadmin.corporativosaarme.com/PruebasDATE.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/corpo240/notasadmin.corporativosaarme.com/PruebasDATE.php on line 2
+[04-Aug-2023 11:35:10 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function DateTime() in /home1/corpo240/notasadmin.corporativosaarme.com/PruebasDATE.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/corpo240/notasadmin.corporativosaarme.com/PruebasDATE.php on line 2
+[04-Aug-2023 11:46:39 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php:9) in /home1/corpo240/notasadmin.corporativosaarme.com/upload.php on line 40
+[04-Aug-2023 12:20:33 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php:9) in /home1/corpo240/notasadmin.corporativosaarme.com/upload.php on line 39
+[04-Aug-2023 13:30:28 America/Mexico_City] PHP Warning:  session_start(): Cannot start session when headers already sent in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 2
+[04-Aug-2023 14:53:53 America/Mexico_City] PHP Parse error:  syntax error, unexpected ''];' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in /home1/corpo240/notasadmin.corporativosaarme.com/insertar nota.php on line 38
