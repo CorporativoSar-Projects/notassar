@@ -1,4 +1,4 @@
-<?php 
+<<?php 
     session_start();
 	include 'conexion.php';
 	error_reporting(0);
@@ -20,14 +20,17 @@
 	global $serviceArray;
 	$serviceArray = array();
 	$cont=1;
-	$rs = mysqli_query($conexion, "SELECT MAX(FOLIO) AS NUMERO FROM NotasS where ID_Us ='$varsesion' ");
+	$rs = mysqli_query($conexion, "SELECT FOLIO FROM NotasS	WHERE FechaRegistro = (SELECT MAX(FechaRegistro) FROM NotasS where ID_Us = '$varsesion');");
 	if ($row = mysqli_fetch_row($rs)) {
 		$id = trim($row[0]);
-		/*echo "Valor de id:".$id;*/
+		//cho "Valor de id:".$id;
 	}
 	else{
 		$id=0;
 	}
+	$id = preg_replace_callback('/\d+/', function ($matches) {
+		return $matches[0] + 1;
+	}, $id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +94,13 @@
 			</select>
 			<br><br><br>
 			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true"/></h5><br>
-			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>			
+			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true"/></h5><br>
+			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true"/></h5><br>
+			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>		
+			<!--<h5>Fecha de Inicio<input type="date" name="fechaI" required="true"></h5><br>
+			<h5>Fecha de Termino<input type="date" name="fechaT" required="true"></h5><br>-->
+
+	
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -173,6 +182,7 @@
 						<th scope="row">4</th>
 						<td>
 						    	<select name="idservicio4" id="idservicio4">
+								<option value=""></option>
 					        	<?php							
 								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
 								$q=$conexion->query($selectServices);
