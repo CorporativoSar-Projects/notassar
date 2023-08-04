@@ -373,7 +373,7 @@
 				<input type="number" name="folio" style="display: none;" value="<?php echo $folio; ?>"/><br>
 				<input type="text" name="corrCliente" style="display: none;" value="<?php echo $corrCliente; ?>"/>
 				<input type="text" name="telefono" style="display: none;" value="<?php echo $telefono; ?>"/>
-				<input type="date" name="fechaR" style="display: none;" value="<?php echo $fechaR=date('Y-m-d H:i:s'); ?>"/>
+				<input type="datetime" name="fechaR" style="display: none;" value="<?php echo $fechaR=date('Y-m-d H:i:s'); ?>"/>
 				<input type="date" name="fechaI" style="display: none;" value="<?php echo $fechaI; ?>"/>
 				<input type="date" name="fechaT" style="display: none;" value="<?php echo $fechaT; ?>"/>
 				<input type="text" name="nomCliente" style="display: none;" value="<?php echo $nomCliente; ?>"/>
