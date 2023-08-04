@@ -45,7 +45,8 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="CSS/estilos.css">
+	<link rel="stylesheet" type="text/css" href="CSS/customStyle_Turism.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 	<link rel="shortcut icon" href="img/1.png" />
