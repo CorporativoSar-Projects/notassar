@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0);
 	include 'upload.php';
-	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
+	include 'conexion.php';
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
 	$nomEmp = $_POST['nomEmp'];
