@@ -1,10 +1,19 @@
 <?php
     session_start();
+
+	include 'conexion.php';
     error_reporting(0);
+	echo "Usuario: ".$_SESSION['$user'];
 	$nameL="Cuauhtémoc, Ciudad de México";
 	$ign=$_POST['firma'];
+	$correU=$_SESSION['$user'];
 	$nomCliente=$_POST['nomCliente'];
 	$domCliente=$_POST['domCliente'];
+	$corrCliente=$_POST['corrCliente'];
+	$telefono=$_POST['telefono'];
+	$fechaR=date('Y-m-d H:i:s');
+	$fechaI=$_POST['fechaI'];
+	$fechaT=$_POST['fechaT'];	
 	$idservicio=$_POST['idservicio'];
 	$idservicio2=$_POST['idservicio2'];
 	$idservicio3=$_POST['idservicio3'];
@@ -63,8 +72,22 @@
 	if ($descripcion4=='') {
 		$descripcion4="-";
 	}
-	$conexion=mysqli_connect("localhost", "id20796694_root", 'upiic$A5', "id20796694_basedatos");
-	$queU="INSERT INTO nota (folio_nota,id_servicio,id_servicio_2,id_servicio_3,id_servicio_4,cantidad,cantidad_2,cantidad_3,cantidad_4,desc_servicio,desc_servicio_2,desc_servicio_3,desc_servicio_4,precio,precio_2,precio_3,precio_4,importe,importe_2,importe_3,importe_4,subtotal,iva,riva,risr,total,nom_cliente,dom_cliente,fecha,tipo_nota) VALUES ('$folio','$idservicio','$idservicio2','$idservicio3','$idservicio4','$cantidad','$cantidad2','$cantidad3','$cantidad4','$descripcion','$descripcion2','$descripcion3','$descripcion4','$precio','$precio2','$precio3','$precio4','$importe','$importe2','$importe3','$importe4','$subtotal','$iva','$riva','$risr','$total','$nomCliente','$domCliente','$fecha','$tipoNota')";
+	$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
+	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
+	$queU="INSERT INTO NotasS (IDCliente, ID_Us,
+	FOLIO, Nomser, Cantidad, precio, importe,
+	Nomser2, Cantidad2, precio2, importe2,
+	Nomser3, Cantidad3, precio3, importe3,
+	Nomser4, Cantidad4, precio4, importe4,
+	subtotal, FechaRegistro, FECHAI, FECHAT,
+	IVA, RIVA, ISR,Total, NombreC, TipoNota) 
+	Values ('$corrCliente','$correU','$folio',
+	'$descripcion','$cantidad','$precio','$importe',
+	'$descripcion2','$cantidad2','$precio2','$importe2',
+	'$descripcion3','$cantidad3','$precio3','$importe3',
+	'$descripcion4','$cantidad4','$precio4','$importe4',
+	'$subtotal','fechaR','fechaI','fechaT','$iva','$riva',
+	'$risr','$total','$nomCliente','tipoNota');";
 	if ($conexion->query($queU)) {
 		echo "<script>alert('DATOS GUARDADOS CORRECTAMENTE. GENERA EL PDF Y PUEDES GENERAR UNA NUEVA NOTA.');</script>";
 	}
@@ -93,6 +116,7 @@
 	<center><h3>RESUMEN DE NOTA</h3></center><br><br>
 	<h4 align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 	<?php
+	echo $correU."" .$fechaR."".$fechaI; 
 	echo "Folio de nota: ".$folio;?></h4><h4 align="right"><?php echo "Fecha: ".$fecha;?>&nbsp&nbsp&nbsp&nbsp&nbsp</h4><br><br>
 	<?php echo "<h4>&nbsp&nbsp&nbsp&nbsp&nbspNombre de cliente: ".$nomCliente."</h4><br>";
 	echo "<h4>&nbsp&nbsp&nbsp&nbsp&nbspDomicilio: ".$domCliente."</h4><br>";
