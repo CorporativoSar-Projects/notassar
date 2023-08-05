@@ -71,8 +71,8 @@
 	if ($descripcion4=='') {
 		$descripcion4="-";
 	}
-	//$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
-	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
+	$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
+	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	$folio = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $folio);
 	$querprp = "INSERT INTO ProspectosS 
 	VALUES ('$correU','$nomCliente','$telefono','domCliente','8','$corrCliente','Cliente');";
