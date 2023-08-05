@@ -1,6 +1,5 @@
 <?php
-	error_reporting(0);
-	
+	error_reporting(0);	
 	include 'conexion.php';
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
