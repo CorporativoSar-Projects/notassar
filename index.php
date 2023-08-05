@@ -1,12 +1,12 @@
 <?php
 	error_reporting(0);
-	
-	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
-	$user=$_POST['username'];
+	//conexion en local
+	$conexion=mysqli_connect("localhost", "root",'', "NotasInnsol");
+	//conexion a produccion
+	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	$pass=$_POST['pass'];
 	$cifra = $pass;
-	$pass= cifrarSHA256($cifra);
-	
+	$pass= cifrarSHA256($cifra);	
 	function cifrarSHA256($texto) {
 		return hash('sha256', $texto);
 	}
@@ -20,12 +20,9 @@
 		/*echo "Valor 1 de S_SESSION: ".$_SESSION['$user'];*/
 		
 	}
-	else if(mysqli_num_rows($result)==0){
-	echo "<script>alert('Credenciales erroneas');</script>";
-	    
-	}
+	/*else if(mysqli_num_rows($result)==0){  
+	}*/
 
-	$qe = ("Select ")
 ?>
 <!DOCTYPE html>
 <html lang="es">
