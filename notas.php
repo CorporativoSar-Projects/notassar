@@ -116,11 +116,9 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
-									
-														
+									echo "<option value=".$valor['NombrePS']."
+										>".$valor['NombrePS']."</option>";
+									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];
 								}
 							?>
 							</select>
@@ -139,11 +137,9 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
-									
-																
+									echo "<option value=".$valor['NombrePS']."
+										>".$valor['NombrePS']."</option>";
+									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];						
 								}
 							?>
 							</select>
@@ -162,11 +158,9 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
-									
-																	
+									echo "<option value=".$valor['NombrePS']."
+										>".$valor['NombrePS']."</option>";
+									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];
 								}
 							?>
 							</select>
@@ -185,11 +179,9 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$serviceArray[$valor[NombrePS]]=$valor[PrecioU];
-									
-																
+									echo "<option value=".$valor['NombrePS']."
+										>".$valor['NombrePS']."</option>";
+									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];
 								}
 							?>
 							</select>
