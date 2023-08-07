@@ -3,6 +3,8 @@
 	include 'conexion.php';
 	error_reporting(0);
 	echo "Usuario: ".$_SESSION['$user'];
+	echo"<br>";
+	echo "Codigo de Empresa:   ".$_SESSION['$CodiEmp'];
 	$varsesion=$_SESSION['$user'];
 	if($varsesion==null || $varsesion=='')
 	{

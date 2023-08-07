@@ -4,6 +4,7 @@
 	$conexion=mysqli_connect("localhost", "root",'', "notasinnsol");
 	//conexion a produccion
 	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
+	$user=$_POST['username'];
 	$pass=$_POST['pass'];
 	$cifra = $pass;
 	$pass= cifrarSHA256($cifra);	
@@ -16,12 +17,19 @@
 	//	echo "<script>alert('Num Cols: $x');</script>";
 		session_start();
 		$_SESSION['$user']=$user;
-		header('Location:notas.php');
+		header('Location:notas.php');		
 		/*echo "Valor 1 de S_SESSION: ".$_SESSION['$user'];*/
 		
 	}
-	/*else if(mysqli_num_rows($result)==0){  
-	}*/
+	$rs = mysqli_query($conexion, "SELECT Id_empresa FROM UsuariosS  WHERE Correo='$user'");
+	if ($row = mysqli_fetch_row($rs)) {
+		$id = trim($row[0]);
+		$_SESSION['$CodiEmp'] = $id;
+		//echo "Valor de id:".$id;
+	}
+	else{
+		$id=0;
+	}
 
 ?>
 <!DOCTYPE html>
