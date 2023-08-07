@@ -5,7 +5,7 @@ Use NotasInnsol;
 Create table EmpresaC
 (
 	ID_Empresa char(150)Not NULL,
-	CodigoE varchar(10) NOt NULL,
+	CodigoE varchar(18) NOt NULL,
 	Tema	text NOT NULL,
 	Correo varchar(50) NOT NULL,
 	personaCont varchar(50) NOT NULL,
@@ -17,38 +17,39 @@ Create table EmpresaC
 	Constraint Indentificador Unique(CodigoE)
 );
 
-INSERT INTO EmpresaC VALUES ('SAARME','SA','CSS/estilos.css', 'corpoarativosaarme@outlook.com','Luis Sanchez', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'https://corporativosaarme.com/','5546863772','Cuauhtémoc
-Ciudad de México, MX');
+INSERT INTO EmpresaC VALUES ('SAARME','SA','CSS/estilos.css', 'corpoarativosaarme@outlook.com','Luis Sanchez', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'https://corporativosaarme.com/','5546863772','CuauhtÃ©moc
+Ciudad de MÃ©xico, MX');
 INSERT INTO EmpresaC VALUES ('MICROSOFT','MS','CSS/estilos.css', 'Microsoft@outlook.com','Luis Sanchez', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'https://www.microsoft.com/es-mx','7474747474','jhwevfhewfhbehfbhjew');
 INSERT INTO EmpresaC VALUES ('GOOGLE','GG','CSS/estilos.css', 'google@outlook.com','Luis Sanchez', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'https://www.google.com/','1234567890','whfgwefjewjk');
 
 Create Table ServiciosProductos(
-	CEmpresa char(10) NOT NULL,
+	CEmpresa varchar(18) NOT NULL,
 	NombrePS char(50) NOT NULL,
 	PrecioU  char(15) NOT NULL,
+	DescripP	varchar(500) NOT NULL,
 	Primary Key (NombrePS),
 	Foreign key (CEmpresa) REFERENCES EmpresaC(CodigoE)
 );
 
-INSERT INTO ServiciosProductos values ('SA', 'Consultoria365', '15000');
-INSERT INTO ServiciosProductos values ('MS', 'OneDrive', '75000');
-INSERT INTO ServiciosProductos values ('SA', 'MarketingD', '1000');
-INSERT INTO ServiciosProductos values ('SA', 'ConsultoriaWeb', '35000');
-INSERT INTO ServiciosProductos values ('GG', 'GMAIL', '4300');
-INSERT INTO ServiciosProductos values ('GG', 'DRIVE', '7000');
-INSERT INTO ServiciosProductos values ('MS', 'MicrosoftBuilding', '80000');
-INSERT INTO ServiciosProductos values ('MS', 'SQL SERVER', '6500');
-INSERT INTO ServiciosProductos values ('MS', 'COpilot', '70867');
+INSERT INTO ServiciosProductos values ('SA', 'Consultoria365', '15000','Desarrollo y orientacion especializada');
+INSERT INTO ServiciosProductos values ('MS', 'OneDrive', '75000','Almacenamiento en servidor');
+INSERT INTO ServiciosProductos values ('SA', 'MarketingD', '1000','orientacion y apoyo en Marketing digital');
+INSERT INTO ServiciosProductos values ('SA', 'ConsultoriaWeb', '35000','consutoria para desarrollo web');
+INSERT INTO ServiciosProductos values ('GG', 'GMAIL', '4300','Servicio de Correos Electronicos');
+INSERT INTO ServiciosProductos values ('GG', 'DRIVE', '7000','servicio de almacenamiento en Nube');
+INSERT INTO ServiciosProductos values ('MS', 'MicrosoftBuilding', '80000','servicio de IA');
+INSERT INTO ServiciosProductos values ('MS', 'SQL SERVER', '6500','Servicio de consulta o desarrolloen SQL server');
+INSERT INTO ServiciosProductos values ('MS', 'COpilot', '70867','Servicio de IA');
 
 CREATE TABLE UsuariosS (
 	NombreU char(25) NOT NULL,
 	App_U char(20) NOT NULL,
 	Apm_U char(20) NOT NULL,
-	Tipo numeric(2) NOT NULL,
+	Tipo varchar(15) NOT NULL,
 	Area char(15) NOT NULL,
 	Correo varchar(50) NOT NULL,
 	Pass char(255) NOT NULL,
-	Id_empresa char(10)Not NULL,
+	Id_empresa varchar(18) Not NULL,
 	PRIMARY KEY (Correo),
 	CHECK (NombreU NOT LIKE '%[0-9,`,~,!,@,#,$,^,&,*,(,),-,_,=,+,[,{,}.\,|,;,:,",,,<,.,>,/,?]%'),
 	CHECK (App_U NOT LIKE '%[0-9,`,~,!,@,#,$,^,&,*,(,),-,_,=,+,[,{,}.\,|,;,:,",,,<,.,>,/,?]%'),
@@ -76,12 +77,12 @@ CREATE TABLE ProspectosS (
 	CHECK (Nom_Prosp NOT LIKE '%[0-9,`,~,!,@,#,$,^,&,*,(,),-,_,=,+,[,{,}.\,|,;,:,",,,<,.,>,/,?]%'),
 	CHECK (Domicilio NOT LIKE '%[`,~,!,@,#,$,^,&,*,(,),-,_,=,+,[,{,}.\,|,;,:,",<,.,>,/,?]%')
 );
-INSERT INTO ProspectosS VALUES ('lolbernal1@gmail.com', 'Cabañas Maldivas', 5568156702, 'CDMX Tlahuac', 01, 'Cabañasmaldivas@outlook.com', 'Capacitación');
-INSERT INTO ProspectosS VALUES ('lol1@gmail.com', 'Restaurante', 5568157364, 'CDMX Tlahuac', 03, 'Restaurante@outlook.com', 'Capacitación');
-INSERT INTO ProspectosS VALUES ('lolbe2@gmail.com', 'Papeleria', 5568150129, 'CDMX Tlahuac', 07, 'Papeleria@outlook.com', 'Capacitación');
+INSERT INTO ProspectosS VALUES ('lolbernal1@gmail.com', 'CabaÃ±as Maldivas', 5568156702, 'CDMX Tlahuac', 01, 'CabaÃ±asmaldivas@outlook.com', 'CapacitaciÃ³n');
+INSERT INTO ProspectosS VALUES ('lol1@gmail.com', 'Restaurante', 5568157364, 'CDMX Tlahuac', 03, 'Restaurante@outlook.com', 'CapacitaciÃ³n');
+INSERT INTO ProspectosS VALUES ('lolbe2@gmail.com', 'Papeleria', 5568150129, 'CDMX Tlahuac', 07, 'Papeleria@outlook.com', 'CapacitaciÃ³n');
 
 CREATE TABLE NotasS (
-	CodigoE varchar(10) NOT NULL,
+	CodigoE varchar(18) NOT NULL,
 	IDCliente varchar(50) not null,
 	ID_Us varchar(50) NOT NULL,
 	FOLIO varchar (07) NOT NULL,
@@ -155,8 +156,8 @@ CREATE TABLE ProductoS (
 
 
 
-INSERT INTO ProductoS values ( 'lolbernal1@gmail.com', 'Cabañasmaldivas@outlook.com', 'Consultoria365', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
-INSERT INTO ProductoS values ( 'lolbernal1@gmail.com', 'Cabañasmaldivas@outlook.com', 'COpilot', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
+INSERT INTO ProductoS values ( 'lolbernal1@gmail.com', 'CabaÃ±asmaldivas@outlook.com', 'Consultoria365', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
+INSERT INTO ProductoS values ( 'lolbernal1@gmail.com', 'CabaÃ±asmaldivas@outlook.com', 'COpilot', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
 INSERT INTO ProductoS values ( 'lol1@gmail.com', 'Restaurante@outlook.com', 'GMAIL', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
 INSERT INTO ProductoS values ( 'lol1@gmail.com', 'Restaurante@outlook.com', 'OneDrive', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
 INSERT INTO ProductoS values ( 'lolbe2@gmail.com', 'Papeleria@outlook.com', 'Consultoria365', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
