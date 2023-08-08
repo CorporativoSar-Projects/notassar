@@ -5,6 +5,7 @@
 	echo "Usuario: ".$_SESSION['$user'];
 	echo"<br>";
 	echo "Codigo de Empresa:   ".$_SESSION['$CodiEmp'];
+	$codE = $_SESSION['$CodiEmp'];
 	$varsesion=$_SESSION['$user'];
 	if($varsesion==null || $varsesion=='')
 	{
@@ -114,7 +115,7 @@
 						<td>
 							<select name="idservicio" id="idservicio" required="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$codE';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -135,7 +136,7 @@
 							<select name="idservicio2" id="idservicio2">
 								<option value=""></option>
 								<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$codE';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -156,7 +157,7 @@
 							<select name="idservicio3" id="idservicio3">
 								<option value=""></option>
 								<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$codE';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -177,7 +178,7 @@
 						    	<select name="idservicio4" id="idservicio4">
 						    	 <option value=""></option>
 					        	<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'codE';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
