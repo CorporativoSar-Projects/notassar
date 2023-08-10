@@ -2,6 +2,7 @@
     session_start();
     include 'conexion.php';
     error_reporting(0);
+	$code=$_SESSION['$CodiEmp'];
 	$nomCliente=$_GET['nomCliente'];
 	$domCliente=$_GET['domCliente'];
 	$corrCliente=$_GET['corrCliente'];
@@ -67,7 +68,7 @@
 	}
 	for ($totServices=1; $totServices <= 4; $totServices++) {
 		if ($totServices==1) {
-			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio';";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
@@ -76,7 +77,7 @@
 			}
 		}
 		else if ($totServices==2) {
-			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio2';";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio2';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
@@ -85,7 +86,7 @@
 			}
 		}
 		else if ($totServices==3) {
-			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio3';";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio3';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
@@ -94,7 +95,7 @@
 			}
 		}
 		else if ($totServices==4) {
-			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio4';";
+			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio4';";
 			$qp=$conexion->query($llenadoPrecio);
 			while ($price=mysqli_fetch_array($qp))
 			{								
