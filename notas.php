@@ -178,7 +178,7 @@
 						    	<select name="idservicio4" id="idservicio4">
 						    	 <option value=""></option>
 					        	<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'codE';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$codE';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
