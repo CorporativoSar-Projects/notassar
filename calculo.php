@@ -31,7 +31,7 @@
 	$importe3=$_GET['importe3'];
 	$importe4=$_GET['importe4'];
 	$tipoNota=$_GET['tipoNota'];
-	$folio=$_GET['dataFolio'];
+	$folio=$_SESSION['$folio'];
 	$mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); $m=$mes[date(n)-1]; $hoy = date("j")." de ".$m." de ".date("Y");
 	global $subtotal;
 	global $iva;
@@ -56,16 +56,7 @@
 	global $tmpPrecio;
 	global $tmpDescripcion;
 	$cont=1;
-	$rs = mysqli_query($conexion, "SELECT FOLIO FROM NotasS	WHERE FechaRegistro = (
-		SELECT MAX(FechaRegistro) FROM NotasS where ID_Us = '$varsesion');");
-	if ($row = mysqli_fetch_row($rs)) {
-		$id = trim($row[0]);
-		/*echo "Valor de id:".$id;*/
-		$id = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $id);
-	}
-	else{
-		$id=0;
-	}
+	
 	for ($totServices=1; $totServices <= 4; $totServices++) {
 		if ($totServices==1) {
 			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa = '$code' and NombrePS = '$idservicio';";

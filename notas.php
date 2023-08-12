@@ -79,7 +79,7 @@
 					}
 					else{
 						$id=$id+1;
-						echo "<script>document.notas.folio.value=".$id.";</script>";
+						echo "<script>document.notas.folio.value=".$_SESSION['$folio'].";</script>";
 					}
 					echo "<script>document.notas.folio.disabled='true';</script>";
 					?>

@@ -30,6 +30,17 @@
 	else{
 		$id=0;
 	}
+	$rs = mysqli_query($conexion, "SELECT FOLIO FROM NotasS	WHERE FechaRegistro = (
+		SELECT MAX(FechaRegistro) FROM NotasS where ID_Us = '$user');");
+	if ($row = mysqli_fetch_row($rs)) {
+		$folio = trim($row[0]);
+		/*echo "Valor de id:".$id;*/
+		$folio = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $folio);
+		$_SESSION['$folio'] = $folio;
+	}
+	else{
+		$id=0;
+	}
 
 ?>
 <!DOCTYPE html>

@@ -34,7 +34,7 @@
 	$importe3=$_POST['importe3'];
 	$importe4=$_POST['importe4'];
 	$tipoNota=$_POST['tipoNota'];
-	$folio=$_POST['folio'];
+	$folio=$_SESSION['$folio'];
 	$fecha=$_POST['fecha'];
 	$subtotal=$_POST['subtotal'];
 	$subtotal=number_format($subtotal,2);
@@ -73,7 +73,7 @@
 	}
 	$conexion=mysqli_connect("localhost", "root", '', "NotasInnsol");
 	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
-	$folio = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $folio);
+	
 	$querprp = "INSERT INTO ProspectosS	VALUES ('$correU','$nomCliente','$telefono','domCliente','8','$corrCliente','Cliente');";
 	//Por default el cliente de notas tendra estado "8", y tipo, "cliente".
 	$conexion->query($querprp);
