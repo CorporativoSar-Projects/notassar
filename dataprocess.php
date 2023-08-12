@@ -37,7 +37,7 @@
 		$nomServicio=$_GET['nomServ'];
 		$descServicio=$_GET['descServ'];
 		$precioServicio=$_GET['precioServ'];
-		$queU="INSERT INTO servicio (id_servicio,nom_servicio,desc_servicio,precio_servicio) VALUES ('$idServicio','$nomServicio','$descServicio','$precioServicio')";
+		$queU="INSERT INTO ServiciosProductos (NombrePS,DescripP,PrecioU) VALUES ('$nomServicio','$descServicio','$precioServicio')";
 		if ($conexion->query($queU))
 		{
 			echo "
@@ -72,20 +72,20 @@
 		$idServicio=$_GET['idServ'];
 		$nomServicio=$_GET['nomServ'];
 		if ($nomServicio=="->deleteAllServicesNow") {
-			$deleteServices="DELETE FROM servicio WHERE id_servicio<>''";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE id_servicio<>''";
 		}
 		else if ($nomServicio=="" && $idServicio=="") {
 			
 		}
 		else if ($nomServicio<>"" && $idServicio=="") {
-			$deleteServices="DELETE FROM servicio WHERE nom_servicio='$nomServicio'";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$nomServicio'";
 		}
 		else if ($nomServicio=="" && $idServicio<>"") {
-			$deleteServices="DELETE FROM servicio WHERE id_servicio='$idServicio'";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$idServicio'";
 		}
 		else
 		{
-			$deleteServices="DELETE FROM servicio WHERE id_servicio='$idServicio' or nom_servicio='$nomServicio'";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$idServicio' or NombrePS='$nomServicio'";
 		}		
 		$conexion->query($deleteServices);
 		if (mysqli_affected_rows($conexion)>0)

@@ -3,6 +3,7 @@
 	include 'conexion.php';
 	error_reporting(0);
 	echo "Usuario: ".$_SESSION['$user'];
+	$CE = $_SESSION['$CodiEmp'];
 	$varsesion=$_SESSION['$user'];
 	if($varsesion==null || $varsesion=='')
 	{
@@ -95,10 +96,9 @@
 				$q=$conexion->query($selectServices);
 					while ($valor=mysqli_fetch_array($q))
 					{
-						echo "<tr><td>".$valor[id_servicio]."
-							</td><td>".$valor[nom_servicio]."
-							</td><td>".$valor[desc_servicio]."
-							</td><td>".$valor[precio_servicio]."
+						echo "<tr><td>".$valor[NombrePS]."
+							</td><td>".$valor[PrecioU]."
+							</td><td>".$valor[DescripP]."
 							</td></tr>";
 					}
 				?>
@@ -132,11 +132,11 @@
 						<p style="color: red;"><b>Catálogo de servicios:</b></p>
 						<select id="idServDel">
 							<?php
-								$selectServices="SELECT id_servicio, nom_servicio FROM servicio WHERE id_servicio<>''";
+								$selectServices="SELECT NombrePS FROM ServiciosProductos WHERE id_servicio<>''";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor[id_servicio].">"."(".$valor[id_servicio].")".$valor[nom_servicio]."</option>";
+									echo "<option value=".$valor[NombrePS].">"."(".$valor[NombrePS].")".$valor[NombrePS]."</option>";
 								}
 							?>
 						</select>
