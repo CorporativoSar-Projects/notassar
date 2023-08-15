@@ -180,7 +180,7 @@
 						<td>
 							<select name="idservicio" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -208,7 +208,7 @@
 						<td>
 							<select name="idservicio2" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio2';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio2';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -236,7 +236,7 @@
 						<td>
 							<select name="idservicio3" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio3';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio3';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
@@ -265,7 +265,7 @@
 							<select name="idservicio4" id="idservicio" disabled="true">
 							
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like 'SA' and NombrePS = '$idservicio4';";
+								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio4';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
