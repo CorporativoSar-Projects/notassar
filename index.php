@@ -32,7 +32,7 @@
 	}
 	$cod=$_SESSION['$CodiEmp'];
 	$fl = mysqli_query($conexion, "SELECT FOLIO FROM NotasS	WHERE FechaRegistro = (
-		SELECT MAX(FechaRegistro) FROM NotasS where ID_Us = '$user');");
+		SELECT MAX(FechaRegistro) FROM NotasS where CodigoE = '$cod');");
 	if ($row = mysqli_fetch_row($fl)) {
 		$folio = trim($row[0]);
 		/*echo "Valor de id:".$id;*/
