@@ -40,6 +40,14 @@
 	}
 	$cod=$_SESSION['$CodiEmp'];
 	$tm = mysqli_query($conexion, "SELECT Tema From EmpresaC Where CodigoE = '$cod';");
+	if ($row = mysqli_fetch_row($tm)) {
+		$tem = trim($row[0]);
+		$_SESSION['$Tema'] = $tem;
+		//echo "Valor de id:".$id;
+	}
+	else{
+		$id=0;
+	}
 
 ?>
 <!DOCTYPE html>
