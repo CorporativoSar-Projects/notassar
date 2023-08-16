@@ -164,21 +164,6 @@ INSERT INTO ProductoS values ( 'lolbe2@gmail.com', 'Papeleria@outlook.com', 'Con
 INSERT INTO ProductoS values ( 'lolbe2@gmail.com', 'Papeleria@outlook.com', 'MarketingD', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
 INSERT INTO ProductoS values ( 'lolbe2@gmail.com', 'Papeleria@outlook.com', 'COpilot', '2023-07-08', '2023-07-05', '2023-07-06', '2023-08-30');
 
-INSERT INTO NotasS (IDCliente, ID_Us,
-FOLIO, Nomser, Cantidad, precio, importe,
-Nomser2, Cantidad2, precio2, importe2,
-Nomser3, Cantidad3, precio3, importe3,
-Nomser4, Cantidad4, precio4, importe4,
-subtotal, FechaRegistro, FECHAI, FECHAT,
-IVA, RIVA, ISR,Total, NombreC, TipoNota) 
-Values ('$corrCliente','$correU','$folio',
-'$descripcion','$cantidad','$precio','$importe',
-'$descripcion2','$cantidad2','$precio2','$importe2',
-'$descripcion3','$cantidad3','$precio3','$importe3',
-'$descripcion4','$cantidad4','$precio4','$importe4',
-'$subtotal','fechaR','fechaI','fechaT','$iva','$riva',
-'$risr','$total','$nomCliente','tipoNota');
-
 SELECT * From ProspectosS;
 SELECT ProspectosS.Nom_Prosp, ProspectosS.Correo_C, ProspectosS.Numero, ProspectosS.Estado_C, UsuariosS.Correo, UsuariosS.NombreU  FROM ProspectosS JOIN UsuariosS on UsuariosS.Correo = 'lolbernal1@gmail.com' ;
 select MAX(FechaInicio) as Reciente from ProductoS where ID_CL = 'Papeleria@outlook.com';
