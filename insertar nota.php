@@ -3,6 +3,7 @@
 	include 'conexion.php';
     error_reporting(0);
 	echo "Usuario: ".$_SESSION['$user'];
+	$COD=$_SESSION['$CodiEmp'];
 	$nameL="Cuauhtémoc, Ciudad de México";
 	$ign=$_POST['firma'];
 	$correU=$_SESSION['$user'];
@@ -84,7 +85,7 @@
 	Nomser4, Cantidad4, precio4, importe4,
 	subtotal, FechaRegistro, FECHAI, FECHAT,
 	IVA, RIVA, ISR,Total, NombreC, TipoNota) 
-	Values ('INNCORP','$corrCliente','$correU','$folio',
+	Values ('$COD','$corrCliente','$correU','$folio',
 	'$descripcion','$cantidad','$precio','$importe',
 	'$descripcion2','$cantidad2','$precio2','$importe2',
 	'$descripcion3','$cantidad3','$precio3','$importe3',
