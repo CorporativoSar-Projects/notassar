@@ -4,6 +4,7 @@
 	error_reporting(0);
 	echo "Usuario: ".$_SESSION['$user'];
 	$varsesion=$_SESSION['$user'];
+	$codigoE= $_SESSION['$CodiEmp'];
 	if($varsesion==null || $varsesion=='')
 	{
     	echo 'Debes de iniciar sesion para poder ingresar';
@@ -37,7 +38,7 @@
 		$nomServicio=$_GET['nomServ'];
 		$descServicio=$_GET['descServ'];
 		$precioServicio=$_GET['precioServ'];
-		$queU="INSERT INTO ServiciosProductos (NombrePS,DescripP,PrecioU) VALUES ('$nomServicio','$descServicio','$precioServicio')";
+		$queU="INSERT INTO ServiciosProductos (CEmpresa,NombrePS,DescripP,PrecioU) VALUES ('$codigoE','$nomServicio','$descServicio','$precioServicio');";
 		if ($conexion->query($queU))
 		{
 			echo "
@@ -72,20 +73,20 @@
 		$idServicio=$_GET['idServ'];
 		$nomServicio=$_GET['nomServ'];
 		if ($nomServicio=="->deleteAllServicesNow") {
-			$deleteServices="DELETE FROM ServiciosProductos WHERE id_servicio<>''";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$nomServicio';";
 		}
 		else if ($nomServicio=="" && $idServicio=="") {
 			
 		}
 		else if ($nomServicio<>"" && $idServicio=="") {
-			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$nomServicio'";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$nomServicio';";
 		}
 		else if ($nomServicio=="" && $idServicio<>"") {
-			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$idServicio'";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$idServicio';";
 		}
 		else
 		{
-			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$idServicio' or NombrePS='$nomServicio'";
+			$deleteServices="DELETE FROM ServiciosProductos WHERE NombrePS='$idServicio' or NombrePS='$nomServicio';";
 		}		
 		$conexion->query($deleteServices);
 		if (mysqli_affected_rows($conexion)>0)

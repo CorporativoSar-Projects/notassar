@@ -75,13 +75,10 @@
 	<br><br>
 	<div align="center" id="existsService">
 		<?php
-			$selectServices="SELECT * FROM ServiciosProductos WHERE CEmpresa ='$CE'";
+			$selectServices="SELECT * FROM ServiciosProductos WHERE CEmpresa ='$CE';";
 		?>
 			<table style="width: 100%;">
 				<tr>
-					<td>
-						ID SERVICIO
-					</td>
 					<td>
 						NOMBRE DE SERVICIO
 					</td>
@@ -96,9 +93,9 @@
 				$q=$conexion->query($selectServices);
 					while ($valor=mysqli_fetch_array($q))
 					{
-						echo "<tr><td>".$valor[NombrePS]."
-							</td><td>".$valor[PrecioU]."
+						echo "<tr><td>".$valor[NombrePS]."							
 							</td><td>".$valor[DescripP]."
+							</td><td>".$valor[PrecioU]."
 							</td></tr>";
 					}
 				?>
@@ -132,7 +129,7 @@
 						<p style="color: red;"><b>Catálogo de servicios:</b></p>
 						<select id="idServDel">
 							<?php
-								$selectServices="SELECT NombrePS FROM ServiciosProductos WHERE id_servicio<>''";
+								$selectServices="SELECT NombrePS FROM ServiciosProductos WHERE CEmpresa = '$CE';";
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
