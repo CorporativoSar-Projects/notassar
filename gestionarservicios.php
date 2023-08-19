@@ -44,6 +44,12 @@
 	form{
 		padding-bottom: 10px;
 	}
+	#addServiceForm{
+		display:none;
+	}
+	#deleteServiceForm{
+		display:none;
+	}
 </style>
 <body>
 	<?php include 'menu.php'; ?>
