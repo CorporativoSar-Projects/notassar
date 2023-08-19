@@ -87,12 +87,51 @@
 				<option value="IVApm">IVA PM</option>
 			</select>
 			<br><br><br>
-			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true"/></h5><br>
-			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true"/></h5><br>
-			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true"/></h5><br>
-			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true"/></h5><br><br>		
-			<h5>Fecha de Inicio&nbsp&nbsp<input type="date" name="fechaI" required="true"></h5><br>
-			<h5>Fecha de Termino&nbsp&nbsp<input type="date" name="fechaT" required="true"></h5><br>			
+			<table>
+				<tr>
+					<td>
+						<h5>Nombre del cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="text" name="nomCliente" required="true"/></h5>
+					</td>
+					<td>
+						<h5>Correo del Cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="text" name="corrCliente" required="true"/></h5>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5>Telefono del cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="tel" name="telefono" required="true"/></h5>
+					</td>
+					<td>
+						<h5>Domicilio del cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="text" name="domCliente" required="true"/></h5>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5>Fecha de Inicio&nbsp&nbsp
+					</td>
+					<td>
+						<input type="date" name="fechaI" required="true"></h5>
+					</td>
+					<td>
+						<h5>Fecha de Termino&nbsp&nbsp
+					</td>
+					<td>
+						<input type="date" name="fechaT" required="true"></h5>
+					</td>
+				</tr>
+			</table>
+			<br>
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
