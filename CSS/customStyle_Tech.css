@@ -124,7 +124,8 @@ form{
 
 .active{
 	border: 0px solid black;
-	background-color:#EDD762;
+	background-color:#0a71ac;
+	color:white !important;
 }
 
 #descServ1,#descServ2,#descServ3,#descServ4,#tDesc1{
