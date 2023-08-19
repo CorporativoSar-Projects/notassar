@@ -87,7 +87,7 @@
 				<option value="IVApm">IVA PM</option>
 			</select>
 			<br><br><br>
-			<table>
+			<table id="customerDataTableNotas">
 				<tr>
 					<td>
 						<h5>Nombre del cliente&nbsp&nbsp
