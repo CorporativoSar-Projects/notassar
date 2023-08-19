@@ -159,13 +159,50 @@
 				<option value="IVApm">IVA PM</option>
 			</select>
 			<br><br><br>
-			<h5>Nombre del cliente&nbsp&nbsp<input type="text" name="nomCliente" required="true" value="<?php echo $nomCliente; ?>" disabled="true"/></h5><br>
-			<h5>Correo del Cliente&nbsp&nbsp<input type="text" name="corrCliente" required="true" value="<?php echo $corrCliente; ?>" disabled="true"/></h5><br>
-			<h5>Telefono del cliente&nbsp&nbsp<input type="text" name="telefono" required="true" value="<?php echo $telefono; ?>" disabled="true"/></h5><br>
-			<h5>Domicilio del cliente&nbsp&nbsp<input type="text" name="domCliente" required="true" value="<?php echo $domCliente; ?>" disabled="true"/></h5><br><br>		
-			<h5>Fecha de Inicio<input type="date" name="fechaI" required="true" value="<?php echo $fechaI; ?>" disabled="true"></h5><br>
-			<h5>Fecha de Termino<input type="date" name="fechaT" required="true" value="<?php echo $fechaT; ?>" disabled="true"></h5><br>
-			
+			<table id="customerDataTableNotas">
+				<tr>
+					<td>
+						<h5>Nombre del cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="text" name="nomCliente" required="true"/></h5>
+					</td>
+					<td>
+						<h5>Correo del Cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="text" name="corrCliente" required="true"/></h5>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5>Telefono del cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="tel" name="telefono" required="true"/></h5>
+					</td>
+					<td>
+						<h5>Domicilio del cliente&nbsp&nbsp
+					</td>
+					<td>
+						<input type="text" name="domCliente" required="true"/></h5>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5>Fecha de Inicio&nbsp&nbsp
+					</td>
+					<td>
+						<input type="date" name="fechaI" required="true"></h5>
+					</td>
+					<td>
+						<h5>Fecha de Termino&nbsp&nbsp
+					</td>
+					<td>
+						<input type="date" name="fechaT" required="true"></h5>
+					</td>
+				</tr>
+			</table>
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
