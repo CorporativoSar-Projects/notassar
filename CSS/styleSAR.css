@@ -80,3 +80,18 @@ form{
 #descServ1,#descServ2,#descServ3,#descServ4,#tDesc1{
 	display: none;
 }
+
+#customerDataTableNotas{
+    width: 70%;
+	text-align:right;
+	border: 0px solid red;
+}
+
+#customerDataTableNotas input{
+    width: 100% !important;
+}
+
+#customerDataTableNotas td{
+    padding:10px !important;
+	border: 0px solid blue;
+}
