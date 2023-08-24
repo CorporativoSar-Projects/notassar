@@ -83,8 +83,8 @@
 	<div id="divmain">
 		<div id="divForm">
 			<form id="formulario" method="POST">
-				<h1>Bienvenido Corporativo SAR</h1>
-				<h3>Powered by Corporativo SAR</h3>
+				<h1>InNotes</h1>
+				<h3>Powered by Innsol Corporation</h3>
 				<br>
 				<br>
 				<img src="img/user.png" id="imU"><br><br>
