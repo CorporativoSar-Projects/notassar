@@ -83,6 +83,7 @@
 	<div id="divmain">
 		<div id="divForm">
 			<form id="formulario" method="POST">
+			<br><br>
 				<h1>InNotes</h1>
 				<h3>Powered by Innsol Corporation</h3>
 				<br>
