@@ -82,13 +82,37 @@
 	</header>
 	<div id="divmain">
 		<div id="divForm">
+		    <br><br><br><br>
 			<form id="formulario" method="POST">
-			<br><br>
+			    <br><br>
 				<h1>InNotes</h1>
 				<h3>Powered by Innsol Corporation</h3>
 				<br>
 				<br>
 				<img src="img/user.png" id="imU"><br><br>
+				<table id="tabIndx" style="width:100%;">
+				    <tr>
+				        
+				        <td>
+				            <input type="text" id="usuario" name="username" placeholder="Correo electrónico" required="true">
+				        </td>
+				    </tr>
+				    <tr>
+				        
+				        <td>
+				            <input type="password" id="password" name="pass" placeholder="Contraseña" required="true">
+				        </td>
+				    </tr>
+				    <tr>
+				        <td colspan="2">
+				            <br><br>
+				            <input type="submit" name="aceptar" value="Ingresar" class="aceptar">
+				        </td>
+				    </tr>
+				</table>
+				<br>
+			</form>
+				<!--
 				<label for="usuario">Usuario</label><br>
 				<input type="text" id="usuario" name="username" placeholder="usuario" required="true"><br><br>
 				<label for="password">Password</label><br>
@@ -96,8 +120,7 @@
 				<input type="submit" name="aceptar" value="Ingresar" class="aceptar">
 				<br><br>
 				<input type="button" onclick="nuevo();" value="Soy nuevo usuario y no tengo accesos" id="regBt">
-				<br><br><br><br>
-			</form>
+				<br><br><br><br>-->
 		</div>
 	</div>
 </body>

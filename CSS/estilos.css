@@ -58,9 +58,15 @@ section{
 	box-shadow:         0px 0px 10px rgba(74, 74, 74, 0.75);
 }
 
+.aceptar{
+    width: 50% !important;
+    font-size:16px !important;
+    font-weight: bold;
+}
+
 .aceptar, .registrarEmp{
 	background-color: #f13453;
-	color:white;
+	color:white !important;
 	padding-left: 20px;
 	padding-right: 20px;
 	border-radius: 4px;
@@ -181,21 +187,31 @@ a.fun {
 }
 
 #formulario{
-	width: 50%;
+	width: 30%;
 	height: auto;
 	margin:0 auto;
 	text-align: center;
+	border: 1px solid black;
+	border-radius:80px;
+	border-shadow:
 }
 
 #formulario input{
-	width: 80%;
+	width:60%;
 	height: 30px;
 	color:#1e1e1e;
 	border: 1px solid;
+	font-size:15px;
+}
+
+#regBt{
+    background-color: #3ca76c;
+	color: white !important;
 }
 
 #regBt:hover{
-	background-color: #3ca76c;
+	background-color: #4a4a4a;
+	cursor: pointer;
 	color: rgb(255, 255, 255);
 }
 
@@ -252,5 +268,15 @@ table,td{
 
 #regBtEmp, .registrarEmp{
 	width: 50% !important;
+	font-size: 15px;
+}
+
+#tabIndx input{
+    text-align:center !important;
+    border-radius: 10px;
+}
+
+#tabIndx td{
+	padding: 5px;
 	font-size: 15px;
 }
