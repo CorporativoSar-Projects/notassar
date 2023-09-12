@@ -85,7 +85,7 @@
                         </td>
                     </tr>
 					<tr>
-						//bfjkhaskjfjkashdjkhsd
+
                         <td>
                             <label for="nomEmp" id="labRegForm">Correo de contacto</label>
                         </td>
