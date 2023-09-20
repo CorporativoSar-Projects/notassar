@@ -120,7 +120,8 @@
 				<input type="submit" name="aceptar" value="Ingresar" class="aceptar">
 				<br><br>
 				<input type="button" onclick="nuevo();" value="Soy nuevo usuario y no tengo accesos" id="regBt">
-				<br><br><br><br>-->
+				<br><br><br><br>
+			-->
 		</div>
 	</div>
 </body>
