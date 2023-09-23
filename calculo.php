@@ -10,10 +10,10 @@
 	$fechaR=date('Y-m-d H:i:s');
 	$fechaI=$_GET['fechaI'];
 	$fechaT=$_GET['fechaT'];	
-	$idservicio=$_GET['idservicio'];
-	$idservicio2=$_GET['idservicio2'];
-	$idservicio3=$_GET['idservicio3'];
-	$idservicio4=$_GET['idservicio4'];	
+	$idservicio=urldecode($_GET['idservicio']);
+	$idservicio2=urldecode($_GET['idservicio2']);
+	$idservicio3=urldecode($_GET['idservicio3']);
+	$idservicio4=urldecode($_GET['idservicio4']);
 	$cantidad=$_GET['cantidad'];
 	$cantidad2=$_GET['cantidad2'];
 	$cantidad3=$_GET['cantidad3'];
@@ -57,7 +57,6 @@
 	global $tmpPrecio;
 	global $tmpDescripcion;
 	$cont=1;
-	
 	for ($totServices=1; $totServices <= 4; $totServices++) {
 		if ($totServices==1) {
 			$llenadoPrecio="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa = '$code' and NombrePS = '$idservicio';";
@@ -109,7 +108,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="<? echo $tema;?>">
-	<link rel="stylesheet" href="CSS/styleSAR.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -126,7 +124,13 @@
 	#bCG{
 		display: none;
 	}
-	table{
+	td select{
+		width: 100%;
+	}
+	td input{
+		width: 100%;
+	}
+	#tableTitlesQuantity{
 		width: 100% !important;
 	}
 </style>
@@ -171,7 +175,7 @@
 						<h5>Correo del Cliente&nbsp&nbsp
 					</td>
 					<td>
-						<input type="text" name="corrCliente" required="true"/></h5>
+						<input type="text" name="corrCliente" required="true" value="<?php echo$corrCliente;?>"/></h5>
 					</td>
 				</tr>
 				<tr>
@@ -179,7 +183,7 @@
 						<h5>Telefono del cliente&nbsp&nbsp
 					</td>
 					<td>
-						<input type="tel" name="telefono" required="true"/></h5>
+						<input type="tel" name="telefono" required="true" value="<?php echo$telefono;?>"/></h5>
 					</td>
 					<td>
 						<h5>Domicilio del cliente&nbsp&nbsp
@@ -193,16 +197,17 @@
 						<h5>Fecha de Inicio&nbsp&nbsp
 					</td>
 					<td>
-						<input type="date" name="fechaI" required="true"></h5>
+						<input type="date" name="fechaI" required="true" value="<?php echo$fechaI;?>"></h5>
 					</td>
 					<td>
 						<h5>Fecha de Termino&nbsp&nbsp
 					</td>
 					<td>
-						<input type="date" name="fechaT" required="true"></h5>
+						<input type="date" name="fechaT" required="true" value="<?php echo$fechaT;?>"></h5>
 					</td>
 				</tr>
 			</table>
+			<br>
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -332,7 +337,7 @@
 			<br><br>
 			<input id="bCG" type="submit" value="Calcular pagos"/>
 		</form>
-	<table style="max-width: 100% !important; text-align:center !important;">
+	<table id="tableTitlesQuantity" style="max-width: 100% !important; text-align:center !important;">
 		<tr>
 			<td>
 				<h5>SUBTOTAL: </h5>
@@ -471,7 +476,8 @@
 		var p="<?php echo $precio; ?>";
 		var i="<?php echo $importe; ?>";
 		
-		document.notas.idservicio.value="HOLA TEST";
+		//document.notas.idservicio.value="HOLA TEST";
+		document.notas.idservicio.value=ids;
 		document.notas.cantidad.value=c;
 		document.notas.descripcion.value=d;
 		document.notas.precio.value=p;

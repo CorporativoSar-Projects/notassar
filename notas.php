@@ -1,8 +1,6 @@
 <?php
     session_start();
 	error_reporting(0);
-	echo "Usuario: ".$_SESSION['$user'];
-	echo"<br>";
 	$codE = $_SESSION['$CodiEmp'];
 	$varsesion=$_SESSION['$user'];
 	$foliio=$_SESSION['$folio'];
@@ -27,6 +25,7 @@
 	{
 	    include 'conexion.php';
 	}
+	echo "Usuario: ".$_SESSION['$user'];
 	global $cont;
 	global $id;
 	global $tmpPrecio;
@@ -163,7 +162,7 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor['NombrePS']."
+									echo "<option value=".urlencode($valor['NombrePS'])."
 										>".$valor['NombrePS']."</option>";
 									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];
 								}
@@ -184,7 +183,7 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor['NombrePS']."
+									echo "<option value=".urlencode($valor['NombrePS'])."
 										>".$valor['NombrePS']."</option>";
 									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];						
 								}
@@ -205,7 +204,7 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor['NombrePS']."
+									echo "<option value=".urlencode($valor['NombrePS'])."
 										>".$valor['NombrePS']."</option>";
 									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];
 								}
@@ -226,7 +225,7 @@
 								$q=$conexion->query($selectServices);
 								while ($valor=mysqli_fetch_array($q))
 								{
-									echo "<option value=".$valor['NombrePS']."
+									echo "<option value=".urlencode($valor['NombrePS'])."
 										>".$valor['NombrePS']."</option>";
 									$serviceArray[$valor['NombrePS']]=$valor['PrecioU'];
 								}
