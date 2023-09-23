@@ -1,6 +1,5 @@
-<?php 
+<?php
     session_start();
-	include 'conexion.php';
 	error_reporting(0);
 	echo "Usuario: ".$_SESSION['$user'];
 	echo"<br>";
@@ -10,9 +9,23 @@
 	$tema = $_SESSION['$Tema'];
 	if($varsesion==null || $varsesion=='')
 	{
-    	echo 'Debes de iniciar sesion para poder ingresar';
-    	header('Location: index.php');
-		die();
+    	echo "<script>alert('Debes de iniciar sesion para poder ingresar');</script>";
+    	echo "<div id='parent'>		
+				<div class='alert alert-danger' id='divSuccessAdd' role='alert'>
+				<h4 class='alert-heading'>Fallo en operación</h4>
+				<p>No has iniciado sesión, por tanto <b>NO PUEDES ACCEDER AL SISTEMA</b>.</p>
+				<p>Por favor inicia sesión primero con tu correo y contraseña.</p>
+				<p>Si sigues presentando fallas, comunícate con el Administrador del sistema al correo: <b>contacto@corporativosaarme.com</b></p>
+				<hr>
+				<br>
+				<a href='index.php' class='mb-0'><p class='mb-0'>INICIAR SESIÓN AHORA</p></a>
+				</div>
+			</div>";
+			die();
+	}
+	else
+	{
+	    include 'conexion.php';
 	}
 	global $cont;
 	global $id;

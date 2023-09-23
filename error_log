@@ -15,3 +15,28 @@ Stack trace:
 [04-Aug-2023 12:20:33 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php:9) in /home1/corpo240/notasadmin.corporativosaarme.com/upload.php on line 39
 [04-Aug-2023 13:30:28 America/Mexico_City] PHP Warning:  session_start(): Cannot start session when headers already sent in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 2
 [04-Aug-2023 14:53:53 America/Mexico_City] PHP Parse error:  syntax error, unexpected ''];' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in /home1/corpo240/notasadmin.corporativosaarme.com/insertar nota.php on line 38
+[09-Aug-2023 21:02:10 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php on line 3
+[09-Aug-2023 21:02:23 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php on line 3
+[09-Aug-2023 21:02:25 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php on line 3
+[09-Aug-2023 21:02:27 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php on line 3
+[09-Aug-2023 21:02:31 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home1/corpo240/notasadmin.corporativosaarme.com/conexion.php on line 3
+[14-Aug-2023 21:14:43 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:14:50 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:15:15 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:15:17 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:15:20 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:15:25 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:04 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:08 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:26 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:29 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:38 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:43 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:44 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:45 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:45 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:45 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:45 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:46 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[14-Aug-2023 21:17:46 America/Mexico_City] PHP Parse error:  syntax error, unexpected ';' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 25
+[08-Sep-2023 11:21:36 America/Mexico_City] PHP Parse error:  syntax error, unexpected 'SELECT' (T_STRING), expecting ';' or ',' in /home1/corpo240/notasadmin.corporativosaarme.com/notas.php on line 26

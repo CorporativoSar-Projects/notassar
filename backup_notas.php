@@ -1,4 +1,4 @@
-			<div id="divContTable">vvhhjhjvjvhvjv
+			<div id="divContTable">
 			<table id="contTable">
 				<tr>
 					<td>

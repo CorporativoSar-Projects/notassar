@@ -1,5 +1,5 @@
 <?php
-    session_start();//vhvhhvhvhvhvhvhvhvhhv
+    session_start();
     include 'conexion.php';
     error_reporting(0);
 	$code=$_SESSION['$CodiEmp'];

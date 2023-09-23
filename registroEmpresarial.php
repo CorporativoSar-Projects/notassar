@@ -8,10 +8,8 @@
 	$nomRep = $_POST['nomRep'];
 	$CorreoE = $_POST['CorreoE'];
 	$telCont = $_POST['telCont'];
-	$
 	$cifra = $pass;
 	$pass= cifrarSHA256($cifra);
-	
 	function cifrarSHA256($texto) {
 		return hash('sha256', $texto);
 	}
@@ -50,12 +48,12 @@
                 <table id="tableRegEmp">
 					<tr>
 						<td colspan="2">
-							<h1 id="themeTitles">Registro de nuevas empresas</h1>
+							<h1 id="themeTitles">Registro para nuevas empresas</h1>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<h3 id="themeTitles">Powered by Corporativo SAR</h3>
+							<h3 id="themeTitles">Powered by Innsol Corporation</h3>
 							<br><br>
 						</td>
 					</tr>
@@ -73,7 +71,7 @@
                             <label for="codigoEmp" id="labRegForm">Código de empresa</label>
                         </td>
                         <td>
-                            <input type="text" id="codigoEmp" name="codigoEmp" placeholder="Ej. INNCORP" required="true">
+                            <input type="text" id="codigoEmp" name="codigoEmp" placeholder="Ej. INNCORP" required="true" maxlength="5">
                         </td>
                     </tr>
                     <tr>
@@ -85,7 +83,6 @@
                         </td>
                     </tr>
 					<tr>
-
                         <td>
                             <label for="nomEmp" id="labRegForm">Correo de contacto</label>
                         </td>
@@ -131,10 +128,178 @@
                         </td>
                         <td>
                             <select name="temaEmp" id="temaEmp" onchange="themeTest()">
-								<option value="">Standar</option>	
+								<option value="">Standard</option>	
 								<option value="CSS/customStyle_Turism.css">Turism</option>
 								<option value="CSS/customStyle_Tech.css">Tech</option>								
 							</select>							
+                        </td>
+                    </tr>
+                    <tr>
+						<td>
+                            <label for="nomEmp" id="labRegForm">Configuración de etiquetas</label>
+                        </td>
+                        <td>
+                            <select name="etiquetaEmp" id="etiquetaEmp" onchange="labelChoose()">
+								<option value="standardLabelsChoose">Standard</option>	
+								<option value="customLabelsChoose">Personalizadas</option>
+							</select>
+							<br><br>
+							<div style="border:1px solid black; display:none;" id="customLabelsDivEmp">
+							    <table style="width:100% !important;">
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Fecha</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="fechaEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">FOLIO</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="folioEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Tipo de nota a generar</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="tipoNotaEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Nombre del cliente</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="nomCustomerEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Correo del cliente</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="emailCustomerEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Teléfono del cliente</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="telCustomerEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Domicilio del cliente</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="addressCustomerEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Fecha de inicio</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="initDateEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Fecha de término</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="endDateEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">SERVICIO</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="servEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">CANTIDAD</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="quantityEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Añadir servicio</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="addServiceEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Consultar</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="consultantServiceEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Eliminar servicio</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="deleteServiceEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">NOMBRE DE SERVICIO</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="nameServiceEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">DESCRIPCIÓN</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="descriptionServiceEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">PRECIO UNITARIO</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="costServiceEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">Catálogo de servicios</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="servicesListEmpLabel" required="true">
+							            </td>
+							        </tr>
+							        <tr>
+							            <td>
+							                <label id="labRegForm">ID de servicio</label>
+							            </td>
+							            <td>
+							                <input type="text" id="customEmpLabel" name="serviceIdEmpLabel" required="true">
+							            </td>
+							        </tr>
+							    </table>
+							</div>
                         </td>
                     </tr>
                     <tr>
@@ -180,13 +345,25 @@
 			themeButtons.style.backgroundColor="#0a71ac";
 
 		}
-		else if (them[selThem].text == "Standar") {
+		else if (them[selThem].text == "Standard") {
 			headerTheme.style.backgroundColor="#4a4a4a";
 			themeTitles.style.color="black";
 			themeAllLabels.style.color="black";
 			themeButtons.style.backgroundColor="#f13453";
 		}
 		//alert("Hola:"+them[selThem].text);
+	}
+	
+	function labelChoose() {
+		var customLabelsChoosed = document.getElementById('customLabelsDivEmp');
+		var selLabels = document.getElementById('etiquetaEmp').selectedIndex;
+		var textCustomLabels = document.getElementById('etiquetaEmp').options;
+		if (textCustomLabels[selLabels].text == "Standard") {
+			customLabelsChoosed.style.display="none";
+		}
+		else {
+			customLabelsChoosed.style.display="block";
+		}
 	}
 </script>
 </html>

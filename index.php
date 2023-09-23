@@ -1,9 +1,9 @@
 <?php
 	error_reporting(0);
 	//conexion en local
-	$conexion=mysqli_connect("localhost", "root",'', "notasinnsol");
+	//$conexion=mysqli_connect("localhost", "root",'', "notasinnsol");
 	//conexion a produccion
-	//$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
+	$conexion=mysqli_connect("localhost", "corpo240_admin", 'INNSOL"="#()', "corpo240_InnsolNotas");
 	$user=$_POST['username'];
 	$pass=$_POST['pass'];
 	$cifra = $pass;
@@ -32,7 +32,7 @@
 	}
 	$cod=$_SESSION['$CodiEmp'];
 	$fl = mysqli_query($conexion, "SELECT FOLIO FROM NotasS	WHERE FechaRegistro = (
-		SELECT MAX(FechaRegistro) FROM NotasS where CodigoE = '$cod');");
+		SELECT MAX(FechaRegistro) FROM NotasS where ID_Us = '$user');");
 	if ($row = mysqli_fetch_row($fl)) {
 		$folio = trim($row[0]);
 		/*echo "Valor de id:".$id;*/
@@ -120,8 +120,7 @@
 				<input type="submit" name="aceptar" value="Ingresar" class="aceptar">
 				<br><br>
 				<input type="button" onclick="nuevo();" value="Soy nuevo usuario y no tengo accesos" id="regBt">
-				<br><br><br><br>
-			-->
+				<br><br><br><br>-->
 		</div>
 	</div>
 </body>
