@@ -114,10 +114,10 @@ form{
 }
 
 #parent{
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	display: flex;
+    width: 100% !important;
+	justify-content: center !important;
+	text-align: center !important;
+	display: flex !important;
 	margin-top: 50px !important;
 }
 
