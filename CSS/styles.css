@@ -1,0 +1,315 @@
+:root{
+	--primary-color: #3b3b3b;
+	--secondary-color: rgb(220, 122, 36);
+	--tertiary-color: #3ca76c;
+	--quaternary-color: #f5f5f5;
+	--white-color: #ffffff;
+	--black-color: #000000;
+	--boder-color: #c4c4c4;
+
+	--btn-submit-color: #3ca76c;
+}
+
+*{
+	margin: 0;
+	border: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--white-color);
+	font-family: 'Roboto', sans-serif;
+}
+
+header{
+	width: 100%;
+	height: 60px;
+	background-color: var(--primary-color);
+	color:rgb(255, 255, 255);
+}
+
+header img{
+	max-width: 150px;
+	height: auto;
+	margin-left: 10%;
+	display: block;
+	box-shadow: 0px 0px 10px rgba(74, 74, 74, 0.75);
+}
+
+h1 span{
+	color: var(--secondary-color);
+	font-weight: bold;
+	stroke: none;
+}
+
+
+
+
+
+/* a{
+	color: #4a4a4a;
+	font-weight: bolder;
+	font-size: 1.2rem;
+	text-decoration: none;
+}
+
+header a{
+	width: 50px;
+	left: 90%;
+	display: inline-block;
+	vertical-align: top;
+	position: fixed;
+	z-index: 2;
+	background-color: #4a4a4a;
+
+}
+header a img{
+	width: 100%;
+}
+section{
+	width: 80%;
+	min-height: 500px;
+	padding: 2%;
+	margin:0 auto;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+#logo{
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	vertical-align: top;
+	position:absolute;
+	z-index: 2;
+	left: 10%;
+	-webkit-box-shadow: 0px 0px 10px rgba(74, 74, 74, 0.75);
+	-moz-box-shadow:    0px 0px 10px rgba(74, 74, 74, 0.75);
+	box-shadow:         0px 0px 10px rgba(74, 74, 74, 0.75);
+}
+
+.aceptar{
+    width: 50% !important;
+    font-size:16px !important;
+    font-weight: bold;
+}
+
+.aceptar, .registrarEmp{
+	background-color: #f13453;
+	color:white !important;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 4px;
+	font-size: 1.3rem;
+}
+.aceptar:hover{
+	background-color: #4a4a4a;
+	cursor: pointer;
+}
+
+.registrarEmp:hover{
+	background-color: #4a4a4a;
+	cursor: pointer;
+}
+
+nav {
+  width  : 35%;
+  position: absolute;
+  z-index: 3;
+  left: 18%;
+  top:.5%;
+}
+
+menu:after , menu:before {
+  display : block;
+  content : ' ';
+}
+
+menu:after {
+  clear : both;
+}
+
+li {
+  list-style-type : none;
+
+
+  float   : left;
+  cursor  : pointer;
+  padding : 3px 10px;
+
+
+}
+
+li:first-child {
+  border-radius : 5px 0 0 5px;
+}
+
+li:last-child {
+  border-radius : 0 5px 5px 0;
+}
+
+li a {
+  display : block;
+  padding : 10px 13px;
+  font-size : 26px;
+  text-decoration : none;
+  border-radius   : 5px;
+  position        : relative;
+  top   : 0;
+  color : #FFF;			
+  transition : all .4s;
+}
+
+li:hover a {
+  top   : -20px;
+  color : #4eacff;
+  background-color: #fff;
+  box-shadow : 0 0 5px 0 rgba(255, 255, 255, 0.7);
+  transition : all .4s;
+}
+
+li a:after {
+  display  : block;
+  content  : '';
+  position : absolute;
+  top  : 100%;
+  left : 42%;
+  border-style : solid;
+  border-color : transparent;
+  border-width : 5px 5px 0 5px;
+  transition   : all .4s;
+}
+
+li:hover a:after {
+  border-color : white transparent transparent transparent;
+  transition   : all .4s;
+} */
+
+/*************************************/
+
+/* .menu2 a {
+  font-family : georgia;
+  font-size   : 14px;
+  font-style  : italic;
+  text-transform : capitalize;
+}
+
+.menu2 li {
+  border-right  : 1px solid rgba(200,200,255,0.5);
+  border-left   : 1px solid rgba(40,40,40,0.2); 
+}
+
+.selected {
+  top   : -20px;
+  color : #4eacff;
+  background-color: #fff;
+  box-shadow : 0 0 5px 0 rgba(255, 255, 255, 0.7);
+  transition : all .4s;
+}
+
+.selected:after {
+  border-color : white transparent transparent transparent;
+  transition   : all .4s;
+}
+
+a.fun {
+  display : none;
+}
+
+#formulario{
+	width: 30%;
+	height: auto;
+	margin:0 auto;
+	text-align: center;
+	border: 1px solid black;
+	border-radius:80px;
+}
+
+#formulario input{
+	width:60%;
+	height: 30px;
+	color:#1e1e1e;
+	border: 1px solid;
+	font-size:15px;
+}
+
+#regBt{
+    background-color: #3ca76c;
+	color: white !important;
+}
+
+#regBt:hover{
+	background-color: #4a4a4a;
+	cursor: pointer;
+	color: rgb(255, 255, 255);
+}
+
+#regBtEmp:hover{
+	background-color: #3ca76c;
+	color: rgb(255, 255, 255);
+}
+
+#divmain{
+	width: 100%;
+	border: 0px solid green;
+}
+
+#formRegEmp{
+	border: 0px solid black;
+	width: 100% !important;
+	height: auto;
+	text-align: center;
+}
+
+#divForm{
+	width: 100%;
+	border: 0px solid red;
+}
+
+table,td{
+	text-align: center;
+	border: 0px solid blue;
+	width: 50%;
+}
+
+#formRegEmp input{
+	border-radius: 10px;
+	width: 90%;
+	height: 30px;
+	border: 1px solid;
+	text-align: center;
+	font-size: 15px;
+}
+
+#formRegEmp select{
+	border-radius: 10px;
+	width: 90%;
+	height: 30px;
+	border: 1px solid;
+	text-align: center;
+	font-size: 15px;
+}
+
+#formRegEmp td{
+	padding: 5px;
+	font-size: 15px;
+}
+
+#regBtEmp, .registrarEmp{
+	width: 50% !important;
+	font-size: 15px;
+}
+
+#tabIndx input{
+    text-align:center !important;
+    border-radius: 10px;
+} 
+
+#tabIndx td{
+	padding: 5px;
+	font-size: 15px;
+}
+
+*/

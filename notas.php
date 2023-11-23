@@ -2,7 +2,7 @@
     session_start();
 	error_reporting(0);
 	$codE = $_SESSION['$CodiEmp'];
-	$varsesion=$_SESSION['$user'];
+	$varsesion=$_SESSION['userSession'];
 	$foliio=$_SESSION['$folio'];
 	$tema = $_SESSION['$Tema'];
 	if($varsesion==null || $varsesion=='')
@@ -19,7 +19,7 @@
 				<a href='index.php' class='mb-0'><p class='mb-0'>INICIAR SESIÓN AHORA</p></a>
 				</div>
 			</div>";
-			die();
+			
 	}
 	else
 	{
@@ -80,7 +80,7 @@
 		<table>
 			<tr>
 				<td>
-					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp<?php $mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); $m=$mes[date(n)-1]; $hoy = date("j")." de ".$m." de ".date("Y"); print_r($hoy);?>
+					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp
 				</td>				
 			</tr>
 		</table>

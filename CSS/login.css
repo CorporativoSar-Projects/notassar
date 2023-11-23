@@ -1,0 +1,48 @@
+/* styles for the index view */
+
+section{
+	width: 40%;
+	min-height: 500px;
+	padding: 2%;
+	margin:0 auto;
+	margin-top: 1rem;
+    align-self: center;
+}
+
+form{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem 1.5rem;
+
+	border: var(--boder-color) 1px solid;
+	border-radius: 15px;
+}
+
+input{
+	width: 100%;
+	border-radius: 5px;
+	border-bottom: 1px solid var(--primary-color);
+	text-align: center;
+	font-size: 1.2rem;
+    background-color: var(--quaternary-color);
+    padding: 1rem 0;
+}
+
+input[type="submit"]{
+    width: 50%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: var(--btn-submit-color);
+    color: var(--white-color);
+    border: none;
+    padding: 1rem 0;
+}
