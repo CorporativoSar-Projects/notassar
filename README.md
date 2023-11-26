@@ -67,17 +67,18 @@ example
     *** la nomenglatura para los commits pueden ser en ingles o español ***
 ```
 
-|  Accion         |   tipo de cambio            |   descripcion |
-|-----------------|-----------------------------|---------------|
-|    file         |    update / actualizacion   |   actualizacion de un archivo     |
-|    file         |    delete / eliminacion     |   eliminacion de un archivo       |
-|    file         |    create / creacion        |   creacion de un archivo          |
-|    estructure   |    update / actualizacion   |   actualizacion de la estructura en las carpetas  |
-|    estructure   |    delete / eliminacion     |   eliminacion de una carpeta      |
-|    estructure   |    create / creacion        |   creacion de una nueva carpeta   |
-|    database     |    update / actualizacion   |   actualizacion de los scripts    |
-|    database     |    create / creacion        |   creacion de nuevos scripts      |
-|    readme       |    update / actualizacion   |   actualizar el archivo readme    |
+|  Accion         |   tipo de cambio                              |   descripcion |
+|-----------------|-----------------------------------------------|---------------|
+|    file         |    update / actualizacion                     |   actualizacion de un archivo     |
+|    file         |    delete / eliminacion                       |   eliminacion de un archivo       |
+|    file         |    create / creacion                          |   creacion de un archivo          |
+|    estructure   |    update / actualizacion                     |   actualizacion de la estructura  |
+|    estructure   |    delete / eliminacion                       |   eliminacion de una carpeta      |
+|    estructure   |    create / creacion                          |   creacion de una nueva carpeta   |
+|    estructure   |    file location / locacion de archivo        |   creacion de una nueva carpeta   |
+|    database     |    update / actualizacion                     |   actualizacion de los scripts    |
+|    database     |    create / creacion                          |   creacion de nuevos scripts      |
+|    readme       |    update / actualizacion                     |   actualizar el archivo readme    |
 
 
 # Descripcion de las carpetas
