@@ -6,6 +6,7 @@
     // validate if the user is logged in or not
     $userSession = new UserSession();
 
+
     if (!$userSession->validateSession()) {
         // redirect to the home page
         header('Location: index.php');

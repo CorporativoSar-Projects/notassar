@@ -23,11 +23,12 @@ button{
     background-color:rgb(220, 122, 36) !important;
     color: white !important;
 }*/
-*{
-	margin: 0 !important;
-}
 
-header{
+/* *{
+	margin: 0 !important;
+} */
+
+/* header{
     background-color:rgb(220, 122, 36) !important;
 }
 
@@ -50,6 +51,7 @@ button{
 
 /*QUITAR ATRAS*/
 
+/*
 form{
 	width: 100%;
 }
@@ -144,4 +146,4 @@ form{
 #customerDataTableNotas td{
     padding:10px !important;
 	border: 0px solid blue;
-}
+} */
