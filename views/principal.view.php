@@ -14,7 +14,7 @@
 <body>
 
     <!-- Import the navigation component view -->
-    <?php require_once 'components/navigation.view.php'; ?>
+    <?php require_once 'partials/navigation.view.php'; ?>
 
     <div class="container d-grid align-items-center mt-4">
 
