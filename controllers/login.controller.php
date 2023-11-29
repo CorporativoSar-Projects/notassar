@@ -13,9 +13,11 @@
         $password = hash('sha256', $password);
 
         // create the query
-        $query = "SELECT u.US_Id, u.US_Email, CONCAT( u.US_Name, ' ', u.US_Pat_Sur, ' ', u.US_Mat_Sur ) AS 'US_Full_Name', tou.TU_Id, tou.TU_Name, tou.TU_Description
-        FROM users u, typesofusers tou, user_type ut
-        WHERE ut.UT_US_Id = u.US_Id AND ut.UT_TY_Id = tou.TU_Id AND u.US_Email = :email AND u.US_Password = :password;";
+        $query = "SELECT u.US_Id, u.US_Email, CONCAT( u.US_Name, ' ', u.US_Pat_Sur, ' ', u.US_Mat_Sur ) AS 'US_Full_Name', 
+        tou.TU_Id, tou.TU_Name, tou.TU_Description, c.CO_Id
+        FROM users u, typesofusers tou, user_type ut, companies c, company_users cu
+        WHERE ((ut.UT_US_Id = u.US_Id AND ut.UT_TY_Id = tou.TU_Id) AND (c.CO_Id = cu.CU_CO_Id AND u.US_Id = cu.CU_US_Id))
+        AND u.US_Email = :email AND u.US_Password = :password;";
 
         // prepare the query for execution
         $stmt = $connection->prepare($query);
@@ -35,16 +37,20 @@
             // get the data from the database
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            // start the session
-            $userSession->startSession();
             // set the user data
             $userSession->login($row);
 
-            // save de session data
-            $_SESSION['userSession'] = serialize($userSession);
+            // get the company data
+            if ($userSession->getCompany()->getCompanyData($connection)){
+                // save de session data
+                $_SESSION['userSession'] = serialize($userSession);
 
-            // redirect to the home page
-            header('Location: principal.php');
+                // redirect to the home page
+                header('Location: principal.php');
+            } else {
+                // show an error message
+                echo "The company was not found!";
+            }
 
         } else {
             // show an error message
