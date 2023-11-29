@@ -16,5 +16,3 @@
 <!-- Including the standar CSS styles -->
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-<!-- Including the theme for the company -->
-<link rel="stylesheet" href="css/<?php echo $userSession->getCompany()->getTheme()->getLocation(); ?>">
