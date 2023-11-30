@@ -1,5 +1,8 @@
 <?php
 
+    // import the file for the theme
+    require_once 'models/Theme.model.php';
+
 class Company {
     private $id;
     private $email;
@@ -15,8 +18,8 @@ class Company {
 
     // Constructor method
     // Constructor de la clase
-    public function __construct() {
-        $this->id = 0;
+    public function __construct($id = 0) {
+        $this->id = $id;
         $this->email = '';
         $this->name = '';
         $this->code = '';
@@ -27,6 +30,54 @@ class Company {
         $this->theme = '';
         $this->products = array();
         $this->labels = array();
+    }
+
+    // Method to get the company data from the database
+    public function getCompanyData($connection) {
+        // create the query
+        $query = "SELECT * FROM companies c, company_theme ct, themes t, labels l
+        WHERE ((c.CO_Id = ct.CT_CO_Id AND t.TH_Id = ct.CT_TH_Id) and (l.LA_CO_Id = c.CO_Id)) AND c.CO_Id = :id;";
+
+        // prepare the query for execution
+        $stmt = $connection->prepare($query);
+
+        // bind the parameters
+        $stmt->bindParam(':id', $this->id);
+
+        // execute the query
+        $stmt->execute();
+
+        // get the number of rows
+        $numRows = $stmt->rowCount();
+
+        // if the number of rows is greater than 0
+        if ($numRows > 0) {
+            // get the data from the database
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // set the data to the properties
+            $this->id = $row['CO_Id'];
+            $this->email = $row['CO_Email'];
+            $this->name = $row['CO_Name'];
+            $this->code = $row['CO_Code'];
+            $this->address = $row['CO_Direction'];
+            $this->phone = $row['CO_Telephone'];
+            $this->logo = $row['CO_Logo'];
+            $this->website = $row['CO_Web'];
+            $this->theme = new Theme($row['TH_Id'], $row['TH_Name'], $row['TH_File_Name']);
+            $this->setLabels(array_slice($row,14));
+
+            // get the products
+            //$this->getProductsData($connection);
+            // get the labels
+            //$this->getLabelsData($connection);
+
+            // return true because the company was found
+            return true;
+        }
+
+        // return false because the company was not found
+        return false;
     }
 
     // Getters and setters for the properties
@@ -116,51 +167,5 @@ class Company {
 
     public function setLabels($labels) {
         $this->labels = $labels;
-    }
-
-    // Method to get the company data from the database
-    public function getCompanyData($connection) {
-        // create the query
-        $query = "SELECT * FROM companies WHERE CO_Id = :id";
-
-        // prepare the query for execution
-        $stmt = $connection->prepare($query);
-
-        // bind the parameters
-        $stmt->bindParam(':id', $this->id);
-
-        // execute the query
-        $stmt->execute();
-
-        // get the number of rows
-        $numRows = $stmt->rowCount();
-
-        // if the number of rows is greater than 0
-        if ($numRows > 0) {
-            // get the data from the database
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // set the data to the properties
-            $this->id = $row['CO_Id'];
-            $this->email = $row['CO_Email'];
-            $this->name = $row['CO_Name'];
-            $this->code = $row['CO_Code'];
-            $this->address = $row['CO_Address'];
-            $this->phone = $row['CO_Phone'];
-            $this->logo = $row['CO_Logo'];
-            $this->website = $row['CO_Website'];
-            $this->theme = $row['CO_Theme'];
-
-            // get the products
-            $this->getProductsData($connection);
-            // get the labels
-            $this->getLabelsData($connection);
-
-            // return true because the company was found
-            return true;
-        }
-
-        // return false because the company was not found
-        return false;
     }
 }

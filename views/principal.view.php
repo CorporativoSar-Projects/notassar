@@ -23,15 +23,15 @@
                 <span>
                     <!-- show the name of the user in uppercase -->
                     <?php echo mb_strtoupper($userSession->getUser()->getFullName(), 'UTF-8'); ?>
-                    
                 </span>
             </center>
         </h1>
-          
+
         <p>
             <center> Gracias por visitar nuestro sitio web. Esperamos que te sientas cómodo y encuentres la información
                 que estás buscando.</center>
         </p>
+
     </div>
 </body>
 

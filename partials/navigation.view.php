@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 d-flex justify-content-between">
     <div class="container-fluid" <a class="navbar-brand" href="#">
-        <img src="img/logo.png<?php //echo $logo_empresa; ?>" width="100" height="100" alt="Logo de la empresa">
+        <img src="img/<?php echo $userSession->getCompany()->getLogo(); ?>" width="100" height="100" alt="Logo de la empresa">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto text-center">
+            <ul class="navbar-nav ml-auto text-center d-flex column-gap-3">
                 <li class="nav-item" id="mInicio">
                     <a class="nav-link" href="principal.php">Inicio</a>
                 </li>
