@@ -67,17 +67,47 @@ class Company {
             $this->setTheme(new Theme($row['TH_Id'], $row['TH_Name'], $row['TH_File_Name']));
             $this->setLabels(array_slice($row,14));
             
-
             // get the products
-            //$this->getProductsData($connection);
-            // get the labels
-            //$this->getLabelsData($connection);
+            $this->getProductsData($connection);
 
             // return true because the company was found
             return true;
         }
 
         // return false because the company was not found
+        return false;
+    }
+
+    // Method to get the products from the database
+    private function getProductsData($connection) {
+        // create the query
+        $query = "SELECT products.* FROM products, company_products, companies WHERE (CO_Id = CP_CO_Id AND PR_Id = CP_PR_Id) AND CO_Id = :id;";
+
+        // prepare the query for execution
+        $stmt = $connection->prepare($query);
+
+        // bind the parameters
+        $stmt->bindParam(':id', $this->id);
+
+        // execute the query
+        $stmt->execute();
+
+        // get the number of rows
+        $numRows = $stmt->rowCount();
+
+        // if the number of rows is greater than 0
+        if ($numRows > 0) {
+            // get the data from the database
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // set the data to the property with the setter
+            $this->setProducts($rows);
+
+            // return true because the products were found
+            return true;
+        }
+
+        // return false because the products were not found
         return false;
     }
 
