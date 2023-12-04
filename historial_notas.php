@@ -20,7 +20,8 @@ $connection = $database->getConnection();
 $notasModel = new Note();
 
 // Establece el ID del usuario para el modelo de Nota
-//$notasModel->setUserId($userSession->getUserId());
+//comentar para que se muestren todas las notas
+$notasModel->setUserId($userSession->getUserId());
 
 // Obtiene los datos de la nota para el usuario especificado
 $notes = $notasModel->getNoteData($connection);
