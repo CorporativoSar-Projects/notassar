@@ -7,6 +7,10 @@ require_once 'models/UserSession.model.php';
 $connection = $database->getConnection();
 //Se crea un nuevo modelo de usuario sesion
 $userSession = new UserSession();
+if (!$userSession->validateSession()) {
+    // redirect to the home page
+    header('Location: index.php');
+}
 //Se obtiene la informacion de la sesion por variables de sesion
 $userSession = unserialize($_SESSION['userSession']);
 //Se obtiene el id del usuario
