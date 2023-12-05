@@ -70,10 +70,6 @@
             return $this->isLoggedIn;
         }
 
-        public function getUserId() {
-            return $this->userId;
-        }
-
         public function getUser() {
             return $this->user;
         }
@@ -83,10 +79,6 @@
         }
 
         // setters
-        public function setUserId($userId) {
-            $this->userId = $userId;
-        }
-
         public function setUser($user) {
             $this->user = $user;
         }
