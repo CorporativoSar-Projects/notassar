@@ -30,7 +30,7 @@
                                     <th>Email del Cliente</th>
                                     <th>Total</th>
 
-                                    <th>Fecha final</th>
+                                    <th>Fecha Registro</th>
                                     <th>PDF</th>
                                 </tr>
                             </thead>
@@ -41,7 +41,8 @@
                                         <!-- htmlspecialchars se utiliza para evitar la inyección de código HTML. -->
                                         <td><?php echo htmlspecialchars($nota['clientEmail']); ?></td>
                                         <td><?php echo htmlspecialchars($nota['total']); ?></td>
-                                        <td><?php echo htmlspecialchars($nota['endDate']); ?></td>
+                                        <td><?php echo htmlspecialchars($nota['registerDate']); ?></td>
+                                       
                                         <td class="align-middle text-center">
                                             <!-- Un formulario que envía datos a pruebaV.php en una nueva pestaña cuando se presiona el botón de enviar. -->
                                             <form action="fpdf183/pruebaV.php" method="post" target="_blank">
@@ -61,8 +62,17 @@
                                                 <input type="hidden" name="isr" value="<?php echo htmlspecialchars($nota['isr']); ?>">
                                                 <input type="hidden" name="total" value="<?php echo htmlspecialchars($nota['total']); ?>">
                                                 <!-- Agrega aquí cualquier otro campo que necesites -->
+                                                <?php foreach ($nota['products'] as $product) : ?>
+                                                    <input type="hidden" name="productName" value="<?php echo htmlspecialchars($product['name']); ?>">
+                                                    <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price']); ?>">
+                                                    <input type="hidden" name="description" value="<?php echo htmlspecialchars($product['description']); ?>">
+                                                    <input type="hidden" name="quantity" value="<?php echo htmlspecialchars($product['quantity']); ?>">
+                                                    <input type="hidden" name="amount" value="<?php echo htmlspecialchars($product['amount']); ?>">
+                                                    
+                                                <?php endforeach; ?>
                                                 <!-- El botón de enviar del formulario. Cuando se presiona, se envían los datos del formulario y se abre pruebaV.php en una nueva pestaña. -->
                                                 <button type="submit" class="btn btn-link">
+                                                    
                                                     <i class="fa-solid fa-file-pdf"></i>
                                                 </button>
                                             </form>
@@ -78,10 +88,7 @@
 
 
 
-        <p>
-            <center> Gracias por visitar nuestro sitio web. Esperamos que te sientas cómodo y encuentres la información
-                que estás buscando.</center>
-        </p>
+        
     </div>
 </body>
 

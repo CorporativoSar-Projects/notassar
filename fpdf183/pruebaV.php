@@ -11,7 +11,7 @@ error_reporting( E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE 
         function Header()
         {
             $this->SetFont('Arial', 'B', 18);
-            $this->Image('../img/logo.png', 10, 8, 33);
+            $this->Image('../img/logo1.png', 10, 8, 33);
             $this->Cell(200, 5, 'CORPORATIVO SAR', 0, 0, 'C');
             $this->Ln(10);
             $this->SetFont('Arial', 'B', 14);
@@ -41,20 +41,27 @@ $riva = filter_input(INPUT_POST, 'riva', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FL
 $isr = filter_input(INPUT_POST, 'isr', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 $subtotal = filter_input(INPUT_POST, 'subtotal', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 $total = filter_input(INPUT_POST, 'total', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+$productName = filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_STRING);
+$quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
+$price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+$total = filter_input(INPUT_POST, 'total', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+$amount = filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
 // Creación del PDF
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(200, 10, utf8_decode('Direccion Generica'), 0, 0, 'C');
+$pdf->Cell(200, 10, utf8_decode($clientDirection), 0, 0, 'C');
 $pdf->Ln(1);
 $pdf->Cell(200, 16, 'Telefono Generico', 0, 0, 'C');
 $pdf->Ln(12);
-$pdf->Cell(200, 0, utf8_decode('Correo Generico'), 0, 0, 'C');
+$pdf->Cell(200, 0, utf8_decode($clientEmail), 0, 0, 'C');
 $pdf->Ln(4);
 $pdf->Cell(200, 0, utf8_decode('Pagina Web Generica'), 0, 0, 'C');
 $pdf->Ln(20);
+
 
 $pdf->SetFont('Arial', '', 14);
 $pdf->Cell(0, 30, 'FECHA: ' . $registerDate, 0, 0, 'R');
@@ -66,6 +73,9 @@ $pdf->Ln(10);
 $pdf->Cell(0, 25, 'DOMICILIO: ' . $clientDirection, 0, 0, 'L');
 $pdf->Ln(30);
 
+// Primero, determina la altura necesaria para la descripción
+$descriptionWidth = 38; // Ancho de la celda de descripción
+$descriptionHeight = $pdf->GetStringWidth($description) > $descriptionWidth ? 14 : 7; // Altura dependiendo del texto
 
 
 $cabecera = array('ID SERVICIO', 'CANTIDAD', 'DESCRIPCION', 'PRECIO', 'IMPORTE');
@@ -79,12 +89,18 @@ $pdf->Ln();
 $pdf->SetFont('Arial', '', 10);
 
 
-//corregir  datos con los datos que verdad se piden  ID SERVICIO, CANTIDAD, DESCRIPCION, PRECIO, IMPORTE
-$pdf->Cell(38, 7, $id, 1, '', 'C');
-$pdf->Cell(38, 7, $isr, 1, '', 'C');
-$pdf->Cell(38, 7, $clientEmail, 1, '', 'C');
-$pdf->Cell(38, 7, $total, 1, '', 'C');
-$pdf->Cell(38, 7, $iva, 1, '', 'C');
+$pdf->Cell(38, $descriptionHeight, $id, 1, '', 'C');
+$pdf->Cell(38, $descriptionHeight, $quantity, 1, '', 'C');
+
+// Guarda la posición actual, imprime la descripción y restaura la posición
+$x = $pdf->GetX();
+$y = $pdf->GetY();
+$pdf->MultiCell($descriptionWidth, 7, $description, 1, 'C');
+$pdf->SetXY($x + $descriptionWidth, $y);
+
+// Continúa con las otras celdas
+$pdf->Cell(38, $descriptionHeight, $price, 1, '', 'C');
+$pdf->Cell(38, $descriptionHeight, 'monto', 1, '', 'C');
 $pdf->Ln();
 
 

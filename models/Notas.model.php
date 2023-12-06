@@ -15,6 +15,15 @@ class Note {
     private $riva; // Retención de IVA de la nota
     private $isr; // ISR de la nota
     private $total; // Total de la nota
+    //tabla productos
+    private $productName; // Nombre del producto
+    private $price; // Precio del producto
+    private $description; // Descripción del producto
+    //tabla note_product
+    private $quantity; // Cantidad del producto
+    private $amount; // Monto del producto
+
+    
 
     // Constructor de la clase
     public function __construct() {
@@ -32,6 +41,12 @@ class Note {
         $this->riva = 0.0;
         $this->isr = 0.0;
         $this->total = 0.0;
+        $this->productName = '';
+        $this->price = 0.0;
+        $this->description = '';
+        $this->quantity = 0;
+        $this->amount = 0.0;
+        
     }
 
     // Getters y setters para cada propiedad
@@ -146,10 +161,58 @@ class Note {
     public function setTotal($total) {
         $this->total = $total;
     }
+    //tabla productos
+    public function getProductName() {
+        return $this->productName;
+    }
+
+    public function setProductName($productName) {
+        $this->productName = $productName;
+    }
+
+    public function getPrice() {
+        return $this->price;
+    }
+
+    public function setPrice($price) {
+        $this->price = $price;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function setDescription($description) {
+        $this->description = filter_var($description, FILTER_SANITIZE_STRING);
+    }
+
+    //tabla note_product
+    public function getQuantity() {
+        return $this->quantity;
+    }
+
+    public function setQuantity($quantity) {
+        $this->quantity = filter_var($quantity, FILTER_SANITIZE_NUMBER_INT);
+    }
+
+    public function getAmount() {
+        return $this->amount;
+    }
+
+    public function setAmount($amount) {
+        $this->amount = filter_var($amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    }
+
     // Método para obtener los datos de la nota de la base de datos
     public function getNoteData($connection) {
         // Prepara la consulta SQL para seleccionar todas las notas para un usuario específico
-        $query = "SELECT * FROM notes WHERE NO_US_Id = :userId";
+        // Esta consulta SQL selecciona todas las columnas (n.*) de la tabla Notes (n)
+        // donde existe un registro correspondiente en la tabla User_Notes (un)
+        // tal que el UN_US_Id en User_Notes es igual al userId proporcionado.
+        $query = "SELECT n.* FROM User_Notes un 
+            INNER JOIN Notes n ON un.UN_NO_Id = n.NO_Id 
+            WHERE un.UN_US_Id = :userId";
+
         $stmt = $connection->prepare($query);
 
         // Vincula el ID del usuario al parámetro de la consulta
@@ -174,7 +237,6 @@ class Note {
                     'clientName' => $row['NO_CL_Name'],
                     'clientEmail' => $row['NO_CL_Email'],
                     'clientDirection' => $row['NO_CL_Direction'],
-                    'userId' => $row['NO_US_Id'],
                     'folio' => $row['NO_Folio'],
                     'subtotal' => $row['NO_Subtotal'],
                     'registerDate' => $row['NO_Register_Date'],
@@ -191,45 +253,30 @@ class Note {
         // Devuelve el array de notas
         return $notesData;
     }
-    public function getNoteById($connection, $noteId) {
-        // Prepara la consulta SQL para seleccionar una nota específica por su ID
-        $query = "SELECT * FROM notes WHERE NO_Id = :noteId";
-        $stmt = $connection->prepare($query);
-    
-        // Vincula el ID de la nota al parámetro de la consulta
-        $stmt->bindParam(':noteId', $noteId, PDO::PARAM_INT);
-    
-        // Ejecuta la consulta
-        $stmt->execute();
-    
-        // Obtiene el registro devuelto por la consulta
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        // Si se encontró una nota con el ID proporcionado
-        if ($row) {
-            // Devuelve la información de la nota en un array
-            return [
-                'id' => $row['NO_Id'],
-                'clientName' => $row['NO_CL_Name'],
-                'clientEmail' => $row['NO_CL_Email'],
-                'clientDirection' => $row['NO_CL_Direction'],
-                'userId' => $row['NO_US_Id'],
-                'folio' => $row['NO_Folio'],
-                'subtotal' => $row['NO_Subtotal'],
-                'registerDate' => $row['NO_Register_Date'],
-                'initDate' => $row['NO_Init_Date'],
-                'endDate' => $row['NO_End_Date'],
-                'iva' => $row['NO_Iva'],
-                'riva' => $row['NO_Riva'],
-                'isr' => $row['NO_Isr'],
-                'total' => $row['NO_Total']
+
+    public function getProductsForNote($connection, $noteId) {
+    $query = "SELECT p.PR_Id, p.PR_Name, p.PR_Price, p.PR_Description, np.NP_Quantity, np.NP_Amount
+              FROM Note_Products np
+              INNER JOIN Products p ON np.NP_PR_Id = p.PR_Id
+              WHERE np.NP_NO_Id = :noteId";
+
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(':noteId', $noteId);
+    $stmt->execute();
+
+    $products = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $products[] = [
+            'id' => $row['PR_Id'],
+            'name' => $row['PR_Name'],
+            'price' => $row['PR_Price'],
+            'description' => $row['PR_Description'],
+            'quantity' => $row['NP_Quantity'],
+            'amount' => $row['NP_Amount']
             ];
         }
-    
-        // Devuelve null si no se encontró la nota
-        return null;
+        return $products;
     }
-    
 
  
 }

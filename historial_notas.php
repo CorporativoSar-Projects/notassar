@@ -8,12 +8,12 @@ require_once 'models/Notas.model.php';
 require_once 'config/database.php';
 
 
+
 // Valida si el usuario ha iniciado sesión o no
 $userSession = new UserSession();
-if (!$userSession->validateSession()) {
-    // Redirige a la página de inicio
-    header('Location: index.php');
-};
+
+$userSession->validateSession();
+
 // Establece una conexión a la base de datos
 $connection = $database->getConnection();
 // Crea una nueva instancia del modelo de Nota
@@ -21,10 +21,19 @@ $notasModel = new Note();
 
 // Establece el ID del usuario para el modelo de Nota
 //comentar para que se muestren todas las notas
-$notasModel->setUserId($userSession->getUserId());
+$notasModel->setUserId($userSession->getUser()->getId());
 
 // Obtiene los datos de la nota para el usuario especificado
 $notes = $notasModel->getNoteData($connection);
+
+foreach ($notes as $index => $nota) {
+    $products = $notasModel-> getProductsForNote($connection, $nota['id']); // Carga los productos
+    $notes[$index]['products'] = $products; // Agrega los productos a la nota
+}
+
+
+
+
 
 
 
