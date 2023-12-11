@@ -22,19 +22,10 @@
             <center>Bienvenido
                 <span>
                     <!-- show the name of the user in uppercase -->
-                    <?php echo mb_strtoupper($userSession->getCompany()->getName(), 'UTF-8'); ?>
+                    <?php echo mb_strtoupper($userSession->getUser()->getFullName(), 'UTF-8'); ?>
                 </span>
             </center>
         </h1>
-
-        <p>
-            <center> Acabas de acceder como:
-                <b>
-                    <!-- show the name of the user in uppercase -->
-                    <?php echo mb_strtoupper($userSession->getUser()->getFullName(), 'UTF-8'); ?>
-                </b>
-            </center>
-        </p>
 
         <p>
             <center> Gracias por visitar nuestro sitio web. Esperamos que te sientas cómodo y encuentres la información
