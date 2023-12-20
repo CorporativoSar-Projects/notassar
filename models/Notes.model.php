@@ -2,7 +2,8 @@
     class Notes {
         private $id; 
         private $name; 
-        private $email; 
+        private $email;
+        private $phone;
         private $direction; 
         private $usId; 
         private $folio; 
@@ -39,6 +40,13 @@
     
         public function setEmail($email){
             $this->email = $email;
+        }
+        public function getPhone(){
+            return $this->phone;
+        }
+    
+        public function setPhone($phone){
+            $this->phone = $phone;
         }
     
         public function getDirection(){

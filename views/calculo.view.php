@@ -15,13 +15,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<link rel="shortcut icon" href="img/1.png"/>
 </head>
-<?php 
-	$importe=$cantidad*$precio;
-	$importe2=$cantidad2*$precio2;
-	$importe3=$cantidad3*$precio3;
-	$importe4=$cantidad4*$precio4;
-	$subtotal=$importe+$importe2+$importe3+$importe4;
- ?>
 <style>
 	#bCG{
 		display: none;
@@ -45,7 +38,7 @@
 		<table>
 			<tr>
 				<td>
-					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp<?php $mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); $m=$mes[date(n)-1]; $hoy = date("j")." de ".$m." de ".date("Y"); print_r($hoy);?>
+					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp<?php print_r($hoy);?>
 				</td>
 				<td>
 					
@@ -54,7 +47,7 @@
 		</table>		
 		<br><br>
 		<form action="calculo.php" name="notas" method="GET">
-			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio"/>
+			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio" value="<?php echo $folio?>"/>
 					</h5>
 					<br><br>
 			<h4>Tipo de nota a generar:</h4>
@@ -71,13 +64,13 @@
 						<h5>Nombre del cliente&nbsp&nbsp
 					</td>
 					<td>
-						<input type="text" name="nomCliente" required="true"/></h5>
+						<input type="text" name="nomCliente" required="true" value="<?php echo $nombreCli?>"/></h5>
 					</td>
 					<td>
 						<h5>Correo del Cliente&nbsp&nbsp
 					</td>
 					<td>
-						<input type="text" name="corrCliente" required="true" value="<?php echo$corrCliente;?>"/></h5>
+						<input type="text" name="corrCliente" required="true" value="<?php echo $correo?>"/></h5>
 					</td>
 				</tr>
 				<tr>
@@ -91,7 +84,7 @@
 						<h5>Domicilio del cliente&nbsp&nbsp
 					</td>
 					<td>
-						<input type="text" name="domCliente" required="true"/></h5>
+						<input type="text" name="domCliente" required="true" value="<?php echo $domicilio?>"/></h5>
 					</td>
 				</tr>
 				<tr>
@@ -125,17 +118,9 @@
 						<th scope="row">1</th>
 						<td>
 							<select name="idservicio" id="idservicio" disabled="true">
-							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio';";
-								$q=$conexion->query($selectServices);
-								while ($valor=mysqli_fetch_array($q))
-								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$nomServ=$valor[NombrePS];
-									
-																
-								}
+							<?php						
+									echo "<option value=".'1'."
+										>".$nombre."</option>";
 								?>
 							</select>
 						</td>
@@ -143,7 +128,9 @@
 							<input type="number" name="cantidad" value="<?php echo $cantidad; ?>" disabled="true"/>
 						</td>
 						<td>
-							<input type="number" name="precio" step="0.01" value="<?php echo $precio; ?>" disabled="true"/>
+							<input type="number" name="precio" step="0.01" value="<?php							
+								echo $precio
+								?>" disabled="true"/>
 						</td>
 						<td>
 						<input type="number" name="importe" onclick="calculo();" step="0.01" value="<?php echo $importe; ?>" disabled="true"/>
@@ -154,17 +141,9 @@
 						<td>
 							<select name="idservicio2" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio2';";
-								$q=$conexion->query($selectServices);
-								while ($valor=mysqli_fetch_array($q))
-								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$nomServ=$valor[NombrePS];
-									
-													
-								}
-							?>
+								echo "<option value=".'1'."
+								>".$nombre2."</option>";
+								?>
 							</select>
 						</td>
 						<td>
@@ -182,16 +161,8 @@
 						<td>
 							<select name="idservicio3" id="idservicio" disabled="true">
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio3';";
-								$q=$conexion->query($selectServices);
-								while ($valor=mysqli_fetch_array($q))
-								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$nomServ=$valor[NombrePS];
-									
-													
-								}
+								echo "<option value=".'1'."
+								>".$nombre3."</option>";
 							?>
 							</select>
 						</td>
@@ -211,16 +182,8 @@
 							<select name="idservicio4" id="idservicio" disabled="true">
 							
 							<?php							
-								$selectServices="Select NombrePS, PrecioU from ServiciosProductos where CEmpresa like '$code' and NombrePS = '$idservicio4';";
-								$q=$conexion->query($selectServices);
-								while ($valor=mysqli_fetch_array($q))
-								{
-									echo "<option value=".$valor[NombrePS]."
-										>".$valor[NombrePS]."</option>";
-									$nomServ=$valor[NombrePS];
-									
-														
-								}
+								echo "<option value=".'1'."
+								>".$nombre4."</option>";
 							?>
 							</select>
 						</td>
@@ -264,11 +227,11 @@
 				?>
 			</td>
 			<td>
-				<?php if ($tipoNota=='sinIVA') {
+				<?php if ($Notes->getIva()=='sinIVA') {
 					$iva=0;
 					echo "$ ".number_format($iva,2)." MXN";
 				}
-				elseif ($tipoNota=='IVApf' || $tipoNota=='IVApm') {
+				elseif ($Notes->getIva()=='IVApf' || $Notes->getIva()=='IVApm') {
 					$iva=$subtotal*0.16;
 					echo "$ ".number_format($iva,2)." MXN";
 				}
@@ -276,22 +239,22 @@
 				?>
 			</td>
 			<td>
-				<?php if ($tipoNota=='sinIVA' || $tipoNota=='IVApf') {
+				<?php if ($Notes->getIva()=='sinIVA' || $Notes->getIva()=='IVApf') {
 					$retiva=0;
 					echo "$ ".number_format($retiva,2)." MXN";
 				}
-				elseif ($tipoNota=='IVApm') {
+				elseif ($Notes->getIva()=='IVApm') {
 					$retiva=$subtotal*0.106667;
 					echo "$ ".number_format($retiva,2)." MXN";
 				}
 				?>
 			</td>
 			<td>
-				<?php if ($tipoNota=='sinIVA' || $tipoNota=='IVApf') {
+				<?php if ($Notes->getIva()=='sinIVA' || $Notes->getIva()=='IVApf') {
 					$isr=0;
 					echo "$ ".number_format($isr)." MXN";
 				}
-				elseif ($tipoNota=='IVApm') {
+				elseif ($Notes->getIva()=='IVApm') {
 					$isr=$iva*0.1;
 					echo "$ ".number_format($isr,2)." MXN";
 				}
@@ -308,27 +271,27 @@
 	<table style="max-width: 100% !important; text-align:center !important;">
 		<tr>
 			<td>
-				<form action="insertar nota.php" method="POST">
+				<form action="insertar_nota.php" method="POST">
 				<input type="text" name="folio" style="display: none;" value="<?php echo $folio; ?>"/><br>
-				<input type="text" name="corrCliente" style="display: none;" value="<?php echo $corrCliente; ?>"/>
-				<input type="text" name="telefono" style="display: none;" value="<?php echo $telefono; ?>"/>
-				<input type="date" name="fechaI" style="display: none;" value="<?php echo $fechaI; ?>"/>
-				<input type="date" name="fechaT" style="display: none;" value="<?php echo $fechaT; ?>"/>
-				<input type="text" name="nomCliente" style="display: none;" value="<?php echo $nomCliente; ?>"/>
-				<input type="text" name="domCliente" style="display: none;" value="<?php echo $domCliente; ?>"/>
-				<input type="text" name="tipoNota" style="display: none;" value="<?php echo $tipoNota; ?>"/>
-				<input type="text" name="idservicio" style="display: none;" value="<?php echo $idservicio; ?>"/>
-				<input type="text" name="idservicio2" style="display: none;" value="<?php echo $idservicio2; ?>"/>
-				<input type="text" name="idservicio3" style="display: none;" value="<?php echo $idservicio3; ?>"/>
-				<input type="text" name="idservicio4" style="display: none;" value="<?php echo $idservicio4; ?>"/>
+				<input type="text" name="corrCliente" style="display: none;" value="<?php echo $Notes->getEmail();; ?>"/>
+				<input type="text" name="telefono" style="display: none;" value="<?php echo $Notes->getPhone(); ?>"/>
+				<input type="date" name="fechaI" style="display: none;" value="<?php echo $Notes->getInitDate(); ?>"/>
+				<input type="date" name="fechaT" style="display: none;" value="<?php echo $Notes->getEndDate(); ?>"/>
+				<input type="text" name="nomCliente" style="display: none;" value="<?php echo $Notes->getName(); ?>"/>
+				<input type="text" name="domCliente" style="display: none;" value="<?php echo $Notes->getDirection(); ?>"/>
+				<input type="text" name="tipoNota" style="display: none;" value="<?php echo $Notes->getIva(); ?>"/>
+				<input type="text" name="idservicio" style="display: none;" value="<?php echo $idServicio; ?>"/>
+				<input type="text" name="idservicio2" style="display: none;" value="<?php echo $idServicio2; ?>"/>
+				<input type="text" name="idservicio3" style="display: none;" value="<?php echo $idServicio3; ?>"/>
+				<input type="text" name="idservicio4" style="display: none;" value="<?php echo $idServicio4; ?>"/>
 				<input type="text" name="cantidad" style="display: none;" value="<?php echo $cantidad; ?>"/>
 				<input type="text" name="cantidad2" style="display: none;" value="<?php echo $cantidad2; ?>"/>
 				<input type="text" name="cantidad3" style="display: none;" value="<?php echo $cantidad3; ?>"/>
 				<input type="text" name="cantidad4" style="display: none;" value="<?php echo $cantidad4; ?>"/>
-				<input type="text" name="descripcion" style="display: none;" value="<?php echo $nomServ; ?>"/>
-				<input type="text" name="descripcion2" style="display: none;" value="<?php echo $nomServ2; ?>"/>
-				<input type="text" name="descripcion3" style="display: none;" value="<?php echo $nomServ3; ?>"/>
-				<input type="text" name="descripcion4" style="display: none;" value="<?php echo $nomServ4; ?>"/>
+				<input type="text" name="descripcion" style="display: none;" value="<?php echo $nombre; ?>"/>
+				<input type="text" name="descripcion2" style="display: none;" value="<?php echo $nombre2; ?>"/>
+				<input type="text" name="descripcion3" style="display: none;" value="<?php echo $nombre3; ?>"/>
+				<input type="text" name="descripcion4" style="display: none;" value="<?php echo $nombre4; ?>"/>
 				<input type="text" name="precio" style="display: none;" value="<?php echo $precio; ?>"/>
 				<input type="text" name="precio2" style="display: none;" value="<?php echo $precio2; ?>"/>
 				<input type="text" name="precio3" style="display: none;" value="<?php echo $precio3; ?>"/>
@@ -363,7 +326,7 @@
 
 	function inicial() {
 		var f="<?php echo $folio ?>";
-		var tn="<?php echo $tipoNota ?>";
+		var tn="<?php echo $Notes->getIva() ?>";
 		var nc="<?php echo $nomCliente; ?>";
 		var dc="<?php echo $domCliente; ?>";
 		document.notas.folio.value=f;
@@ -372,7 +335,7 @@
 		document.notas.nomCliente.value=nc;
 		document.notas.domCliente.value=dc;
 		/*Llenado de campos fila 1*/
-		var ids="<?php echo $idservicio; ?>";
+		var ids="<?php echo $idServicio; ?>";
 		var c="<?php echo $cantidad; ?>";
 		var d="<?php echo $descripcion; ?>";
 		var p="<?php echo $precio; ?>";
@@ -386,7 +349,7 @@
 		document.notas.importe.value=i;
 
 		/*Llenado de campos fila 2*/
-		var ids2="<?php echo $idservicio2; ?>";
+		var ids2="<?php echo $idServicio2; ?>";
 		var c2="<?php echo $cantidad2; ?>";
 		var d2="<?php echo $descripcion2; ?>";
 		var p2="<?php echo $precio2; ?>";
@@ -399,7 +362,7 @@
 		document.notas.importe2.value=i2;
 
 		/*Llenado de campos fila 3*/
-		var ids3="<?php echo $idservicio3; ?>";
+		var ids3="<?php echo $idServicio3; ?>";
 		var c3="<?php echo $cantidad3; ?>";
 		var d3="<?php echo $descripcion3; ?>";
 		var p3="<?php echo $precio3; ?>";
@@ -412,7 +375,7 @@
 		document.notas.importe3.value=i3;
 
 		/*Llenado de campos fila 4*/
-		var ids4="<?php echo $idservicio4; ?>";
+		var ids4="<?php echo $idServicio4; ?>";
 		var c4="<?php echo $cantidad4; ?>";
 		var d4="<?php echo $descripcion4; ?>";
 		var p4="<?php echo $precio4; ?>";

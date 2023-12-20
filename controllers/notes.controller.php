@@ -17,7 +17,7 @@ $userSession = unserialize($_SESSION['userSession']);
 $userId = $userSession->getUser()->getId();
 $fecha = date("d/m/y");
 //Se crea query para obtener el ultimo folio existente
- $query = "SELECT NO_Folio FROM notes WHERE NO_Register_Date = (SELECT MAX(NO_Register_Date) FROM notes where NO_US_Id = '$userId');";
+ $query = "SELECT NO_Folio FROM notes WHERE NO_Register_Date = (SELECT MAX(NO_Register_Date) FROM notes);";
  $stmt = $connection->prepare($query);
  $stmt->execute();
  $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -25,7 +25,8 @@ $fecha = date("d/m/y");
  //Se genera un nuevo folio para su uso
  $foliio = preg_replace_callback('/\d+/', function ($matches) {	return $matches[0] + 1;	}, $foliio);
  //Se genera la query para obtener los productos de la compañia conforme sus usuarios
- $query = "SELECT PR_Name, PR_Price FROM products p, company_products cp, company_users cu WHERE cu.CU_US_Id = '$userId' AND CU_CO_Id = cp.CP_CO_Id AND PR_Id =CP_PR_Id";  
+ $query = "SELECT PR_Id, PR_Name, PR_Price FROM products p, company_products cp, company_users cu WHERE cu.CU_US_Id = '$userId' AND CU_CO_Id = cp.CP_CO_Id AND PR_Id =CP_PR_Id";  
  $stmtNombres = $connection->prepare($query);
  $stmtNombres->execute();
+
 ?>
