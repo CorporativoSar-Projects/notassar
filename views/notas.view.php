@@ -31,7 +31,7 @@
 			</tr>
 		</table>
 		<br><br>
-		<form action="calculo.php" name="notas" method="GET">
+		<form action="calculo.php" name="notas" method="POST">
 			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio" disabled value="<?php echo $foliio;?>"/>
 					
 					<input type="text" name="dataFolio" style="display: none;" value="<?php echo $foliio;?>">
@@ -106,9 +106,9 @@
 							<?php							
 								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
 								{
-									echo "<option value=".urlencode($valor['PR_Name'])."
+									echo "<option value=".urlencode($valor['PR_Id'])."
 										>".$valor['PR_Name']."</option>";
-									$serviceArray[$valor['PR_Name']]=$valor['PR_Price'];
+									
 								}
 							?>
 							</select>
@@ -125,9 +125,9 @@
 								<?php							
 								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
 								{
-									echo "<option value=".urlencode($valor['PR_Name'])."
+									echo "<option value=".urlencode($valor['PR_Id'])."
 										>".$valor['PR_Name']."</option>";
-									$serviceArray[$valor['PR_Name']]=$valor['PR_Price'];
+									
 								}
 							?>
 							</select>
@@ -144,9 +144,9 @@
 								<?php							
 								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
 								{
-									echo "<option value=".urlencode($valor['PR_Name'])."
+									echo "<option value=".urlencode($valor['PR_Id'])."
 										>".$valor['PR_Name']."</option>";
-									$serviceArray[$valor['PR_Name']]=$valor['PR_Price'];
+								
 								}
 							?>
 							</select>
@@ -163,9 +163,9 @@
 								 <?php							
 								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
 								{
-									echo "<option value=".urlencode($valor['PR_Name'])."
+									echo "<option value=".urlencode($valor['PR_Id'])."
 										>".$valor['PR_Name']."</option>";
-									$serviceArray[$valor['PR_Name']]=$valor['PR_Price'];
+									
 								}
 							?>
 							</select>
