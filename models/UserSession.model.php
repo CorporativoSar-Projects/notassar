@@ -15,9 +15,11 @@
         public function __construct() {
             $this->user = null;
             $this->isLoggedIn = false;
-
             // start the session
-            $this->startSession();
+            if(session_id() == '')
+            {
+                $this->startSession();
+            }
         }
 
         // start the session
@@ -70,6 +72,10 @@
             return $this->isLoggedIn;
         }
 
+        public function getUserId() {
+            return $this->userId;
+        }
+
         public function getUser() {
             return $this->user;
         }
@@ -79,6 +85,10 @@
         }
 
         // setters
+        public function setUserId($userId) {
+            $this->userId = $userId;
+        }
+
         public function setUser($user) {
             $this->user = $user;
         }
