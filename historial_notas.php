@@ -1,4 +1,8 @@
 <?php
+
+// Importa el archivo para la validación de la sesión
+require_once 'components/validateSession.comp.php';
+
 // Importa el archivo para la sesión de usuario
 require_once 'models/UserSession.model.php';
 
@@ -7,12 +11,6 @@ require_once 'models/Notas.model.php';
 // Incluye el archivo de configuración de la base de datos
 require_once 'config/database.php';
 
-
-
-// Valida si el usuario ha iniciado sesión o no
-$userSession = new UserSession();
-
-$userSession->validateSession();
 
 // Establece una conexión a la base de datos
 $connection = $database->getConnection();

@@ -187,9 +187,11 @@ INSERT INTO `notasinnsolDB`.`User_Notes` (`UN_US_Id`, `UN_NO_Id`) VALUES (3, 3);
 
 
 -- Insertar datos para la tabla TypesOfNotes
-INSERT INTO `notasinnsolDB`.`TypesOfNotes` (`TY_Name`) VALUES
-('sin Iva'),
-('Persona Moral');
+INSERT INTO `notasinnsolDB`.`TypesOfNotes` (`TN_Name`, `TN_Percentage`) VALUES
+('sin Iva', 0.00),
+('Iva', 16.00),
+('Iva pf', 8.00),
+('Iva pm', 0.00);
 
 
 -- Insertar datos para asociar la Nota con ID 1 al Tipo con ID 1
@@ -248,6 +250,50 @@ INSERT INTO `notasinnsolDB`.`Labels` (
   `LA_Unit_Price`
 ) VALUES (
   1,
+  'Fecha',
+  'Folio',
+  'Fecha inicial',
+  'Fecha de termino',
+  'Nombre del Cliente',
+  'Correo del Cliente',
+  'Numero telephonico del Cliente',
+  'Dirección del Cliente',
+  'Tipo de Nota',
+  'Servicios del Catálogo',
+  'Identificador del servicio',
+  'Servicio',
+  'Nombre del Servicio',
+  'Servicio Adicional',
+  'Eliminar Servicio',
+  'Consulta',
+  'Descripción',
+  'Cantidad',
+  'Precio Unitario'
+),
+(
+  2,
+  'Fecha',
+  'Folio',
+  'Fecha inicial',
+  'Fecha de termino',
+  'Nombre del Cliente',
+  'Correo del Cliente',
+  'Numero telephonico del Cliente',
+  'Dirección del Cliente',
+  'Tipo de Nota',
+  'Servicios del Catálogo',
+  'Identificador del servicio',
+  'Servicio',
+  'Nombre del Servicio',
+  'Servicio Adicional',
+  'Eliminar Servicio',
+  'Consulta',
+  'Descripción',
+  'Cantidad',
+  'Precio Unitario'
+),
+(
+  3,
   'Fecha',
   'Folio',
   'Fecha inicial',

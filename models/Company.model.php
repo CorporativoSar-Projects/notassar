@@ -18,8 +18,8 @@ class Company {
 
     // Constructor method
     // Constructor de la clase
-    public function __construct($id = 0) {
-        $this->id = $id;
+    public function __construct($id) {
+        $this->id = intval($id);
         $this->email = '';
         $this->name = '';
         $this->code = '';
