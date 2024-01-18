@@ -14,7 +14,7 @@
     <?php require_once 'partials/navigation.view.php'; ?>
 
     <div class="container mt-4">
-        <h1 class="my-4" >
+        <h1 class="my-4">
             <center>Resumen de la Nota con folio <span><?php echo $Note->getFolio() ?></span> </center>
         </h1>
 
@@ -37,13 +37,40 @@
 
                 <div class="card-body">
                     <!-- show the data of the note -->
-                    <p><strong>Tipo de nota:</strong> <?php echo $noteType['TN_Name'] ?></p>
-                    <p><strong>Fecha de inicio:</strong> <?php echo $Note->getInitDate(); ?></p>
-                    <p><strong>Fecha de termino:</strong> <?php echo $Note->getEndDate(); ?></p>
+                    <div class="d-flex mb-4">
+                        <div class="col-md-6">
+                            <p>
+                                <strong>Tipo de nota:</strong>
+                                <?php echo $noteType['TN_Name'] ?>
+                                <span class="badge text-bg-secondary">
+                                    <?php echo doubleval($noteType['TN_Percentage']) . "%" ?>
+                                </span>
+                            </p>
+                            <p><strong>Fecha de inicio:</strong> <?php echo $Note->getInitDate(); ?></p>
+                            <p><strong>Fecha de termino:</strong> <?php echo $Note->getEndDate(); ?></p>
+                        </div>
+                        <!-- show the total data-->
+
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Subtotal:</strong>
+                                $<?php echo number_format($subtotal,2)  ?> MXN
+                            </p>
+                            <p>
+                                <strong><?php echo $noteType['TN_Name'] ?>:</strong>
+                                $<?php echo number_format($iva, 2) ?> MXN
+                            </p>
+                            <p>
+                                <strong>Total:</strong>
+                                $<?php echo number_format($total, 2) ?> MXN
+                            </p>
+                        </div>
+
+                    </div>
 
                     <!-- show the data of the products -->
                     <table class="table text-center">
-                        <thead class="thead-dark">
+                        <thead class="thead-dark ">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">SERVICIO</th>
@@ -75,42 +102,47 @@
 								echo "<td>$ ".number_format($productTotal,2)." MXN</td>";
 								echo "</tr>";
 							}
+
+                            // show the total data
+                            echo "<tr>";
+                            echo "<th scope='row'></th>";
+                            echo "<td></td>";
+                            echo "<td></td>";
+                            echo "<td><strong>Subtotal</strong></td>";
+                            echo "<td>$ ".number_format($subtotal,2)." MXN</td>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                            echo "<th scope='row'></th>";
+                            echo "<td></td>";
+                            echo "<td></td>";
+                            echo "<td><strong>$noteType[TN_Name]</strong></td>";
+                            echo "<td>$ ".number_format($iva,2)." MXN</td>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                            echo "<th scope='row'></th>";
+                            echo "<td></td>";
+                            echo "<td></td>";
+                            echo "<td><strong>Total</strong></td>";
+                            echo "<td>$ ".number_format($total,2)." MXN</td>";
+                            echo "</tr>";
 							?>
 
                         </tbody>
                     </table>
-
-                    <!-- show the data of the total -->
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">SUBTOTAL</th>
-                                <th scope="col">IVA</th>
-                                <th scope="col">RETENCIÓN IVA</th>
-                                <th scope="col">RETENCIÓN ISR</th>
-                                <th scope="col">TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <?php
-									echo "<td>$ ".number_format($subtotal,2)." MXN</td>";
-									echo "<td>$ ".number_format($iva,2)." MXN</td>";
-									echo "<td>$ ".number_format($iva,2)." MXN</td>";
-									echo "<td>$ ".number_format($iva,2)." MXN</td>";
-									echo "<td>$ ".number_format($total,2)." MXN</td>";
-								?>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- buttons to continue or cancel -->
+                    <form class="d-flex justify-content-end mt-4 gap-2" method="POST" action="insertar_nota.php">
+                        <a href="notas.php" class="btn btn-danger">Cancelar </a>
+                        <!-- send the noteData that was serializing -->
+                        <input type="hidden" name="json_data" value="<?php echo htmlspecialchars($noteData) ?>">
+                        <button type="submit"  class="btn btn-success">Guardar datos y continuar</button>
+                    </form>
 
                 </div>
-
             </div>
         </section>
-        <button type="submit" class="btn btn-primary mt-4">Guardar datos y continuar</button>
+
 
     </div>
 

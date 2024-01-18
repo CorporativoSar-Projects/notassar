@@ -11,6 +11,7 @@
     $clientEmail = $_POST['corrCliente'];
     $clientPhone = $_POST['telefono'];
     $clientAddress = $_POST['domicilio'];
+
     $initDate = $_POST['initDate'];
     $endDate = $_POST['endDate'];
     
@@ -59,17 +60,41 @@
         $productQuantity = $product['quantity'];
         // get the price of the product
         $productPrice = $productObject['PR_Price'];
-        // get the name of the product
-        $productName = $productObject['PR_Name'];
         // get the total of the product
         $productTotal = $productQuantity * $productPrice;
         
         $subtotal += $productTotal;
     }
 
-    $iva = $subtotal * 0.16;
+    $iva = $subtotal * doubleval($noteType['TN_Percentage']) / 100;
     $total = $subtotal + $iva;
     
+
+    // include the model for the client
+    require_once 'models/Client.model.php';
+
+    // new client object
+    $Client = new Client(
+        null,
+        $clientName,
+        $clientEmail,
+        $clientAddress,
+        $clientPhone
+    );
+
+    //search the client in the database
+    $query = "SELECT * FROM clients WHERE CL_Email = '$clientEmail'";
+    $stmt = $connection->prepare($query);
+    $stmt->execute();
+
+    // if the client exits, get the id
+    if ($stmt->rowCount() > 0) {
+        $client = $stmt->fetch(PDO::FETCH_ASSOC);
+        $Client->setId($client['CL_Id']);
+        $Client->setAddress($client['CL_Address']);
+        $Client->setPhone($client['CL_Number']);
+        $Client->setName($client['CL_Name']);
+    }
 
     // include the model for the note
     require_once 'models/Note.model.php';
@@ -78,19 +103,19 @@
     $Note = new Note(
         null,
         $folio,
-        null,
-        null,
+        $subtotal,
+        new DateTime(),
         $initDate,
         $endDate,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        $iva,
+        $total,
+        $userSession->getUser()->getId(),
+        $Client,
         $noteTypeId,
-        null,
-        null
+        $lista
     );
+
+    // encode the note object to json
+    $noteData = json_encode($Note);
 
 ?>

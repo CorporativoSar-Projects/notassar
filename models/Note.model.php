@@ -1,6 +1,6 @@
 <?php
 
-    class Note {
+    class Note implements JsonSerializable{
         // Attributes
         private $id;
         private $folio;
@@ -10,12 +10,12 @@
         private $endDate;
         private $iva;
         private $total;
-        private $clientId;
+        private $client;
         private $noteTypeId;
         private $noteProducts;
 
         // Constructor
-        public function __construct($id, $folio, $subtotal, $registerDate, $initDate, $endDate, $iva, $rIva, $isr, $total, $usId, $clientId, $noteTypeId, $statusId, $noteProducts) {
+        public function __construct($id, $folio, $subtotal, $registerDate, $initDate, $endDate, $iva, $total, $usId, $client, $noteTypeId, $noteProducts) {
             $this->id = $id;
             $this->folio = $folio;
             $this->subtotal = $subtotal;
@@ -23,14 +23,15 @@
             $this->initDate = $initDate;
             $this->endDate = $endDate;
             $this->iva = $iva;
-            $this->rIva = $rIva;
-            $this->isr = $isr;
             $this->total = $total;
             $this->usId = $usId;
-            $this->clientId = $clientId;
+            $this->client = $client;
             $this->noteTypeId = $noteTypeId;
-            $this->statusId = $statusId;
             $this->noteProducts = $noteProducts;
+        }
+
+        public function jsonSerialize() {
+            return get_object_vars($this);
         }
 
         // Getters
@@ -66,8 +67,8 @@
             return $this->total;
         }
 
-        public function getClientId() {
-            return $this->clientId;
+        public function getClient() {
+            return $this->client;
         }
 
         public function getNoteTypeId() {
@@ -77,5 +78,52 @@
         public function getNoteProducts() {
             return $this->noteProducts;
         }
+
+        // Setters
+        public function setId($id) {
+            $this->id = $id;
+        }
+
+        public function setFolio($folio) {
+            $this->folio = $folio;
+        }
+
+        public function setSubtotal($subtotal) {
+            $this->subtotal = $subtotal;
+        }
+
+        public function setRegisterDate($registerDate) {
+            $this->registerDate = $registerDate;
+        }
+
+        public function setInitDate($initDate) {
+            $this->initDate = $initDate;
+        }
+
+        public function setEndDate($endDate) {
+            $this->endDate = $endDate;
+        }
+
+        public function setIva($iva) {
+            $this->iva = $iva;
+        }
+
+        public function setTotal($total) {
+            $this->total = $total;
+        }
+
+        public function setClient($client) {
+            $this->client = $client;
+        }
+
+        public function setNoteTypeId($noteTypeId) {
+            $this->noteTypeId = $noteTypeId;
+        }
+
+        public function setNoteProducts($noteProducts) {
+            $this->noteProducts = $noteProducts;
+        }
+
+        // Methods
 
     }
