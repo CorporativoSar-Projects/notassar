@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <img src="img/logo.png" id="logo">
+        <img src="img/logo1.png" id="logo">
     </header>
 
     <section>

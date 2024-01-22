@@ -55,8 +55,51 @@ nav ul li:hover {
   cursor: pointer;
 }
 
-nav ul li:hover a {
+nav ul li:hover a:hover {
   color: var(--white-color);
+}
+
+nav ul li ul li {
+  color: var(--black-color);
+  border-radius: 0px;
+}
+
+nav ul li ul li:hover a:hover {
+  color: var(--black-color);
+}
+
+
+#productslist{
+  max-height: 550px;
+  overflow: scroll;
+}
+
+#productslist::-webkit-scrollbar{
+  width: 10px;
+}
+
+#productslist::-webkit-scrollbar-thumb{
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}
+
+#productslist::-webkit-scrollbar-track{
+  background-color: var(--white-color);
+}
+
+.producto{
+  position: relative;
+}
+
+.producto h5{
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  background-color: var(--white-color);
+  color: var(--secondary-color);
+  padding: 5px;
+  border-radius: 5px;
+  padding: 0 0.5em;
 }
 
 /* a{

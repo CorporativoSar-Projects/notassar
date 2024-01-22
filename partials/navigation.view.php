@@ -13,13 +13,13 @@
                 <li class="nav-item" id="mInicio">
                     <a class="nav-link" href="principal.php">Inicio</a>
                 </li>
-                <li class="nav-item" id="mInicio">
+                <li class="nav-item" id="mNotas">
                     <a class="nav-link" href="notas.php">Notas</a>
                 </li>
-                <li class="nav-item" id="mManageServices">
+                <li class="nav-item" id="mGestionarServicios">
                     <a class="nav-link" href="gestionarservicios.php">Gestionar servicios</a>
                 </li>
-                <li class="nav-item" id="mManageServices">
+                <li class="nav-item" id="mHistrialNotas">
                     <a class="nav-link" href="historial_notas.php">Historial de Notas</a>
                 </li>
                 <li class="nav-item" id="mLeads">
