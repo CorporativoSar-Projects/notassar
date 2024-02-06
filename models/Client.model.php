@@ -9,7 +9,7 @@
     * @since 0.1
 */
 
-class Client {
+class Client implements JsonSerializable{
     // attributes
     private $id;
     private $name;
@@ -24,6 +24,10 @@ class Client {
         $this->email = $email;
         $this->address = $address;
         $this->number = $number;
+    }
+    
+    public function jsonSerialize() {
+        return get_object_vars($this);
     }
 
     // getters and setters

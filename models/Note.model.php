@@ -1,5 +1,7 @@
 <?php
 
+    require_once 'models/Client.model.php';
+
     class Note implements JsonSerializable{
         // Attributes
         private $id;

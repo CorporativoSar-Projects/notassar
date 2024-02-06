@@ -110,7 +110,7 @@
         $iva,
         $total,
         $userSession->getUser()->getId(),
-        $Client,
+        json_encode($Client),
         $noteTypeId,
         $lista
     );

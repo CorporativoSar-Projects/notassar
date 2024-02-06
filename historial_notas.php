@@ -29,13 +29,6 @@ foreach ($notes as $index => $nota) {
     $notes[$index]['products'] = $products; // Agrega los productos a la nota
 }
 
-
-
-
-
-
-
-
 // Esta variable se utiliza para establecer el título de la página
 $viewTitle = 'Historial de notas';
 
