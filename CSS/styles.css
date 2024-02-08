@@ -21,7 +21,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--white-color);
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header {
