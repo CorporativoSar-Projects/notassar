@@ -1,116 +1,146 @@
 <?php
-require_once 'config/database.php';
-// Se importa el modelo de usuario sesion
-require_once 'models/UserSession.model.php';
-//Importar el archivo de modelos para controlador
-require_once 'controllers/notes.controller.php';
-require_once 'models/Notes.model.php';
-// Se crea una conexion a base de datos
-$userSession = new UserSession();
-$userSession->getDataSession();
-$Notes = new Notes();
-$Notes = unserialize($_SESSION['Nota']);
-$compania = $userSession->getCompany()->getId();
-    error_reporting(0);
-	echo "Usuario: ".$_SESSION['$user'];
-	$COD=$_SESSION['$CodiEmp'];
-	$nameL="Cuauhtémoc, Ciudad de México";
-	$ign=$_POST['firma'];
-	$correU=$_SESSION['$user'];
-	$nomCliente=$Notes->getName();
-	$domCliente=$Notes->getDirection();
-	$corrCliente=$Notes->getEmail();
-	$telefono=$Notes->getPhone();
-	$fechaR=date('Y-m-d H:i:s');
-	$fechaI=$Notes->getInitDate();
-	$fechaT=$Notes->getEndDate();	
-	$idservicio=$_POST['idservicio'];
-	$idservicio2=$_POST['idservicio2'];
-	$idservicio3=$_POST['idservicio3'];
-	$idservicio4=$_POST['idservicio4'];
-	$cantidad=intval($_POST['cantidad']);
-	$cantidad2=intval($_POST['cantidad2']);
-	$cantidad3=intval($_POST['cantidad3']);
-	$cantidad4=intval($_POST['cantidad4']);
-	$descripcion=$_POST['descripcion'];
-	$descripcion2=$_POST['descripcion2'];
-	$descripcion3=$_POST['descripcion3'];
-	$descripcion4=$_POST['descripcion4'];
-	$precio=$_POST['precio'];
-	$precio2=$_POST['precio2'];
-	$precio3=$_POST['precio3'];
-	$precio4=$_POST['precio4'];
-	$importe=$_POST['importe'];
-	$importe2=$_POST['importe2'];
-	$importe3=$_POST['importe3'];
-	$importe4=$_POST['importe4'];
-	$tipoNota=$_POST['tipoNota'];
-	$folio=$Notes->getFolio();
-	$fecha=$_POST['fecha'];
-	$subtotal=$_POST['subtotal'];
-	$subtotal=number_format($subtotal,2);
-	$iva=$_POST['iva'];
-	$iva=number_format($iva,2);
-	$riva=$_POST['retiva'];
-	$riva=number_format($riva,2);
-	$risr=$_POST['isr'];
-	$risr=number_format($risr,2);
-	$total=$_POST['total'];
-	$total=number_format($total,2);
-	$tema = $_SESSION['$Tema'];
-	/*$riva=number_format($riva,2);*/
-	if ($precio=='') {
-		$precio=0;
-	}
-	if ($precio2=='') {
-		$precio2=0;
-	}
-	if ($precio3=='') {
-		$precio3=0;
-	}
-	if ($precio4=='') {
-		$precio4=0;
-	}
-	if ($descripcion=='') {
-		$descripcion="-";
-	}
-	if ($descripcion2=='') {
-		$descripcion2="-";
-	}
-	if ($descripcion3=='') {
-		$descripcion3="-";
-	}
-	if ($descripcion4=='') {
-		$descripcion4="-";
-	}	
-    $connection = $database->getConnection();
-    $queryData = "SELECT PR_Id, PR_Name, PR_Price FROM products p, company_products cp WHERE p.PR_Id =  cp.CP_PR_Id AND CP_CO_Id = '$compania';";
-    $stmtData = $connection->prepare($queryData);
-    $stmt->execute();
 
-	$querprp = "INSERT INTO ProspectosS	VALUES ('$correU','$nomCliente','$telefono','domCliente','8','$corrCliente','Cliente');";
-	//Por default el cliente de notas tendra estado "8", y tipo, "cliente".
-	$conexion->query($querprp);
-	$queU="INSERT INTO NotasS (CodigoE, IDCliente, ID_Us,
-	FOLIO, Nomser, Cantidad, precio, importe,
-	Nomser2, Cantidad2, precio2, importe2,
-	Nomser3, Cantidad3, precio3, importe3,
-	Nomser4, Cantidad4, precio4, importe4,
-	subtotal, FechaRegistro, FECHAI, FECHAT,
-	IVA, RIVA, ISR,Total, NombreC, TipoNota) 
-	Values ('$COD','$corrCliente','$correU','$folio',
-	'$descripcion','$cantidad','$precio','$importe',
-	'$descripcion2','$cantidad2','$precio2','$importe2',
-	'$descripcion3','$cantidad3','$precio3','$importe3',
-	'$descripcion4','$cantidad4','$precio4','$importe4',
-	'$subtotal','$fechaR','$fechaI','$fechaT','$iva','$riva',
-	'$risr','$total','$nomCliente','$tipoNota');";
-	if ($conexion->query($queU)) {
-		echo "<script>alert('DATOS GUARDADOS CORRECTAMENTE. GENERA EL PDF Y PUEDES GENERAR UNA NUEVA NOTA.');</script>";
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+	// regresar a la pagina de notas
+	header('Location: notas.php');
+}
+
+// Importar el modelo de notas
+require_once 'models/Note.model.php';
+
+// Recuperar el valor JSON del campo oculto
+$json_data = $_POST['json_data'];
+
+// Convertir el JSON a un objeto PHP
+$note_recuperada = json_decode($json_data);
+
+
+// Crear una nueva nota
+$note = new Note(
+	$note_recuperada->id,
+	$note_recuperada->folio,
+	$note_recuperada->subtotal,
+	new DateTime($note_recuperada->registerDate->date),
+	new DateTime($note_recuperada->initDate),
+	new DateTime($note_recuperada->endDate),
+	$note_recuperada->iva,
+	$note_recuperada->total,
+	$note_recuperada->usId,
+	null,
+	$note_recuperada->noteTypeId,
+	$note_recuperada->noteProducts
+);
+
+// get the client data
+$clientData = json_decode($note_recuperada->client);
+
+// nuevo cliente
+$client = new Client(
+	$clientData->id,
+	$clientData->name,
+	$clientData->email,
+	$clientData->address,
+	$clientData->number,
+);
+
+$note->setClient($client);
+
+try {
+	// Guardar la nota en la base de datos
+	$query = "INSERT INTO notes (NO_Folio, NO_Subtotal, NO_Init_Date, NO_End_Date, NO_Iva, NO_Total) VALUES (:folio, :subtotal, :initDate, :endDate, :iva, :total);";
+
+	// Preparar la consulta
+	$stmt = $connection->prepare($query);
+
+	$folio= $note->getFolio();
+	$subTotal= $note->getSubtotal();
+	$initDate= $note->getInitDate()->format('Y-m-d');
+	$endDate= $note->getEndDate()->format('Y-m-d');
+	$iva= $note->getIva();
+	$total= $note->getTotal();
+
+	// Vincular los parametros
+	$stmt->bindParam(':folio', $folio);
+	$stmt->bindParam(':subtotal', $subTotal);
+	$stmt->bindParam(':initDate', $initDate);
+	$stmt->bindParam(':endDate', $endDate);
+	$stmt->bindParam(':iva', $iva);
+	$stmt->bindParam(':total', $total);
+
+	// Ejecutar la consulta
+	$stmt->execute();
+
+	// Obtener el numero de filas afectadas
+	$numRows = $stmt->rowCount();
+
+	// Si se inserto la nota
+	if ($numRows > 0) {
+		// Obtener el id de la nota
+		$note->setId($connection->lastInsertId());
+		$id = $note->getId();
+
+		echo "Nota insertada correctamente! con el id: " . $note->getId() . "<br>";
+
+		// Guardar los productos de la nota
+		// importar el componente para insertar los productos
+		include 'components/insertProducts.comp.php';
+
+		$clientId = $note->getClient()->getId();
+
+		// validar si el cliente tiene id
+		if ($clientId == null) {
+			// incluir el componente para insertar el cliente
+			include 'components/insertClient.comp.php';
+		}
+
+		// unir la nota con el cliente
+		$query = "INSERT INTO client_notes (CN_CL_Id, CN_NO_Id) VALUES (:clId, :noId);";
+
+		// Preparar la consulta
+		$stmt = $connection->prepare($query);
+
+		// Vincular los parametros
+		$stmt->bindParam(':noId', $id);
+		$stmt->bindParam(':clId', $clientId);
+
+		// Ejecutar la consulta
+		$stmt->execute();
+
+		// unir la nota con su tipo
+		$query = "INSERT INTO note_type (NT_NO_Id, NT_TY_Id) VALUES (:noId, :ntId);";
+
+		// Preparar la consulta
+		$stmt = $connection->prepare($query);
+
+		$typeId = $note->getNoteTypeId();
+
+		// Vincular los parametros
+		$stmt->bindParam(':noId', $id);
+		$stmt->bindParam(':ntId', $typeId);
+
+		// Ejecutar la consulta
+		$stmt->execute();
+
+		// unir la nota con el usuario
+		$query = "INSERT INTO user_notes (UN_US_Id, UN_NO_Id) VALUES (:usId, :noId);";
+
+		// Preparar la consulta
+		$stmt = $connection->prepare($query);
+
+		// obtener el id del usuario
+		$userId = $userSession->getUser()->getId();
+
+		// Vincular los parametros
+		$stmt->bindParam(':usId', $userId);
+		$stmt->bindParam(':noId', $id);
+
+		// Ejecutar la consulta
+		$stmt->execute();
+
 	}
-	else{
-		echo "Error al actualizar los datos, verifica los datos e inténtalo de nuevo.".mysqli_error($conexion);
-		header('Location: notas.php');
-	}
-	/*echo $queU;*/
+} catch (\Throwable $th) {
+	//mostrar el error
+	echo "Error al insertar la nota: " . $th->getMessage();
+}
+
 ?>

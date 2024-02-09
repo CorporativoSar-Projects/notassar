@@ -66,26 +66,109 @@ VALUES
   (2, 2),
   (3, 3);
   
+-- Insertar datos de prueba para los clientes
+-- Ejemplo 1
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Juan Pérez', 'juan@example.com', 'Calle A, Ciudad A', '123-456-7890');
+
+-- Ejemplo 2
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('María García', 'maria@example.com', 'Calle B, Ciudad B', '987-654-3210');
+
+-- Ejemplo 3
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Carlos Rodríguez', 'carlos@example.com', 'Calle C, Ciudad C', '555-123-4567');
+
+-- Ejemplo 4
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Laura López', 'laura@example.com', 'Calle D, Ciudad D', '111-222-3333');
+
+-- Ejemplo 5
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Roberto Sánchez', 'roberto@example.com', 'Calle E, Ciudad E', '999-888-7777');
+
+-- Ejemplo 6
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Ana Martínez', 'ana@example.com', 'Calle F, Ciudad F', '444-555-6666');
+
+-- Ejemplo 7
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Elena García', 'elena@example.com', 'Calle G, Ciudad G', '777-666-5555');
+
+-- Ejemplo 8
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Francisco Pérez', 'francisco@example.com', 'Calle H, Ciudad H', '222-333-4444');
+
+-- Ejemplo 9
+INSERT INTO `notasinnsolDB`.`Clients` (`CL_Name`, `CL_Email`, `CL_Address`, `CL_Number`)
+VALUES
+('Isabel Rodríguez', 'isabel@example.com', 'Calle I, Ciudad I', '888-999-0000');
+
+  
 -- Insertar un nuevo registro en Notes
 INSERT INTO `notasinnsolDB`.`Notes` (
-  `NO_CL_Name`, `NO_CL_Email`, `NO_CL_Direction`, 
   `NO_Folio`, `NO_Subtotal`, `NO_Init_Date`, `NO_End_Date`, 
-  `NO_Iva`, `NO_Riva`, `NO_Isr`, `NO_Total`
+  `NO_Iva`, `NO_Total`
 ) VALUES (
-  'Cliente 1', 'cliente1@example.com', 'Dirección 1', 
   'FOLIO001', 120.00, '2023-01-01', '2023-01-10', 
-  15.00, 2.50, 3.00, 140.50
+  15.00, 140.50
 ),
 (
-  'Cliente 2', 'cliente2@example.com', 'Dirección 2', 
   'FOLIO002', 150.00, '2023-02-01', '2023-02-15', 
-  22.50, 3.75, 4.50, 180.75
+  22.50, 180.75
 ),
 (
-  'Cliente 3', 'cliente3@example.com', 'Dirección 3', 
   'FOLIO003', 200.00, '2023-03-01', '2023-03-20', 
-  30.00, 5.00, 6.00, 241.00
+  30.00, 241.00
 );
+
+-- Insertar tipos de clientes de prueba
+INSERT INTO `notasinnsolDB`.`TypesOfClients` (`TC_Name`, `TC_Description`)
+VALUES
+('Prospecto', 'persona o entidad que muestra interés o potencial interés en adquirir productos o servicios de la empresa'),
+('Cliente Regular', 'Clientes habituales con compras regulares.'),
+('Cliente VIP', 'Clientes de alto valor y beneficios exclusivos.');
+
+
+-- Insertar datos de prueba para la tabla Client_Type
+-- Asociar un cliente existente con un tipo de cliente existente
+INSERT INTO `notasinnsolDB`.`Client_Type` (`CT_CL_Id`, `CT_TC_Id`)
+VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 1),
+(5, 2),
+(6, 3),
+(7, 1),
+(8, 2),
+(9, 3);
+
+
+-- Insertar datos de prueba para la tabla Client_Notes
+INSERT INTO `notasinnsolDB`.`Client_Notes` (`CN_CL_Id`, `CN_NO_Id`)
+VALUES
+(2, 1),
+(5, 2),
+(8, 3);
+
+
+-- Insertar datos para asociar una compañia con sus clientes
+INSERT INTO `notasinnsolDB`.`Company_Clients` (`CC_CO_Id`, `CC_CL_Id`) VALUES (1, 1), (1,2),(1,3);
+
+-- Insertar datos para asociar una compañia con sus clientes
+INSERT INTO `notasinnsolDB`.`Company_Clients` (`CC_CO_Id`, `CC_CL_Id`) VALUES (2, 4), (2,5),(2,6);
+
+-- Insertar datos para asociar una compañia con sus clientes
+INSERT INTO `notasinnsolDB`.`Company_Clients` (`CC_CO_Id`, `CC_CL_Id`) VALUES (3, 7), (3,8),(3,9);
 
 
 
@@ -104,9 +187,11 @@ INSERT INTO `notasinnsolDB`.`User_Notes` (`UN_US_Id`, `UN_NO_Id`) VALUES (3, 3);
 
 
 -- Insertar datos para la tabla TypesOfNotes
-INSERT INTO `notasinnsolDB`.`TypesOfNotes` (`TY_Name`) VALUES
-('sin Iva'),
-('Persona Moral');
+INSERT INTO `notasinnsolDB`.`TypesOfNotes` (`TN_Name`, `TN_Percentage`) VALUES
+('sin Iva', 0.00),
+('Iva', 16.00),
+('Iva pf', 8.00),
+('Iva pm', 0.00);
 
 
 -- Insertar datos para asociar la Nota con ID 1 al Tipo con ID 1
@@ -165,6 +250,50 @@ INSERT INTO `notasinnsolDB`.`Labels` (
   `LA_Unit_Price`
 ) VALUES (
   1,
+  'Fecha',
+  'Folio',
+  'Fecha inicial',
+  'Fecha de termino',
+  'Nombre del Cliente',
+  'Correo del Cliente',
+  'Numero telephonico del Cliente',
+  'Dirección del Cliente',
+  'Tipo de Nota',
+  'Servicios del Catálogo',
+  'Identificador del servicio',
+  'Servicio',
+  'Nombre del Servicio',
+  'Servicio Adicional',
+  'Eliminar Servicio',
+  'Consulta',
+  'Descripción',
+  'Cantidad',
+  'Precio Unitario'
+),
+(
+  2,
+  'Fecha',
+  'Folio',
+  'Fecha inicial',
+  'Fecha de termino',
+  'Nombre del Cliente',
+  'Correo del Cliente',
+  'Numero telephonico del Cliente',
+  'Dirección del Cliente',
+  'Tipo de Nota',
+  'Servicios del Catálogo',
+  'Identificador del servicio',
+  'Servicio',
+  'Nombre del Servicio',
+  'Servicio Adicional',
+  'Eliminar Servicio',
+  'Consulta',
+  'Descripción',
+  'Cantidad',
+  'Precio Unitario'
+),
+(
+  3,
   'Fecha',
   'Folio',
   'Fecha inicial',

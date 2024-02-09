@@ -1,186 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-	<link rel="stylesheet" href="<? echo $tema;?>">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-	<link rel="shortcut icon" href="img/1.png"/>
-	<title>Notas Corporativo SAR</title>
-	<!-- Incluimos los estilos default  -->
-    <?php include_once 'partials/styles.php' ?>
-	<link rel="stylesheet" type="text/css" href="./css/notas.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $viewTitle ?></title>
+
+    <!-- Including the partial styles  -->
+    <?php include 'partials/styles.php' ?>
+
 </head>
-<body onload="ocultarInicio();">
-	<?php include 'menu.php'; ?>
-	<br><br>
-	<div id="divGen">
-		<h1><center>Bienvenido Corporativo SAR</center></h1>
-	</div>
-	<br><br>
-	<center>
-		<table>
-			<tr>
-				<td>
-					<h5 style="text-align: left !important; margin-left: 100px !important;">FECHA: &nbsp&nbsp <?php echo $fecha;?>
-				</td>				
-			</tr>
-		</table>
-		<br><br>
-		<form action="calculo.php" name="notas" method="POST">
-			<h5>FOLIO: &nbsp&nbsp<input type="text" name="folio" disabled value="<?php echo $foliio;?>"/>
-					
-					<input type="text" name="dataFolio" style="display: none;" value="<?php echo $foliio;?>">
-					</h5>
-					<br><br>
-			<h4>Tipo de nota a generar:</h4>
-			<br>			
-			<select name="tipoNota" id="tipoNota">
-				<option value="sinIVA">Sin IVA</option>
-				<option value="IVApf">IVA PF</option>
-				<option value="IVApm">IVA PM</option>
-			</select>
-			<br><br><br>
-			<table id="customerDataTableNotas">
-				<tr>
-					<td>
-						<h5>Nombre del cliente&nbsp&nbsp
-					</td>
-					<td>
-						<input type="text" name="nomCliente" required="true"/></h5>
-					</td>
-					<td>
-						<h5>Correo del Cliente&nbsp&nbsp
-					</td>
-					<td>
-						<input type="text" name="corrCliente" required="true"/></h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h5>Telefono del cliente&nbsp&nbsp
-					</td>
-					<td>
-						<input type="tel" name="telefono" required="true"/></h5>
-					</td>
-					<td>
-						<h5>Domicilio del cliente&nbsp&nbsp
-					</td>
-					<td>
-						<input type="text" name="domicilio" required="true"/></h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h5>Fecha de Inicio&nbsp&nbsp
-					</td>
-					<td>
-						<input type="date" name="fechaI" required="true"></h5>
-					</td>
-					<td>
-						<h5>Fecha de Termino&nbsp&nbsp
-					</td>
-					<td>
-						<input type="date" name="fechaT" required="true"></h5>
-					</td>
-				</tr>
-			</table>
-			<br>
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">SERVICIO</th>
-						<th scope="col">CANTIDAD</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>
-							<select name="idservicio" id="idservicio" required="true">
-							<?php							
-								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
-								{
-									echo "<option value=".urlencode($valor['PR_Id'])."
-										>".$valor['PR_Name']."</option>";
-									
-								}
-							?>
-							</select>
-						</td>
-						<td>
-							<input type="number" name="cantidad" required="true"/>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>
-							<select name="idservicio2" id="idservicio2">
-								<option value=""></option>
-								<?php							
-								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
-								{
-									echo "<option value=".urlencode($valor['PR_Id'])."
-										>".$valor['PR_Name']."</option>";
-									
-								}
-							?>
-							</select>
-						</td>
-						<td>
-							<input type="number" name="cantidad2" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>
-							<select name="idservicio3" id="idservicio3">
-								<option value=""></option>
-								<?php							
-								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
-								{
-									echo "<option value=".urlencode($valor['PR_Id'])."
-										>".$valor['PR_Name']."</option>";
-								
-								}
-							?>
-							</select>
-						</td>
-						<td>
-							<input type="number" name="cantidad3" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>
-						    	<select name="idservicio4" id="idservicio4">
-						    	 <option value=""></option>
-								 <?php							
-								while ($valor=$stmtNombres->fetch(PDO::FETCH_ASSOC))
-								{
-									echo "<option value=".urlencode($valor['PR_Id'])."
-										>".$valor['PR_Name']."</option>";
-									
-								}
-							?>
-							</select>
-						</td>
-						<td>
-							<input type="number" name="cantidad4" />
-						</td>
-					</tr>					
-				</tbody>
-				</table>
-			<br><br>
-			<input id="bCG" type="submit" value="Calcular pagos"/>
-		</form>
-	</center>
-	<br><br>
+
+<body>
+    <!-- Import the navigation component view -->
+    <?php require_once 'partials/navigation.view.php'; ?>
+
+    <div class="container mt-4">
+
+        <h1 class="text-center">Generar <span>Nueva nota</span></h1>
+
+        <form action="calculo.php" name="notas" method="POST" class="row d-flex mt-4 gap-4">
+
+
+            <div class="col-md-5 card pt-4 px-4">
+                <section>
+                    <h2>Datos de la nota:</h2>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Folio:</span>
+                        <input type="text" class="form-control" disabled value="<?php echo $foliio;?>"
+                            required="true" />
+                        <input type="hidden" class="form-control" name="folio" id="folio" value="<?php echo $foliio;?>"
+                            required="true" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="tipoNota">Tipo de nota</label>
+                        <select class="form-select" name="tipoNota" id="tipoNota" required="true">
+                            <option selected value="">Seleccionar</option>
+                            <?php
+                                foreach ($noteTypes as $noteType) {
+                                    // show the note type name in uppercase
+                                    echo "<option value='{$noteType['TN_Id']}'>" . strtoupper($noteType['TN_Name']) ." {$noteType['TN_Percentage']}% </option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="data_client">
+                    <h2>Datos del cliente</h2>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre del cliente:</span>
+                        <input type="text" class="form-control" name="nomCliente" required="true" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Correo del cliente:</span>
+                        <input type="text" class="form-control" name="corrCliente" required="true" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Telefono del cliente:</span>
+                        <input type="text" class="form-control" name="telefono" required="true" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Domicilio del cliente:</span>
+                        <input type="text" class="form-control" name="domicilio" required="true" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Fecha de Inicio:</span>
+                        <input type="date" class="form-control" name="initDate" required="true" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Fecha de Termino:</span>
+                        <input type="date" class="form-control" name="endDate" required="true" />
+                    </div>
+                </section>
+            </div>
+
+            <section class="col-md-6 d-flex flex-column gap-3">
+                <div class="d-flex justify-content-end">
+
+                    <button type="button" class="btn btn-primary" id="addProduct" onclick="addNewProductCard()">Agregar
+                        producto</button>
+                </div>
+
+                <div id="productslist" class="px-3">
+                    <div class="card py-4 px-3 producto mb-4 mt-4">
+                        <h5>Producto 1</h5>
+
+                        <div class="input-group">
+                            <select class="form-select" name="products[]" id="products" required="true">
+                                <option value="">Seleccionar</option>
+                                <?php
+                                    foreach ($productos as $producto) {
+                                        echo "<option value='{$producto['PR_Id']}'>
+                                                <p>{$producto['PR_Name']}</p>
+                                                <span>$ {$producto['PR_Price']} MXN</span>
+                                                </option>";
+                                    }
+                                ?>
+                            </select>
+                            <input type="number" class="form-control" name="quantity[]" placeholder="Cantidad"
+                                required="true" />
+                            <button type="button" class="btn btn-danger" onclick="eliminarElemento(this)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Generar nota</button>
+                <!-- button to clean the form -->
+                <button type="reset" class="btn btn-danger">Limpiar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Including the script for add a new card product -->
+    <script src="js/addNewProductCard.js"></script>
 </body>
-<script src="scripts/notas.js"></script>
+
 </html>

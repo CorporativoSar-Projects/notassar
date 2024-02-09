@@ -1,130 +1,121 @@
 <?php
- // Se importa la comfiguracion de base de datos
-require_once 'config/database.php';
-// Se importa el modelo de usuario sesion
-require_once 'models/UserSession.model.php';
-//Importar el archivo de modelos para controlador
-require_once 'controllers/notes.controller.php';
-require_once 'models/Notes.model.php';
-// Se crea una conexion a base de datos
-$userSession = new UserSession();
-$userSession->getDataSession();
-$compania = $userSession->getCompany()->getId();
-$connection = $database->getConnection();
-$queryData = "SELECT PR_Id, PR_Name, PR_Price FROM products p, company_products cp WHERE p.PR_Id =  cp.CP_PR_Id AND CP_CO_Id = '$compania';";
-$stmtData = $connection->prepare($queryData);
-$stmt->execute();
-$rowData = $stmtData->fetch(PDO::FETCH_ASSOC);
-$importe = 0.0;
-$importe2 = 0.0;
-$importe3 = 0.0;
-$importe4 = 0.0;
-$subtotal = 0.0;
-$subtotal2 = 0.0;
-$subtotal3 = 0.0;
-$subtotal4 = 0.0;
-//Se crea un nuevo modelo de usuario sesion
-if (isset($_POST['dataFolio']) && isset($_POST['tipoNota'])&& isset($_POST['nomCliente'])&& isset($_POST['corrCliente'])
-&& isset($_POST['telefono'])&& isset($_POST['domicilio'])&& isset($_POST['fechaI'])&& isset($_POST['fechaT'])) {
-    $Notes = new Notes();
-    $Notes->setFolio(filter_var($_POST['dataFolio'], FILTER_SANITIZE_STRING));
-    $Notes->setName(filter_var($_POST['nomCliente'], FILTER_SANITIZE_STRING));
-    $Notes->setEmail(filter_var($_POST['corrCliente'], FILTER_SANITIZE_STRING));
-    $Notes->setPhone(filter_var($_POST['telefono'], FILTER_SANITIZE_STRING));
-    $Notes->setDirection(filter_var($_POST['domicilio'], FILTER_SANITIZE_STRING));
-    $Notes->setInitDate(filter_var($_POST['fechaI'], FILTER_SANITIZE_STRING));
-    $Notes->setEndDate(filter_var($_POST['fechaT'], FILTER_SANITIZE_STRING));
-    $Notes->setIva(filter_var($_POST['tipoNota'], FILTER_SANITIZE_STRING));
-    $_SESSION['Nota']=serialize($Notes);
-}
-$cantidad = $_POST['cantidad'];
-$subtotal= 0;
-$precio = 0;
-$nombre ='';
-$idServicio = 0;
-if(isset($_POST['idservicio'])&& isset($_POST['cantidad'])){
- $idServicio = $_POST['idservicio'];
- $queryPrecio = "SELECT PR_Price FROM products WHERE PR_Id = '$idServicio';";
- $stmtPrecio = $connection->prepare($query);
- $stmtPrecio->execute();
- $rowPrecio = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $queryNombre = "SELECT PR_Name FROM products WHERE PR_Id = '$idServicio';";
- $stmtNombre = $connection->prepare($query);
- $stmtNombre->execute();
- $rowNombre = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $nombre = trim($rowPrecio['PR_Name']);
- $precio = trim($rowPrecio['PR_Price']);
-    $importe= $_POST['cantidad']*$precio;
-    $subtotal +=$importe; 
-}
-$cantidad2 = $_POST['cantidad2'];
-$subtotal2= 0;
-$precio2 = 0;
-$nombre2 ='';
-$idServicio2 = 0;
-if(!isset($_POST['idservicio2'])&& !isset($_POST['cantidad2'])){
- $idServicio2 = $_POST['idservicio2'];
- $queryPrecio = "SELECT PR_Price FROM products WHERE PR_Id = '$idServicio';";
- $stmtPrecio = $connection->prepare($query);
- $stmtPrecio->execute();
- $rowPrecio = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $queryNombre = "SELECT PR_Name FROM products WHERE PR_Id = '$idServicio';";
- $stmtNombre = $connection->prepare($query);
- $stmtNombre->execute();
- $rowNombre = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $nombre2 = trim($rowPrecio['PR_Name']);
- $precio2 = trim($rowPrecio['PR_Price']);
- $importe2= $_POST['cantidad2']*$precio;
-    $subtotal2 +=$importe2;
-}
-$cantidad3 = $_POST['cantidad3'];
-$subtotal3= 0;
-$precio3 = 0;
-$nombre3 ='';
-$idServicio3 = 0;
-if(!isset($_POST['idservicio3'])&& !isset($_POST['cantidad3'])){
- $idServicio3 = $_POST['idservicio3'];
- $queryPrecio = "SELECT PR_Price FROM products WHERE PR_Id = '$idServicio';";
- $stmtPrecio = $connection->prepare($query);
- $stmtPrecio->execute();
- $rowPrecio = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $queryNombre = "SELECT PR_Name FROM products WHERE PR_Id = '$idServicio';";
- $stmtNombre = $connection->prepare($query);
- $stmtNombre->execute();
- $rowNombre = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $nombre3 = trim($rowPrecio['PR_Name']);
- $precio3 = trim($rowPrecio['PR_Price']);
-    $importe3= $_POST['cantidad3']*$precio;
-    $subtotal3 +=$importe3;
-}
-$cantidad4 = $_POST['cantidad4'];
-$subtotal4= 0;
-$precio4 = 0;
-$nombre4 ='';
-$idServicio4 = 0;
-if(!isset($_POST['idservicio4'])&& !isset($_POST['cantidad4'])){
-    $idServicio4 = $_POST['idservicio4'];
- $queryPrecio = "SELECT PR_Price FROM products WHERE PR_Id = '$idServicio';";
- $stmtPrecio = $connection->prepare($query);
- $stmtPrecio->execute();
- $rowPrecio = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $queryNombre = "SELECT PR_Name FROM products WHERE PR_Id = '$idServicio';";
- $stmtNombre = $connection->prepare($query);
- $stmtNombre->execute();
- $rowNombre = $stmtPrecio->fetch(PDO::FETCH_ASSOC);
- $nombre4 = trim($rowPrecio['PR_Name']);
- $precio4 = trim($rowPrecio['PR_Price']);
-    $importe4= $_POST['cantidad4']*$precio;
-    $subtotal4 +=$importe4;
-}
-$folio =  $Notes->getFolio(); 
-$nombreCli = mb_strtoupper($Notes->getName(), 'UTF-8');
-$correo = $Notes->getEmail();
-$telefono = $Notes->getPhone();
-$domicilio = $Notes->getDirection();
-$fechaI = $Notes->getInitDate();
-$fechaT = $Notes->getEndDate();
-$mes=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); 
-$m=$mes[date('m')-1];
-$hoy = date("d")." de ".$m." de ".date("Y"); print_r($hoy);
+    // this variable is used to set the page title
+    $viewTitle = 'Calculo';
+
+    // get the data from the post request
+    $folio = $_POST['folio'];
+    $noteTypeId = intval($_POST['tipoNota']);
+    
+    
+    $clientName = $_POST['nomCliente'];
+    $clientEmail = $_POST['corrCliente'];
+    $clientPhone = $_POST['telefono'];
+    $clientAddress = $_POST['domicilio'];
+
+    $initDate = $_POST['initDate'];
+    $endDate = $_POST['endDate'];
+    
+    $products = $_POST['products'];
+    $quantity = $_POST['quantity'];
+
+    $total = 0;
+    $subtotal = 0;
+    $iva = 0;
+
+    // obtener los tipos de notas
+    $query = "SELECT * FROM typesofnotes WHERE TN_Id = '$noteTypeId'";
+    $stmt = $connection->prepare($query);
+    $stmt->execute();
+
+    // guardar el tipo de nota en una variable
+    $noteType = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $lista = array();
+
+    $companyProducts = $userSession->getCompany()->getProducts();
+
+    // get the products data from the post request in a array with both id and quantity 
+    foreach ($products as $key => $product) {
+        // insert only the products that have a id
+        if (intval($product) != 0) {
+            // get the product object from the company products
+            $indice = array_search($product, array_column($companyProducts, 'PR_Id'));
+
+            $productObject = $companyProducts[$indice];
+
+            // add the product to the list
+            array_push($lista, array(
+                'product' => $productObject,
+                'quantity' => $quantity[$key]
+            ));
+        }
+
+    }
+
+    // calculate the total of the note
+    foreach ($lista as $key => $product) {
+        // get the product object from the company products
+        $productObject = $product['product'];
+        // get the quantity of the product
+        $productQuantity = $product['quantity'];
+        // get the price of the product
+        $productPrice = $productObject['PR_Price'];
+        // get the total of the product
+        $productTotal = $productQuantity * $productPrice;
+        
+        $subtotal += $productTotal;
+    }
+
+    $iva = $subtotal * doubleval($noteType['TN_Percentage']) / 100;
+    $total = $subtotal + $iva;
+    
+
+    // include the model for the client
+    require_once 'models/Client.model.php';
+
+    // new client object
+    $Client = new Client(
+        null,
+        $clientName,
+        $clientEmail,
+        $clientAddress,
+        $clientPhone
+    );
+
+    //search the client in the database
+    $query = "SELECT * FROM clients WHERE CL_Email = '$clientEmail'";
+    $stmt = $connection->prepare($query);
+    $stmt->execute();
+
+    // if the client exits, get the id
+    if ($stmt->rowCount() > 0) {
+        $client = $stmt->fetch(PDO::FETCH_ASSOC);
+        $Client->setId($client['CL_Id']);
+        $Client->setAddress($client['CL_Address']);
+        $Client->setPhone($client['CL_Number']);
+        $Client->setName($client['CL_Name']);
+    }
+
+    // include the model for the note
+    require_once 'models/Note.model.php';
+
+    // new note object
+    $Note = new Note(
+        null,
+        $folio,
+        $subtotal,
+        new DateTime(),
+        $initDate,
+        $endDate,
+        $iva,
+        $total,
+        $userSession->getUser()->getId(),
+        json_encode($Client),
+        $noteTypeId,
+        $lista
+    );
+
+    // encode the note object to json
+    $noteData = json_encode($Note);
+
 ?>

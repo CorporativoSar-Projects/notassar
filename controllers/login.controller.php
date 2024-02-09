@@ -50,6 +50,7 @@
             } else {
                 // show an error message
                 echo "The company was not found!";
+                echo $userSession->getCompany()->getId();
             }
 
         } else {

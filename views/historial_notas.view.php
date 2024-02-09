@@ -8,7 +8,6 @@
 
     <!-- Including the partial styles  -->
     <?php include_once 'partials/styles.php' ?>
-    <script src="https://kit.fontawesome.com/74b37c5ea4.js" crossorigin="anonymous"></script>
 
 </head>
 
