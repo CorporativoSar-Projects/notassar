@@ -116,18 +116,18 @@ VALUES
 -- Insertar un nuevo registro en Notes
 INSERT INTO `notasinnsolDB`.`Notes` (
   `NO_Folio`, `NO_Subtotal`, `NO_Init_Date`, `NO_End_Date`, 
-  `NO_Iva`, `NO_Riva`, `NO_Isr`, `NO_Total`
+  `NO_Iva`, `NO_Total`
 ) VALUES (
   'FOLIO001', 120.00, '2023-01-01', '2023-01-10', 
-  15.00, 2.50, 3.00, 140.50
+  15.00, 140.50
 ),
 (
   'FOLIO002', 150.00, '2023-02-01', '2023-02-15', 
-  22.50, 3.75, 4.50, 180.75
+  22.50, 180.75
 ),
 (
   'FOLIO003', 200.00, '2023-03-01', '2023-03-20', 
-  30.00, 5.00, 6.00, 241.00
+  30.00, 241.00
 );
 
 -- Insertar tipos de clientes de prueba

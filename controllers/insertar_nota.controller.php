@@ -20,9 +20,9 @@ $note = new Note(
 	$note_recuperada->id,
 	$note_recuperada->folio,
 	$note_recuperada->subtotal,
-	$note_recuperada->registerDate,
-	$note_recuperada->initDate,
-	$note_recuperada->endDate,
+	new DateTime($note_recuperada->registerDate->date),
+	new DateTime($note_recuperada->initDate),
+	new DateTime($note_recuperada->endDate),
 	$note_recuperada->iva,
 	$note_recuperada->total,
 	$note_recuperada->usId,
@@ -45,64 +45,102 @@ $client = new Client(
 
 $note->setClient($client);
 
-var_dump($note_recuperada->noteProducts[0]);
+try {
+	// Guardar la nota en la base de datos
+	$query = "INSERT INTO notes (NO_Folio, NO_Subtotal, NO_Init_Date, NO_End_Date, NO_Iva, NO_Total) VALUES (:folio, :subtotal, :initDate, :endDate, :iva, :total);";
 
-// // Guardar la nota en la base de datos
-// $query = "INSERT INTO notes (NO_Id, NO_Folio, NO_Subtotal, NO_Register_Date, NO_Init_Date, NO_End_Date, NO_Iva, NO_Total, NO_US_Id, NO_CL_Id, NO_TN_Id) VALUES (:id, :folio, :subtotal, :registerDate, :initDate, :endDate, :iva, :total, :usId, :clId, :tnId);";
+	// Preparar la consulta
+	$stmt = $connection->prepare($query);
 
-// // Preparar la consulta
-// $stmt = $connection->prepare($query);
+	$folio= $note->getFolio();
+	$subTotal= $note->getSubtotal();
+	$initDate= $note->getInitDate()->format('Y-m-d');
+	$endDate= $note->getEndDate()->format('Y-m-d');
+	$iva= $note->getIva();
+	$total= $note->getTotal();
 
-// // Vincular los parametros
-// $stmt->bindParam(':id', $note->getId());
-// $stmt->bindParam(':folio', $note->getFolio());
-// $stmt->bindParam(':subtotal', $note->getSubtotal());
-// $stmt->bindParam(':registerDate', $note->getRegisterDate());
-// $stmt->bindParam(':initDate', $note->getInitDate());
-// $stmt->bindParam(':endDate', $note->getEndDate());
-// $stmt->bindParam(':iva', $note->getIva());
-// $stmt->bindParam(':total', $note->getTotal());
-// $stmt->bindParam(':usId', $note->getUsId());
-// $stmt->bindParam(':clId', $note->getClient()->getId());
-// $stmt->bindParam(':tnId', $note->getNoteTypeId());
+	// Vincular los parametros
+	$stmt->bindParam(':folio', $folio);
+	$stmt->bindParam(':subtotal', $subTotal);
+	$stmt->bindParam(':initDate', $initDate);
+	$stmt->bindParam(':endDate', $endDate);
+	$stmt->bindParam(':iva', $iva);
+	$stmt->bindParam(':total', $total);
 
-// // Ejecutar la consulta
-// $stmt->execute();
+	// Ejecutar la consulta
+	$stmt->execute();
 
-// // Obtener el numero de filas afectadas
-// $numRows = $stmt->rowCount();
+	// Obtener el numero de filas afectadas
+	$numRows = $stmt->rowCount();
 
-// // Si se inserto la nota
-// if ($numRows > 0) {
-// 	// Obtener el id de la nota
-// 	$note->setId($connection->lastInsertId());
+	// Si se inserto la nota
+	if ($numRows > 0) {
+		// Obtener el id de la nota
+		$note->setId($connection->lastInsertId());
+		$id = $note->getId();
 
-// 	// Guardar los productos de la nota
-// 	$noteProducts = json_decode($note->getNoteProducts());
+		echo "Nota insertada correctamente! con el id: " . $note->getId() . "<br>";
 
-// 	// Recorrer los productos
-// 	foreach ($noteProducts as $product) {
-// 		// Crear la consulta
-// 		$query = "INSERT INTO note_products (NP_NO_Id, NP_PR_Id, NP_Quantity, NP_Price) VALUES (:noId, :prId, :quantity, :price);";
+		// Guardar los productos de la nota
+		// importar el componente para insertar los productos
+		include 'components/insertProducts.comp.php';
 
-// 		// Preparar la consulta
-// 		$stmt = $connection->prepare($query);
+		$clientId = $note->getClient()->getId();
 
-// 		// Vincular los parametros
-// 		$stmt->bindParam(':noId', $note->getId());
-// 		$stmt->bindParam(':prId', $product->id);
-// 		$stmt->bindParam(':quantity', $product->quantity);
-// 		$stmt->bindParam(':price', $product->price);
+		// validar si el cliente tiene id
+		if ($clientId == null) {
+			// incluir el componente para insertar el cliente
+			include 'components/insertClient.comp.php';
+		}
 
-// 		// Ejecutar la consulta
-// 		$stmt->execute();
-// 	}
+		// unir la nota con el cliente
+		$query = "INSERT INTO client_notes (CN_CL_Id, CN_NO_Id) VALUES (:clId, :noId);";
 
-// 	// Redirigir a la pagina de notas
-// 	header('Location: notas.php');
-// } else {
-// 	// Mostrar un mensaje de error
-// 	echo "Error al insertar la nota!";
-// }
+		// Preparar la consulta
+		$stmt = $connection->prepare($query);
+
+		// Vincular los parametros
+		$stmt->bindParam(':noId', $id);
+		$stmt->bindParam(':clId', $clientId);
+
+		// Ejecutar la consulta
+		$stmt->execute();
+
+		// unir la nota con su tipo
+		$query = "INSERT INTO note_type (NT_NO_Id, NT_TY_Id) VALUES (:noId, :ntId);";
+
+		// Preparar la consulta
+		$stmt = $connection->prepare($query);
+
+		$typeId = $note->getNoteTypeId();
+
+		// Vincular los parametros
+		$stmt->bindParam(':noId', $id);
+		$stmt->bindParam(':ntId', $typeId);
+
+		// Ejecutar la consulta
+		$stmt->execute();
+
+		// unir la nota con el usuario
+		$query = "INSERT INTO user_notes (UN_US_Id, UN_NO_Id) VALUES (:usId, :noId);";
+
+		// Preparar la consulta
+		$stmt = $connection->prepare($query);
+
+		// obtener el id del usuario
+		$userId = $userSession->getUser()->getId();
+
+		// Vincular los parametros
+		$stmt->bindParam(':usId', $userId);
+		$stmt->bindParam(':noId', $id);
+
+		// Ejecutar la consulta
+		$stmt->execute();
+
+	}
+} catch (\Throwable $th) {
+	//mostrar el error
+	echo "Error al insertar la nota: " . $th->getMessage();
+}
 
 ?>
