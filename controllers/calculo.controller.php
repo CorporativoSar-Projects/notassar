@@ -92,7 +92,7 @@
         $client = $stmt->fetch(PDO::FETCH_ASSOC);
         $Client->setId($client['CL_Id']);
         $Client->setAddress($client['CL_Address']);
-        $Client->setPhone($client['CL_Number']);
+        $Client->setNumber($client['CL_Number']);
         $Client->setName($client['CL_Name']);
     }
 
