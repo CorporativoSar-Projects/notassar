@@ -55,7 +55,7 @@ $pdf->SetFont('Arial', '', 10);
 // recorrer los productos
 foreach ($note->noteProducts as $i => $product) {
     if (is_array($product)) {
-        $pdf->Cell(15, 10, $i, 1, 0, 'C');
+        $pdf->Cell(15, 10, $i+1, 1, 0, 'C');
         $pdf->Cell(40, 10, $product['PR_Name'], 1, 0, 'C');
         $pdf->Cell(40, 10, $product['PR_Price'], 1, 0, 'C');
         $pdf->Cell(40, 10, $product['NP_Quantity'], 1, 0, 'C');
@@ -72,14 +72,17 @@ foreach ($note->noteProducts as $i => $product) {
 }
 
 $pdf->SetFillColor(232, 232, 232);
-$pdf->SetFont('Arial', 'B', 10);
+$pdf->SetFont('Arial', 'B', 12);
 //mostrar fila de totales
-$pdf->Cell(135, 10, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(40, 10, utf8_decode('Subtotal: $') . number_format($note->subtotal, 2) . "MXN", 1, 1, 'C');
-$pdf->Cell(135, 10, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(40, 10, utf8_decode('IVA: $') . number_format( $note->iva, 2) . "MXN", 1, 1, 'C');
-$pdf->Cell(135, 10, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(40, 10, utf8_decode('Total: $') . number_format($note->total,2) . "MXN", 1, 1, 'C');
+$pdf->Cell(95, 10, utf8_decode(''), 0, 0, 'C');
+$pdf->Cell(40, 10, utf8_decode('Subtotal: '), 1, 0, 'C');
+$pdf->Cell(40, 10, "$" . number_format($note->subtotal, 2) . "MXN", 1, 1, 'C');
+$pdf->Cell(95, 10, utf8_decode(''), 0, 0, 'C');
+$pdf->Cell(40, 10, utf8_decode('IVA: '), 1, 0, 'C');
+$pdf->Cell(40, 10, "$" . number_format( $note->iva, 2) . "MXN", 1, 1, 'C');
+$pdf->Cell(95, 10, utf8_decode(''), 0, 0, 'C');
+$pdf->Cell(40, 10, utf8_decode('Total: '), 1, 0, 'C');
+$pdf->Cell(40, 10, "$" . number_format($note->total,2) . "MXN", 1, 1, 'C');
 
 // Salto de línea
 $pdf->Ln(10);
