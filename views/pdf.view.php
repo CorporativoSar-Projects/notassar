@@ -1,21 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-
-// Importar el modelo de cliente
-require_once 'models/Client.model.php';
-
-// include the PDF class
-require_once 'models/PDF.model.php';
-
-// get the data
-$data = isset($_GET['dato']) ? $_GET['dato'] : 'valor_predeterminado';
-
-// decode the data
-$note = json_decode($data);
-
-// get the client data
-$client = json_decode($note->client);
-
 // Crear una instancia de FPDF
 $pdf = new PDF();
 
@@ -46,10 +29,10 @@ $pdf->Ln(10);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(0, 10, utf8_decode('Datos del Cliente'), 0, 1, 'L');
 $pdf->SetFont('Arial', '', 12);
-$pdf->Cell(0, 10, utf8_decode('Nombre: ') . $client->name, 0, 1, 'L');
-$pdf->Cell(0, 10, utf8_decode('Correo: ') . $client->email, 0, 1, 'L');
-$pdf->Cell(0, 10, utf8_decode('Dirección: ') . $client->address, 0, 1, 'L');
-$pdf->Cell(0, 10, utf8_decode('Número: ') . $client->number, 0, 1, 'L');
+$pdf->Cell(0, 10, utf8_decode('Nombre: ' . $client->name), 0, 1, 'L');
+$pdf->Cell(0, 10, utf8_decode('Correo: ' . $client->email), 0, 1, 'L');
+$pdf->Cell(0, 10, utf8_decode('Dirección: ' . $client->address), 0, 1, 'L');
+$pdf->Cell(0, 10, utf8_decode('Número: ' . $client->number), 0, 1, 'L');
 
 // Salto de línea
 $pdf->Ln(10);
@@ -71,26 +54,35 @@ $pdf->Cell(40, 10, utf8_decode('Subtotal'), 1, 1, 'C', 1);
 $pdf->SetFont('Arial', '', 10);
 // recorrer los productos
 foreach ($note->noteProducts as $i => $product) {
-    $dataproduct = $product->product;
-    $pdf->Cell(15, 10, $i, 1, 0, 'C');
-    $pdf->Cell(40, 10, $dataproduct->PR_Name, 1, 0, 'C');
-    $pdf->Cell(40, 10, $dataproduct->PR_Price, 1, 0, 'C');
-    $pdf->Cell(40, 10, $product->quantity, 1, 0, 'C');
-    $pdf->Cell(40, 10, $dataproduct->PR_Price*$product->quantity, 1, 0, 'C');
-
+    if (is_array($product)) {
+        $pdf->Cell(15, 10, $i+1, 1, 0, 'C');
+        $pdf->Cell(40, 10, $product['PR_Name'], 1, 0, 'C');
+        $pdf->Cell(40, 10, $product['PR_Price'], 1, 0, 'C');
+        $pdf->Cell(40, 10, $product['NP_Quantity'], 1, 0, 'C');
+        $pdf->Cell(40, 10, $product['PR_Price']*$product['NP_Quantity'], 1, 0, 'C');
+    } else {
+        $pdf->Cell(15, 10, $i, 1, 0, 'C');
+        $pdf->Cell(40, 10, $product->PR_Name, 1, 0, 'C');
+        $pdf->Cell(40, 10, $product->PR_Price, 1, 0, 'C');
+        $pdf->Cell(40, 10, $product->NP_Quantity, 1, 0, 'C');
+        $pdf->Cell(40, 10, $product->PR_Price*$product->NP_Quantity, 1, 0, 'C');
+    }
     // Salto de línea
     $pdf->Ln(10);
 }
 
 $pdf->SetFillColor(232, 232, 232);
-$pdf->SetFont('Arial', 'B', 10);
+$pdf->SetFont('Arial', 'B', 12);
 //mostrar fila de totales
-$pdf->Cell(135, 10, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(40, 10, utf8_decode('Subtotal: $') . number_format($note->subtotal, 2) . "MXN", 1, 1, 'C');
-$pdf->Cell(135, 10, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(40, 10, utf8_decode('IVA: $') . number_format( $note->iva, 2) . "MXN", 1, 1, 'C');
-$pdf->Cell(135, 10, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(40, 10, utf8_decode('Total: $') . number_format($note->total,2) . "MXN", 1, 1, 'C');
+$pdf->Cell(95, 10, utf8_decode(''), 0, 0, 'C');
+$pdf->Cell(40, 10, utf8_decode('Subtotal: '), 1, 0, 'C');
+$pdf->Cell(40, 10, "$" . number_format($note->subtotal, 2) . "MXN", 1, 1, 'C');
+$pdf->Cell(95, 10, utf8_decode(''), 0, 0, 'C');
+$pdf->Cell(40, 10, utf8_decode('IVA: '), 1, 0, 'C');
+$pdf->Cell(40, 10, "$" . number_format( $note->iva, 2) . "MXN", 1, 1, 'C');
+$pdf->Cell(95, 10, utf8_decode(''), 0, 0, 'C');
+$pdf->Cell(40, 10, utf8_decode('Total: '), 1, 0, 'C');
+$pdf->Cell(40, 10, "$" . number_format($note->total,2) . "MXN", 1, 1, 'C');
 
 // Salto de línea
 $pdf->Ln(10);
