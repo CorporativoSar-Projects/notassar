@@ -22,7 +22,7 @@
             <center>Historial de <span>Notas</span></center>
         </h1>
 
-        <table class="table text-center">
+        <table class="table text-center mt-4">
             <thead class="bg-primary text-primary">
                 <tr>
                     <th scope="col">Nombre del cliente</th>
@@ -40,7 +40,8 @@
                         echo "<td><b>" . $note->getClient()->getName() . "</b></td>";
                         echo "<td>" . $note->getClient()->getEmail() . "</td>";
                         echo "<td>" . $note->getRegisterDate() . "</td>";
-                        echo "<td><a class='btn btn-info text-light' href='pdf.php?id={$note->getId()}' target='_blank'><i class='fa-solid fa-print'></i></a></td>";
+                        
+                        echo "<td><a class='btn btn-warning text-light' href='pdf.php?dato=". htmlspecialchars(json_encode($note)) ."' target='_blank'><i class='fa-solid fa-print'></i></a></td>";
                         echo "</tr>";
                     }
                 ?>

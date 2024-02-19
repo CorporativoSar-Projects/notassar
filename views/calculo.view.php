@@ -83,12 +83,10 @@
                             <!-- show the list products -->
                             <?php
 							foreach ($lista as $key => $product) {
-								// get the product object from the company products
-								$productObject = $product['product'];
 								// get the quantity of the product
-								$productQuantity = $product['quantity'];
+								$productQuantity = $product['NP_Quantity'];
 								// get the price of the product
-								$productPrice = $productObject['PR_Price'];
+								$productPrice = $product['PR_Price'];
 								// get the name of the product
 								$productName = $productObject['PR_Name'];
 								// get the total of the product

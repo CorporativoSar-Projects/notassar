@@ -43,23 +43,20 @@
 
             $productObject = $companyProducts[$indice];
 
+            $productObject['NP_Quantity'] = $quantity[$key];
+
             // add the product to the list
-            array_push($lista, array(
-                'product' => $productObject,
-                'quantity' => $quantity[$key]
-            ));
+            array_push($lista, $productObject);
         }
 
     }
 
     // calculate the total of the note
     foreach ($lista as $key => $product) {
-        // get the product object from the company products
-        $productObject = $product['product'];
         // get the quantity of the product
-        $productQuantity = $product['quantity'];
+        $productQuantity = $product['NP_Quantity'];
         // get the price of the product
-        $productPrice = $productObject['PR_Price'];
+        $productPrice = $product['PR_Price'];
         // get the total of the product
         $productTotal = $productQuantity * $productPrice;
         
